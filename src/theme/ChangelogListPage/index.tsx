@@ -9,6 +9,7 @@ import seCss from "../../css/section.module.css"
 import { Changelog } from "../../assets/changelogs"
 import styles from "./styles.module.css"
 import moment from "moment"
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 
 type Props = Readonly<{
   items: Changelog[]
@@ -50,34 +51,34 @@ function renderCards(allChangelogs: Changelog[]) {
   })
 }
 function ChangelogListPage(props: Props) {
+  const { siteConfig } = useDocusaurusContext()
   const allChangelogs = [...props.items].sort(
     (a, b) =>
       new Date(b.content.metadata.date).getTime() -
       new Date(a.content.metadata.date).getTime(),
   )
-  const description = "New Updates and imporvement to Gigahex"
+  const description = "New updates and improvements to Gigahex."
 
   return (
     <PageLayout
       canonical="/changelog"
       description={description}
-      title="Changlelog"
+      title="Changelog"
       wrapperClassName="changelog-wrapper"
     >
       <section className={clsx(seCss.section, seCss["section--odd"])}>
         <div className={styles.jumbotron}>
           <div className={styles.jumbotron__center}>
-            <h1 className={seCss.section__title}>ChangeLog</h1>
+            <h1 className={clsx(styles.jumbotron__title, seCss.section__title)}>
+              Changelog
+            </h1>
             <p className={clsx(styles.jumbotron__subtitle)}>{description}</p>
             <div className={styles.social__links}>
-              <a href="/slack" className={styles.social__link}>
-                Suscribe to Updates
-              </a>
-              <a href="/slack" className={styles.social__link}>
-                Join us on Slack Community
-              </a>
-              <a href="/slack" className={styles.social__link}>
-                Follow us on Twitter
+              <a
+                href={siteConfig.customFields.twitterUrl}
+                className={styles.social__link}
+              >
+                Follow on Twitter.
               </a>
             </div>
           </div>

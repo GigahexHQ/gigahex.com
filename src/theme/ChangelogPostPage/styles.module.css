@@ -1,11 +1,11 @@
-.back__to__allChangleLogs {
+.back__to__allChangeLogs {
   text-decoration: none;
   color: var(--palette-gray);
   display: flex;
   align-items: center;
   margin-left: -5px;
 }
-.back__to__allChangleLogs:hover {
+.back__to__allChangeLogs:hover {
   text-decoration: none;
   color: var(--palette-black);
 }

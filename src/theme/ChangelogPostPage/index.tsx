@@ -34,7 +34,7 @@ function ChangelogPostPage({ content }: Changelog) {
               <Link
                 to="/changelog"
                 href="/changelog"
-                className={styles.back__to__allChangleLogs}
+                className={styles.back__to__allChangeLogs}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

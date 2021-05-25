@@ -7,7 +7,7 @@ tsc \
     plugins/tutorial/compiled \
     plugins/tutorial/index.ts plugins/tutorial/markdownLoader.ts
 
-# Compile "changlelog" plugin    
+# Compile "changelog" plugin    
 tsc \
     --esModuleInterop \
     --outDir \
