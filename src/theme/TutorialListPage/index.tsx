@@ -6,7 +6,7 @@ import PageLayout from "@theme/PageLayout"
 import TutorialPostItem from "@theme/TutorialPostItem"
 
 import seCss from "../../css/section.module.css"
-import tutorials, { Tutorial } from "../../assets/tutorials"
+import { Tutorial } from "../../assets/tutorials"
 import styles from "./styles.module.css"
 
 type Props = Readonly<{
@@ -33,7 +33,7 @@ function renderCards(cards: Tutorial[]) {
 }
 
 function TutorialListPage(props: Props) {
-  const all = [...props.items, ...tutorials].sort(
+  const all = [...props.items].sort(
     (a, b) =>
       new Date(b.content.metadata.date).getTime() -
       new Date(a.content.metadata.date).getTime(),
