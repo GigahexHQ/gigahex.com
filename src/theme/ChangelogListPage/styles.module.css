@@ -40,9 +40,6 @@
 .changelog__item__row:not(:last-child) {
   border-bottom: 1px solid var(--palette-border-grey);
 }
-.changelog__item__row .col {
-  padding: 0 0 !important;
-}
 
 .post__date {
   padding: 1rem 0;

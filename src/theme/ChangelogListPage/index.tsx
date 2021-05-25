@@ -23,7 +23,7 @@ function renderCards(allChangelogs: Changelog[]) {
         className={clsx("row", styles.changelog__item__row)}
         key={content.metadata.permalink}
       >
-        <main className={clsx("col col--4")}>
+        <main className={clsx("col col--4")} style={{ padding: 0 }}>
           <h4 className={styles.post__date}>
             <Link
               href={permalink}
@@ -34,7 +34,7 @@ function renderCards(allChangelogs: Changelog[]) {
             </Link>
           </h4>
         </main>
-        <main className={clsx("col col--8")}>
+        <main className={clsx("col col--8")} style={{ padding: 0 }}>
           <ChangelogPostItem
             key={content.metadata.permalink}
             frontMatter={content.frontMatter}
