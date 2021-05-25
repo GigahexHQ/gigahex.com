@@ -7,7 +7,8 @@
 :root {
   --palette-charade: #fbfbfd;
   --palette-gray: #636363;
-  --palette-black: #413e3e;
+  --palette-gray: #636363;
+  --palette-border-grey: #cabbe9;
   --palette-green: #66bb6a;
   --palette-midnight: #141725;
   --palette-pale-blue: #b1b5d3;

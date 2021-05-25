@@ -21,12 +21,18 @@ function ChangelogPostItem({
   frontMatter,
   isChangelogPage = false,
 }: Props) {
-  const { title } = frontMatter
+  const { title, image } = frontMatter
 
+  const imageUrl = image
   if (isChangelogPage) {
     return (
       <div className={clsx(styles.article)}>
         <span className={clsx(styles.article__content)}>
+          {typeof image !== "object" && (
+            <div className={styles.changelog__image}>
+              <img alt={title} src={imageUrl} />
+            </div>
+          )}
           <header>
             <h1 className={clsx("margin-bottom--sm", styles.title)}>{title}</h1>
           </header>

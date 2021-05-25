@@ -23,7 +23,7 @@ function renderCards(allChangelogs: Changelog[]) {
         className={clsx("row", styles.changelog__item__row)}
         key={content.metadata.permalink}
       >
-        <main className={clsx("col col--3")}>
+        <main className={clsx("col col--4")}>
           <h4 className={styles.post__date}>
             <Link
               href={permalink}

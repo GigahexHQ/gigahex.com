@@ -11,7 +11,16 @@
 .article__content {
   cursor: text;
   display: block;
-  padding: 1rem;
+}
+.changelog__image {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.changelog__image > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--ifm-global-border-radius);
 }
 
 @media (max-width: 996px) {
