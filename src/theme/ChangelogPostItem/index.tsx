@@ -28,7 +28,7 @@ function ChangelogPostItem({
     return (
       <div className={clsx(styles.article)}>
         <span className={clsx(styles.article__content)}>
-          {typeof image !== "object" && (
+          {imageUrl !== undefined && (
             <div className={styles.changelog__image}>
               <img alt={title} src={imageUrl} />
             </div>
