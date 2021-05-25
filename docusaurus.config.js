@@ -73,6 +73,12 @@ const config = {
       },
     ],
     [
+      require.resolve("./plugins/changelog/compiled/index"),
+      {
+        remarkPlugins: [variable],
+      },
+    ],
+    [
       "@docusaurus/plugin-pwa",
       {
         pwaHead: [
@@ -169,6 +175,10 @@ const config = {
               to: "/tutorial",
             },
             {
+              label: "Changelog",
+              to: "/changelog",
+            },
+            {
               label: "Videos",
               to: customFields.videosUrl,
             },
@@ -257,6 +267,10 @@ const config = {
             {
               label: "Tutorials",
               to: "/tutorial/",
+            },
+            {
+              label: "Changelogs",
+              to: "/changelog/",
             },
             {
               label: "Blog",

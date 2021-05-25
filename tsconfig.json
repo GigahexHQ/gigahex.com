@@ -24,7 +24,7 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
 
     "resolveJsonModule": true,
     "jsx": "react",
@@ -43,7 +43,10 @@
       "@theme/Screenshot": ["src/theme/Screenshot"],
       "@theme/TutorialListPage": ["src/theme/TutorialListPage"],
       "@theme/TutorialPostItem": ["src/theme/TutorialPostItem"],
-      "@theme/TutorialPostPage": ["src/theme/TutorialPostPage"],
+      "@theme/TutorialPostPage": ["src/theme/TutorialgPostPage"],
+      "@theme/ChangelogPostItem": ["src/theme/ChangelogPostItem"],
+      "@theme/ChangelogPostPage": ["src/theme/ChangelogPostPage"],
+      "@theme/ChangelogListPage": ["src/theme/ChangelogListPage"],
       "@theme/useMetadataContext": ["src/theme/useMetadataContext"],
       "@theme/useResizeObserver": ["src/theme/useResizeObserver"],
       "@theme/useWindowWidth": ["src/theme/useWindowWidth"]

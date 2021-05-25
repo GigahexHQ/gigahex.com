@@ -1,0 +1,21 @@
+.title {
+  font-size: var(--font-size-big-2);
+}
+
+.article {
+  display: block;
+  max-width: 100%;
+  color: var(--palette-black);
+}
+
+.article__content {
+  cursor: text;
+  display: block;
+  padding: 1rem;
+}
+
+@media (max-width: 996px) {
+  .article__content {
+    padding: 0;
+  }
+}
