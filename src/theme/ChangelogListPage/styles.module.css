@@ -26,8 +26,13 @@
 
 .social__link {
   margin-right: 10px;
+  color: var(--palette-black);
   font-size: var(--font-size-large);
   font-weight: 600;
+  text-decoration: none;
+}
+.social__link:hover {
+  color: var(--palette-gray);
 }
 .changelog__item__row {
   justify-content: center !important;
