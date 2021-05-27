@@ -41,10 +41,6 @@ function TutorialListPage(props: Props) {
   const featured = all.filter(
     ({ content }) => content.frontMatter.featured === true,
   )
-  const cards = all.filter(
-    ({ content }) =>
-      content.frontMatter.featured == null || !content.frontMatter.featured,
-  )
   const description =
     "Resources from our community contributors and the QuestDB Team for learning and mastering QuestDB."
 
@@ -88,13 +84,6 @@ function TutorialListPage(props: Props) {
             </div>
           </>
         )}
-
-        <h2 className={styles.cards__title}>All tutorials</h2>
-        <div className="row">
-          <main className={clsx("col", styles.cards__container)}>
-            {renderCards(cards)}
-          </main>
-        </div>
       </div>
     </PageLayout>
   )

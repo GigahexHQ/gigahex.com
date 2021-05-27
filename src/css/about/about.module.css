@@ -1,0 +1,88 @@
+.about__top,
+.about__team__sec,
+.about__investors__sec {
+  margin: 0 auto;
+  padding: 3rem;
+  width: 1000px;
+  max-width: 1000px;
+}
+
+.about__title,
+.team__title,
+.investor__title {
+  color: var(--palette-black);
+  font-size: var(--font-size-big-5);
+}
+
+.about__desc,
+.team__desc {
+  font-size: var(--font-size-big-1);
+  color: var(--palette-gray);
+  max-width: 800px;
+}
+
+.about__top > a {
+  font-size: var(--font-size-big-1);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.about__top > a:hover {
+  color: var(--palette-gray);
+}
+
+.about__more > img {
+  margin-top: 3px;
+  margin-left: 8px;
+}
+
+.team__list__row {
+  max-width: var(--ifm-container-width);
+}
+
+.team__person__card {
+  max-width: 300px;
+}
+
+.team__person__card > .person__pic {
+  width: 150px;
+}
+
+.team__person__card > .person__pic > img {
+  width: 100%;
+  object-fit: cover;
+}
+.person__name {
+  font-size: var(--font-size-big-1);
+  font-weight: 600;
+}
+.person__info {
+  display: flex;
+  align-items: center;
+}
+
+.person__desc,
+.investor__about {
+  font-size: var(--font-size-normal);
+  color: var(--palette-gray);
+  line-height: 1.4;
+}
+
+.investor__card {
+  display: flex;
+  align-items: center;
+}
+.investor__pic {
+  width: 100px;
+}
+.investor__pic > img {
+  width: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.investor__info {
+  align-self: flex-start;
+}
+
+/*  */

@@ -1,6 +1,13 @@
-.getQuestdb {
-  margin-left: 40px;
+.navbar__actionbtn {
+  min-width: 200px;
   font-size: var(--font-size-small);
+}
+
+.actionbtns {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .brand {
@@ -16,7 +23,16 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
-
+:global(.navbar) {
+  box-shadow: none;
+  background-color: var(--palette-rock);
+  padding-bottom: 10px;
+}
+:global(.navbar__items) {
+  padding-top: 15px;
+  align-items: flex-start;
+  justify-content: center;
+}
 .inner {
   margin: 0 auto;
   padding: 0 var(--ifm-spacing-horizontal);
@@ -63,6 +79,10 @@
     padding: 0.5rem;
     font-size: calc(var(--font-size-small) - 1px);
   }
+  :global(.navbar),
+  :global(.navbar-sidebar__brand) {
+    height: 80px;
+  }
 
   :global(.DocSearch-Button) {
     margin: 0 !important;
@@ -74,7 +94,7 @@
 }
 
 @media (max-width: 996px) and (min-width: 768px) {
-  .getQuestdb {
+  .actionbtn {
     margin-left: 1.7rem;
   }
 }
@@ -83,9 +103,20 @@
   :global(.navbar-sidebar) .brand {
     margin-left: 1.5rem;
   }
+  :global(.navbar__items) {
+    justify-content: flex-start;
+  }
+  .actionbtns {
+    flex-direction: row;
+  }
 
   :global(.navbar__item.navbar__item--slack),
   :global(.navbar__item.navbar__item--github) {
+    display: none;
+  }
+}
+@media (max-width: 776px) {
+  .actionbtns {
     display: none;
   }
 }

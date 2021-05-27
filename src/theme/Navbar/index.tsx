@@ -8,6 +8,7 @@ import useWindowSize, { windowSizes } from "@theme/hooks/useWindowSize"
 
 import styles from "./styles.module.css"
 import NavbarItem from "@theme/NavbarItem"
+import ButtonDropdown from "../Button/ButtonDropdown"
 
 const DefaultNavItemPosition = "right"
 
@@ -101,18 +102,31 @@ function Navbar(): JSX.Element {
           {leftItems.map((item, i) => (
             <NavbarItem {...item} key={i} />
           ))}
+          <div className={styles.actionbtns}>
+            <ButtonDropdown
+              menuItems={[
+                {
+                  item: "new gigahex",
+                  link: "#",
+                },
+              ]}
+              className={styles.navbar__actionbtn}
+            >
+              Download for Mac
+            </ButtonDropdown>
+            <Button
+              className={styles.navbar__actionbtn}
+              size="xsmall"
+              to="/get-questdb/"
+            >
+              Comming Soon
+            </Button>
+          </div>
         </div>
         <div className="navbar__items navbar__items--right">
           {rightItems.map((item, i) => (
             <NavbarItem {...item} key={i} />
           ))}
-          <Button
-            className={styles.getQuestdb}
-            size="xsmall"
-            to="/get-questdb/"
-          >
-            Get QuestDB
-          </Button>
         </div>
       </div>
       <div

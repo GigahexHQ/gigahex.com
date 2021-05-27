@@ -53,7 +53,8 @@ function variable() {
 
 const config = {
   title: "Big data development, faster and easier.",
-  tagline: "Sandbox Big data cluster on desktop",
+  tagline:
+    "Install spark and Hadoop sandbox cluster in 60 second It's build for busy developers.",
   url: `https://${customFields.domain}`,
   baseUrl: "/",
   baseUrlIssueBanner: false,
@@ -137,78 +138,24 @@ const config = {
       },
       items: [
         {
-          label: "Get Started",
+          label: "Tutorials",
           position: "left",
-          items: [
-            {
-              label: "Docker",
-              to: "/docs/get-started/docker/",
-            },
-            {
-              label: "Binaries",
-              to: "/docs/get-started/binaries/",
-            },
-            {
-              label: "Homebrew",
-              to: "/docs/get-started/homebrew/",
-            },
-          ],
+          to: "/tutorial/",
         },
         {
-          label: "Resources",
+          label: "Changelog",
           position: "left",
-          items: [
-            {
-              label: "Customers",
-              to: "/customers",
-            },
-            {
-              label: "Enterprise",
-              to: "/enterprise",
-            },
-            {
-              label: "Blog",
-              to: "/blog",
-            },
-            {
-              label: "Tutorials",
-              to: "/tutorial",
-            },
-            {
-              label: "Changelog",
-              to: "/changelog",
-            },
-            {
-              label: "Videos",
-              to: customFields.videosUrl,
-            },
-          ],
+          to: "/changelog/",
         },
         {
-          label: "Community",
+          label: "About Us",
           position: "left",
-          items: [
-            {
-              label: "QuestDB Swag",
-              to: "/community/",
-            },
-            {
-              label: "GitHub",
-              to: customFields.githubUrl,
-            },
-            {
-              label: "Slack",
-              to: customFields.slackUrl,
-            },
-            {
-              label: "Stack Overflow",
-              to: customFields.stackoverflowUrl,
-            },
-            {
-              label: "Twitter",
-              to: customFields.twitterUrl,
-            },
-          ],
+          to: "/about/",
+        },
+        {
+          label: "Blog",
+          to: "/blog",
+          position: "left",
         },
         {
           label: "Documentation",

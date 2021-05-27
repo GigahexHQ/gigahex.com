@@ -15,6 +15,8 @@ type Props = Readonly<{
   type?: "button" | "submit"
   uppercase: boolean
   variant: "primary" | "secondary" | "tertiary" | "plain"
+  dataToggle?: string
+  disabled?: boolean
 }>
 
 const Button = ({
@@ -29,6 +31,7 @@ const Button = ({
   type,
   uppercase,
   variant,
+  dataToggle,
 }: Props) => {
   const classes = clsx(className, styles.button, {
     [styles["button--icon"]]: icon != null,
@@ -44,7 +47,7 @@ const Button = ({
   if (href != null) {
     return (
       <a
-        className={classes}
+        className={clsx(classes)}
         href={href}
         onClick={onClick}
         {...(newTab
@@ -62,7 +65,12 @@ const Button = ({
 
   if (to != null) {
     return (
-      <a className={classes} href={to} onClick={onClick}>
+      <a
+        className={clsx(classes)}
+        href={to}
+        onClick={onClick}
+        data-toggle={dataToggle}
+      >
         {icon}
         {children}
       </a>
@@ -70,7 +78,12 @@ const Button = ({
   }
 
   return (
-    <button className={classes} onClick={onClick} type={type ?? "button"}>
+    <button
+      className={classes}
+      onClick={onClick}
+      type={type ?? "button"}
+      data-toggle={dataToggle}
+    >
       {icon}
       {children}
     </button>

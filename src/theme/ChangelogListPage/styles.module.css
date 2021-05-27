@@ -1,6 +1,6 @@
 .jumbotron {
   display: flex;
-  min-height: 400px;
+  min-height: 300px;
   max-width: var(--ifm-container-width);
   justify-content: center;
   margin: 0 auto;
