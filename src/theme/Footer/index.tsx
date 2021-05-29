@@ -92,7 +92,7 @@ const Footer = () => {
             }
             size="xsmall"
             uppercase={false}
-            variant="secondary"
+            variant="primary"
           >
             Star us on GitHub
           </Button>
@@ -129,21 +129,21 @@ const Footer = () => {
       <div className={footerStyles.footer__bottom}>
         <p className={footerStyles.footer__copyright}>
           {siteConfig.customFields.copyright}
-          <ul>
-            <li className={footerStyles.footer__item}>
-              <a className={footerStyles.footer__link} href="/privacy-notice/">
-                Privacy
-              </a>
-            </li>
-          </ul>
-          <ul>
-            <li className={footerStyles.footer__item}>
-              <a className={footerStyles.footer__link} href="/terms/">
-                Terms
-              </a>
-            </li>
-          </ul>
         </p>
+        <ul>
+          <li className={footerStyles.footer__item}>
+            <a className={footerStyles.footer__link} href="/privacy-notice/">
+              Privacy
+            </a>
+          </li>
+        </ul>
+        <ul>
+          <li className={footerStyles.footer__item}>
+            <a className={footerStyles.footer__link} href="/terms/">
+              Terms
+            </a>
+          </li>
+        </ul>
       </div>
     </footer>
   )
