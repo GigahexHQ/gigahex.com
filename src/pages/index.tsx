@@ -40,7 +40,7 @@ const FeatureCard = ({ title, desc, icon }: IFeatureCard) => {
           {title}
         </h2>
       </div>
-      <p className={ftuCss.desc}>{desc}</p>
+      <p className={ftuCss.feature__desc}>{desc}</p>
     </div>
   )
 }
@@ -75,6 +75,7 @@ const Top = () => {
               typingDelay={1000}
               cursor=" "
             />
+            .
           </span>
         </h1>
 
@@ -89,8 +90,38 @@ const Top = () => {
         </p>
 
         <div className={juCss.jumbotron__actionbtns}>
-          <ButtonDropdown menuItems={[]}>Download for Mac</ButtonDropdown>
-          <Button className={juCss.actionbtn} size="xsmall" to="/get-questdb/">
+          <ButtonDropdown
+            dropdownBtnClass={juCss.jumbotron__actionbtn}
+            icon={
+              <img
+                src="/img/pages/landing/appleIcon.svg"
+                width={25}
+                height={25}
+                className="apple-icon"
+              />
+            }
+            menuItems={[
+              {
+                item: "download for mac",
+                link: "#",
+              },
+            ]}
+          >
+            Download for Mac
+          </ButtonDropdown>
+          <Button
+            uppercase={false}
+            icon={
+              <img
+                src="/img/pages/landing/microSoftIcon.svg"
+                width={22}
+                height={22}
+                className="microsoft-icon"
+              />
+            }
+            className={`${juCss.actionbtn} disabled`}
+            size="xsmall"
+          >
             Comming Soon
           </Button>
         </div>
@@ -129,7 +160,7 @@ const FeaturesCard = () => {
         <div className={clsx("row", ftuCss.features__row)}>
           <div className={ftuCss.feature__col}>
             <FeatureCard
-              title="Spark flavoe"
+              title="All Spark flavours"
               desc="Whether you are running your Apache Spark opensource or the one provided by AWS EMR, Databricks or Qubole. It just works "
               icon="/img/pages/landing/feature-tile-icon-01.svg"
             />
@@ -193,23 +224,44 @@ const FooterConsole = () => {
         <div
           className={clsx(ftrClsCss.footerCol, ftrClsCss.footer__console__left)}
         >
-          <h3 className={ftrClsCss.flashy__title}>Download Gigahex</h3>
-          <p className={ftrClsCss.flashy__content}>
+          <h2 className={ftrClsCss.flashy__title}>Download Gigahex</h2>
+          <p className={clsx(ftrClsCss.flashy__content, "margin-bottom--lg")}>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem,
             maiores ea eius minus cum adipisci, pariatur dolorum quos quidem
             maxime numquam.
           </p>
           <div className={ftrClsCss.console__actionbtns}>
             <ButtonDropdown
-              menuItems={[]}
-              dropdownBtnClass={ftrClsCss.console__dorpdown__btn}
+              icon={
+                <img
+                  src="/img/pages/landing/appleIcon.svg"
+                  width="25px"
+                  height="25px"
+                  className="apple-icon"
+                />
+              }
+              menuItems={[
+                {
+                  item: "download for mac",
+                  link: "#",
+                },
+              ]}
+              dropdownBtnClass={ftrClsCss.console__actionbtn}
             >
               Download for Mac
             </ButtonDropdown>
             <Button
-              className={ftrClsCss.console__actionbtn}
+              icon={
+                <img
+                  src="/img/pages/landing/microSoftIcon.svg"
+                  width={22}
+                  height={22}
+                  className="microsoft-icon"
+                />
+              }
+              className={`${ftrClsCss.console__actionbtn} disabled`}
               size="xsmall"
-              to="/get-questdb/"
+              uppercase={false}
             >
               Comming Soon
             </Button>
@@ -250,7 +302,7 @@ const WatchInDemo = () => (
       <div className={clsx("container", wthCss.video__container)}>
         <YouTube
           videoId="cdQAMucLugc"
-          className={wthCss.ytb__video}
+          className={clsx(wthCss.ytb__video, "shadaow--md")}
           opts={{
             width: "100%",
             playerVars: {
@@ -296,26 +348,87 @@ const FeaturesTiles = () => (
           className={clsx(featTiles.tile__item__content)}
           data-reveal-container=".split-item"
         >
-          <h2 className="mt-0 mb-12">Manage Deployment Environments</h2>
-          <p className="m-0" style={{ marginBottom: 20 }}>
+          <h2 className={featTiles.feature__tile__cont__title}>
+            Manage Deployment Environments
+          </h2>
+          <p
+            className={featTiles.feature__tile__cont__desc}
+            style={{ marginBottom: 20 }}
+          >
             <b style={{ color: "#000" }}>Fast deployments. </b> Create complex
             deployments in few minutes. Deploy to staging, test and prod
             environments.
           </p>
-          <p className="m-0">
+          <p className={featTiles.feature__tile__cont__desc}>
             <b style={{ color: "#000" }}>Debug deployment with logs.</b> Quickly
             navigate to the logs and spark metric dashboard from deployments
             view.
           </p>
         </div>
         <div className={clsx(featTiles.tile__item__img)}>
-          <div className={featTiles.tile__img__box}>
-            <div className={featTiles.tile__img__bg}> </div>
+          <div className={clsx(featTiles.tile__img__box, "shadow--md")}>
             <img
               src="/img/pages/landing/features-split-image-01.png"
               alt="Features split 01"
-              width={528}
-              height={396}
+            />
+          </div>
+        </div>
+      </div>
+      <div className={clsx(featTiles.features__tiles__row)}>
+        <div className={clsx(featTiles.tile__item__img)}>
+          <div className={clsx(featTiles.tile__img__box, "shadow--md")}>
+            <img
+              src="/img/pages/landing/features-split-image-02.png"
+              alt="Features split 02"
+            />
+          </div>
+        </div>
+        <div
+          className={clsx(featTiles.tile__item__content)}
+          data-reveal-container=".split-item"
+        >
+          <h2 className={featTiles.feature__tile__cont__title}>
+            Monitor Resource Usage
+          </h2>
+          <p
+            className={featTiles.feature__tile__cont__desc}
+            style={{ marginBottom: 20 }}
+          >
+            <b style={{ color: "#000" }}>Fast debugging.</b> Quickly drill down
+            to the individual job or stage thats causing the performance issue.
+          </p>
+          <p className={featTiles.feature__tile__cont__desc}>
+            <b style={{ color: "#000" }}>Real time monitoring.</b>Get instant
+            feedback and deploy the optimized code, saving your time and SLA.
+          </p>
+        </div>
+      </div>
+      <div className={clsx(featTiles.features__tiles__row)}>
+        <div
+          className={clsx(featTiles.tile__item__content)}
+          data-reveal-container=".split-item"
+        >
+          <h2 className={featTiles.feature__tile__cont__title}>
+            Get Performance Insights
+          </h2>
+          <p
+            className={featTiles.feature__tile__cont__desc}
+            style={{ marginBottom: 20 }}
+          >
+            <b style={{ color: "#000" }}>Identify resource wastage.</b> Optimize
+            cluster memory and cpu based on the resource overall resource usage.
+          </p>
+          <p className={featTiles.feature__tile__cont__desc}>
+            <b style={{ color: "#000" }}>Vital Observations.</b> Identify
+            performance bottleneck, without going through hundreds of jobs and
+            stages and logs.
+          </p>
+        </div>
+        <div className={clsx(featTiles.tile__item__img)}>
+          <div className={clsx(featTiles.tile__img__box, "shadow--md")}>
+            <img
+              src="/img/pages/landing/features-split-image-03.png"
+              alt="Features split 03"
             />
           </div>
         </div>

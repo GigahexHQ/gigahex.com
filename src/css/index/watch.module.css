@@ -1,5 +1,5 @@
 .watch__sec {
-  padding: 3rem 0;
+  padding: 4rem 0;
   max-width: var(--ifm-container-width);
   width: 100%;
 }
@@ -8,6 +8,8 @@
 }
 
 .ytb__video {
+  overflow: hidden;
+  border-radius: var(--ifm-global-img-border-radius);
   height: 550px;
 }
 

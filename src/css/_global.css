@@ -73,6 +73,7 @@
     "Liberation Mono", "Courier New", monospace;
   --ifm-font-size-base: var(--font-size-small);
   --ifm-global-border-radius: 8px;
+  --ifm-global-img-border-radius: 20px;
   --ifm-h1-font-size: var(--font-size-big-4);
   --ifm-h2-font-size: var(--font-size-big-2);
   --ifm-h3-font-size: var(--font-size-big-1);
@@ -306,4 +307,12 @@ body {
 .item-exit-active {
   opacity: 0;
   transition: opacity 200ms ease-in;
+}
+
+.apple-icon {
+  margin-top: 4px;
+  margin-right: 5px;
+}
+.microsoft-icon {
+  margin-right: 10px !important;
 }

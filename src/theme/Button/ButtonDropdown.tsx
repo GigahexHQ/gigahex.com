@@ -1,6 +1,6 @@
 // import clsx from "clsx"
 import clsx from "clsx"
-import React from "react"
+import React, { ReactNode } from "react"
 import drpCss from "./ButtonDropdown.module.css"
 
 type ImenuItems = {
@@ -9,6 +9,7 @@ type ImenuItems = {
 }
 
 type IButtonDropdown = {
+  icon?: ReactNode
   children?: string
   className?: string
   dropdownBtnClass?: string
@@ -33,6 +34,7 @@ const ButtonDropdown = (props: IButtonDropdown) => {
         href="#url"
         style={{ height: 40 }}
       >
+        <div>{props.icon}</div>
         <div> {props.children}</div>
       </a>
       {props.menuItems?.length > 0 && (

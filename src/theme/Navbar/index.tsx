@@ -104,6 +104,14 @@ function Navbar(): JSX.Element {
           ))}
           <div className={styles.actionbtns}>
             <ButtonDropdown
+              icon={
+                <img
+                  src="/img/pages/landing/appleIcon.svg"
+                  width="25px"
+                  height="25px"
+                  className="apple-icon"
+                />
+              }
               menuItems={[
                 {
                   item: "new gigahex",
@@ -115,9 +123,17 @@ function Navbar(): JSX.Element {
               Download for Mac
             </ButtonDropdown>
             <Button
-              className={styles.navbar__actionbtn}
+              uppercase={false}
+              icon={
+                <img
+                  src="/img/pages/landing/microSoftIcon.svg"
+                  width={22}
+                  height={22}
+                  className="microsoft-icon"
+                />
+              }
+              className={`${styles.navbar__actionbtn} disabled`}
               size="xsmall"
-              to="/get-questdb/"
             >
               Comming Soon
             </Button>

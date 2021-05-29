@@ -10,7 +10,8 @@
   flex: 1.75;
   background-color: var(--palette-rock);
   max-width: 400px;
-  min-height: 180px;
+  height: 220px;
+  max-height: 220px;
   align-items: center;
   border-radius: var(--ifm-global-border-radius);
 }
@@ -25,9 +26,12 @@
   margin-right: 15px;
   background-color: var(--palette-pink);
   border-radius: 50%;
-}
-.feature__icon {
   margin-right: 10px;
+}
+
+.feature__desc {
+  font-size: var(--font-size-large);
+  color: var(--palette-gray);
 }
 
 .features__row {

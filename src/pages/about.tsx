@@ -93,16 +93,9 @@ const TeamList = () => (
           facere aperiam ducimus sequi!
         </p>
       </div>
-      <div
-        className={clsx(
-          abtCss.team__list__container,
-          "container",
-          "padding-left--none",
-          "padding-right--none",
-        )}
-      >
+      <div className={clsx(abtCss.team__list__container, "container")}>
         <div className={clsx("row", abtCss.team__list__row)}>
-          <div className={clsx("col col--4")}>
+          <div className={clsx(abtCss.team__list__col)}>
             <PersonCard
               twitterLink="icon"
               linkdinLink="icon"
@@ -112,26 +105,40 @@ const TeamList = () => (
               personPic="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
             />
           </div>
-          <div className={clsx("col col--4")}>
+          <div className={clsx(abtCss.team__list__col)}>
             <PersonCard
-              imageWidth={150}
-              personName="Shadab Alam"
-              personDesc="Past: Designer at Microsoft, eFounders,Jour. Created GitHub issues client Gitscout"
-              personPic="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-            />
-          </div>
-          <div className={clsx("col col--4")}>
-            <PersonCard
-              imageWidth={150}
               twitterLink="icon"
               linkdinLink="icon"
+              imageWidth={150}
               personName="Shadab Alam"
               personDesc="Past: Designer at Microsoft, eFounders,Jour. Created GitHub issues client Gitscout"
               personPic="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
             />
           </div>
-          <div className={clsx("col col--4")}>
+          <div className={clsx(abtCss.team__list__col)}>
             <PersonCard
+              twitterLink="icon"
+              linkdinLink="icon"
+              imageWidth={150}
+              personName="Shadab Alam"
+              personDesc="Past: Designer at Microsoft, eFounders,Jour. Created GitHub issues client Gitscout"
+              personPic="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+            />
+          </div>
+          <div className={clsx(abtCss.team__list__col)}>
+            <PersonCard
+              twitterLink="icon"
+              linkdinLink="icon"
+              imageWidth={150}
+              personName="Shadab Alam"
+              personDesc="Past: Designer at Microsoft, eFounders,Jour. Created GitHub issues client Gitscout"
+              personPic="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+            />
+          </div>
+          <div className={clsx(abtCss.team__list__col)}>
+            <PersonCard
+              twitterLink="icon"
+              linkdinLink="icon"
               imageWidth={150}
               personName="Shadab Alam"
               personDesc="Past: Designer at Microsoft, eFounders,Jour. Created GitHub issues client Gitscout"

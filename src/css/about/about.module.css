@@ -3,7 +3,6 @@
 .about__investors__sec {
   margin: 0 auto;
   padding: 3rem;
-  width: 1000px;
   max-width: 1000px;
 }
 
@@ -37,6 +36,10 @@
 }
 
 .team__list__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
   max-width: var(--ifm-container-width);
 }
 
@@ -85,4 +88,11 @@
   align-self: flex-start;
 }
 
-/*  */
+@media (max-width: 776px) {
+  .team__list__row {
+    justify-content: center;
+  }
+  .team__person__card {
+    max-width: 250px;
+  }
+}
