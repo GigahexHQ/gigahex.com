@@ -12,11 +12,6 @@ QuestDB comes with a script `questdb.sh` for Linux/FreeBSD and an executable
 `questdb.exe` for Windows. If you are looking for macOS, please check our
 [Homebrew](/docs/get-started/homebrew/) section.
 
-## Download
-
-You can find the latest binaries on the [Get QuestDB](/get-questdb/) page. The
-release notes are on our [GitHub release]({@githubUrl@}/releases) page.
-
 ## Prerequisites
 
 ### "Any (no JVM)" version
@@ -73,13 +68,16 @@ import TabItem from "@theme/TabItem"
 
 <TabItem value="linux">
 
+
 ```shell
 questdb-{@version@}-rt-linux-amd64.tar.gz
 ```
 
 </TabItem>
 
+
 <TabItem value="bsd">
+
 
 ```shell
 questdb-{@version@}-rt-freebsd-amd64.tar.gz
@@ -87,7 +85,9 @@ questdb-{@version@}-rt-freebsd-amd64.tar.gz
 
 </TabItem>
 
+
 <TabItem value="windows">
+
 
 ```shell
 questdb-{@version@}-rt-windows-amd64.tar.gz
@@ -95,7 +95,9 @@ questdb-{@version@}-rt-windows-amd64.tar.gz
 
 </TabItem>
 
+
 </Tabs>
+
 
 This binary weights around 20MB, this depends on your operating system.
 
@@ -117,13 +119,16 @@ runtime is packaged directly with QuestDB.
 
 <TabItem value="any">
 
+
 ```shell
 tar -xvf questdb-{@version@}-no-jre-bin.tar.gz
 ```
 
 </TabItem>
 
+
 <TabItem value="linux">
+
 
 ```shell
 tar -xvf questdb-{@version@}-rt-linux-amd64.tar.gz
@@ -131,7 +136,9 @@ tar -xvf questdb-{@version@}-rt-linux-amd64.tar.gz
 
 </TabItem>
 
+
 <TabItem value="bsd">
+
 
 ```shell
 tar -xvf questdb-{@version@}-rt-freebsd-amd64.tar.gz
@@ -139,7 +146,9 @@ tar -xvf questdb-{@version@}-rt-freebsd-amd64.tar.gz
 
 </TabItem>
 
+
 <TabItem value="windows">
+
 
 ```shell
 tar -xvf questdb-{@version@}-rt-windows-amd64.tar.gz
@@ -147,7 +156,9 @@ tar -xvf questdb-{@version@}-rt-windows-amd64.tar.gz
 
 </TabItem>
 
+
 </Tabs>
+
 
 ## Next steps
 

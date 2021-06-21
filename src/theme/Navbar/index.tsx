@@ -2,13 +2,13 @@ import clsx from "clsx"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React, { ComponentProps, useCallback, useState, useEffect } from "react"
 
-import Button from "@theme/Button"
-import SearchBar from "@theme/SearchBar"
+// import Button from "@theme/Button"
 import useLockBodyScroll from "@theme/hooks/useLockBodyScroll"
 import useWindowSize, { windowSizes } from "@theme/hooks/useWindowSize"
 
 import styles from "./styles.module.css"
 import NavbarItem from "@theme/NavbarItem"
+// import ButtonDropdown from "../Button/ButtonDropdown"
 
 const DefaultNavItemPosition = "right"
 
@@ -43,7 +43,6 @@ function Navbar(): JSX.Element {
     },
   } = useDocusaurusContext()
   const [sidebarShown, setSidebarShown] = useState(false)
-  const [isSearchBarExpanded, setIsSearchBarExpanded] = useState(false)
 
   useLockBodyScroll(sidebarShown)
 
@@ -108,17 +107,6 @@ function Navbar(): JSX.Element {
           {rightItems.map((item, i) => (
             <NavbarItem {...item} key={i} />
           ))}
-          <SearchBar
-            handleSearchBarToggle={setIsSearchBarExpanded}
-            isSearchBarExpanded={isSearchBarExpanded}
-          />
-          <Button
-            className={styles.getQuestdb}
-            size="xsmall"
-            to="/get-questdb/"
-          >
-            Get QuestDB
-          </Button>
         </div>
       </div>
       <div

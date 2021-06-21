@@ -2,8 +2,6 @@ import clsx from "clsx"
 import useBaseUrl from "@docusaurus/useBaseUrl"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React from "react"
-
-import Button from "@theme/Button"
 import useMetadataContext from "@theme/useMetadataContext"
 
 import sectionCss from "../../css/section.module.css"
@@ -77,25 +75,6 @@ const Footer = () => {
             </div> */}
           </div>
           <p className={footerStyles.footer__tagline}>{siteConfig.tagline}</p>
-
-          <Button
-            className={footerStyles.footer__github}
-            href={siteConfig.customFields.githubUrl}
-            icon={
-              <img
-                alt="GitHub logo"
-                height={22}
-                src="/img/github.svg"
-                title="GitHub"
-                width={22}
-              />
-            }
-            size="xsmall"
-            uppercase={false}
-            variant="secondary"
-          >
-            Star us on GitHub
-          </Button>
         </div>
 
         <div
@@ -129,21 +108,21 @@ const Footer = () => {
       <div className={footerStyles.footer__bottom}>
         <p className={footerStyles.footer__copyright}>
           {siteConfig.customFields.copyright}
-          <ul>
-            <li className={footerStyles.footer__item}>
-              <a className={footerStyles.footer__link} href="/privacy-notice/">
-                Privacy
-              </a>
-            </li>
-          </ul>
-          <ul>
-            <li className={footerStyles.footer__item}>
-              <a className={footerStyles.footer__link} href="/terms/">
-                Terms
-              </a>
-            </li>
-          </ul>
         </p>
+        <ul>
+          <li className={footerStyles.footer__item}>
+            <a className={footerStyles.footer__link} href="/privacy-notice/">
+              Privacy
+            </a>
+          </li>
+        </ul>
+        <ul>
+          <li className={footerStyles.footer__item}>
+            <a className={footerStyles.footer__link} href="/terms/">
+              Terms
+            </a>
+          </li>
+        </ul>
       </div>
     </footer>
   )

@@ -15,6 +15,7 @@ type Props = Readonly<{
   type?: "button" | "submit"
   uppercase: boolean
   variant: "primary" | "secondary" | "tertiary" | "plain"
+  dataToggle?: string
 }>
 
 const Button = ({
@@ -44,7 +45,7 @@ const Button = ({
   if (href != null) {
     return (
       <a
-        className={classes}
+        className={clsx(classes)}
         href={href}
         onClick={onClick}
         {...(newTab
@@ -62,7 +63,7 @@ const Button = ({
 
   if (to != null) {
     return (
-      <a className={classes} href={to} onClick={onClick}>
+      <a className={clsx(classes)} href={to} onClick={onClick}>
         {icon}
         {children}
       </a>

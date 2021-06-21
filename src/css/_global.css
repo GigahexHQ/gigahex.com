@@ -7,17 +7,18 @@
 :root {
   --palette-charade: #fbfbfd;
   --palette-gray: #636363;
-  --palette-black: #413e3e;
+  --palette-border-grey: #cabbe9;
   --palette-green: #66bb6a;
   --palette-midnight: #141725;
   --palette-pale-blue: #b1b5d3;
   --palette-pink: #5446d1;
   --palette-blue: #5658dd;
   --palette-pink-darker: #552aa5;
-  --palette-questdb-black: #0f0f0f;
+  --palette--black: #0f0f0f;
   --palette-rock: #fff;
   --palette-rock-raw: 38, 40, 51;
   --palette-sky: #81d3f9;
+  --palette-light-bg: #f7f7fc;
   --palette-turquoise: #330cdf;
   --palette-black-10: rgba(0, 0, 0, 0.1);
   --palette-white: #fff;
@@ -73,6 +74,7 @@
     "Liberation Mono", "Courier New", monospace;
   --ifm-font-size-base: var(--font-size-small);
   --ifm-global-border-radius: 8px;
+  --ifm-global-img-border-radius: 20px;
   --ifm-h1-font-size: var(--font-size-big-4);
   --ifm-h2-font-size: var(--font-size-big-2);
   --ifm-h3-font-size: var(--font-size-big-1);
@@ -163,6 +165,10 @@ nav {
   --ifm-pagination-nav-color-hover: var(--palette-white);
   --ifm-pagination-nav-border-radius: var(--ifm-global-border-radius);
   --ifm-color-emphasis-300: transparent;
+}
+
+.disabled {
+  pointer-events: none;
 }
 
 /**
@@ -277,7 +283,7 @@ body {
 }
 
 .pagination-nav__link {
-  background: var(--palette-white-05);
+  background: var(--palette-pink);
 }
 
 /**
@@ -302,4 +308,11 @@ body {
 .item-exit-active {
   opacity: 0;
   transition: opacity 200ms ease-in;
+}
+
+.apple-icon {
+  margin-right: 5px;
+}
+.microsoft-icon {
+  margin-right: 10px !important;
 }

@@ -3,8 +3,6 @@ import React, { ComponentProps } from "react"
 import Head from "@docusaurus/Head"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import useBaseUrl from "@docusaurus/useBaseUrl"
-
-import AnnouncementBar from "@theme/AnnouncementBar"
 import Footer from "@theme/Footer"
 import Layout from "@theme/Layout"
 import LayoutProviders from "@theme/LayoutProviders"
@@ -84,7 +82,7 @@ const PageLayout = ({
             />
           )}
         </Head>
-        <AnnouncementBar />
+
         <Navbar />
         <div
           className={clsx(styles.wrapper, wrapperClassName, {

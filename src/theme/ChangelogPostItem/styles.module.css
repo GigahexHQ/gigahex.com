@@ -1,0 +1,30 @@
+.title {
+  font-size: var(--font-size-big-2);
+}
+
+.article {
+  display: block;
+  max-width: 100%;
+  color: var(--palette-black);
+}
+
+.article__content {
+  cursor: text;
+  display: block;
+}
+.changelog__image {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.changelog__image > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--ifm-global-border-radius);
+}
+
+@media (max-width: 996px) {
+  .article__content {
+    padding: 0;
+  }
+}

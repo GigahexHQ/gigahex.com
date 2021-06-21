@@ -1,7 +1,7 @@
 .footer {
   display: flex;
   flex-direction: column;
-  background: var(--palette-rock);
+  background: var(--palette-light-bg);
 }
 
 .footer--alt {
@@ -79,6 +79,9 @@
   justify-content: center;
   align-items: center;
   border-top: 1px solid var(--palette-black-10);
+}
+.footer__bottom > ul {
+  margin: 0 0;
 }
 
 .footer__items {

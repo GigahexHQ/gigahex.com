@@ -6,7 +6,7 @@ import PageLayout from "@theme/PageLayout"
 import TutorialPostItem from "@theme/TutorialPostItem"
 
 import seCss from "../../css/section.module.css"
-import tutorials, { Tutorial } from "../../assets/tutorials"
+import { Tutorial } from "../../assets/tutorials"
 import styles from "./styles.module.css"
 
 type Props = Readonly<{
@@ -33,17 +33,13 @@ function renderCards(cards: Tutorial[]) {
 }
 
 function TutorialListPage(props: Props) {
-  const all = [...props.items, ...tutorials].sort(
+  const all = [...props.items].sort(
     (a, b) =>
       new Date(b.content.metadata.date).getTime() -
       new Date(a.content.metadata.date).getTime(),
   )
   const featured = all.filter(
     ({ content }) => content.frontMatter.featured === true,
-  )
-  const cards = all.filter(
-    ({ content }) =>
-      content.frontMatter.featured == null || !content.frontMatter.featured,
   )
   const description =
     "Resources from our community contributors and the QuestDB Team for learning and mastering QuestDB."
@@ -88,13 +84,6 @@ function TutorialListPage(props: Props) {
             </div>
           </>
         )}
-
-        <h2 className={styles.cards__title}>All tutorials</h2>
-        <div className="row">
-          <main className={clsx("col", styles.cards__container)}>
-            {renderCards(cards)}
-          </main>
-        </div>
       </div>
     </PageLayout>
   )

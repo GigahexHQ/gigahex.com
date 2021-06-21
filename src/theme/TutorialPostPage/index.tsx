@@ -1,10 +1,9 @@
 import React from "react"
-
-import Layout from "@theme/Layout"
 import Toc from "@theme/TOC"
 import TutorialPostItem from "@theme/TutorialPostItem"
 
 import type { Tutorial } from "../../assets/tutorials"
+import PageLayout from "@theme/PageLayout"
 
 function TutorialPostPage({ content }: Tutorial) {
   const { frontMatter, metadata } = content
@@ -14,7 +13,7 @@ function TutorialPostPage({ content }: Tutorial) {
   const Content = (content as any) as React.ElementType
 
   return (
-    <Layout
+    <PageLayout
       description={description}
       image={imageUrl}
       keywords={_keywords}
@@ -35,7 +34,7 @@ function TutorialPostPage({ content }: Tutorial) {
           )}
         </div>
       </div>
-    </Layout>
+    </PageLayout>
   )
 }
 
