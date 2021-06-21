@@ -39,7 +39,7 @@
 }
 
 .button--secondary {
-  background-color: var(--palette-black);
+  background-color: var(--palette-pale-blue);
   color: var(--palette-charade);
 }
 

@@ -2,8 +2,6 @@ import clsx from "clsx"
 import useBaseUrl from "@docusaurus/useBaseUrl"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React from "react"
-
-import Button from "@theme/Button"
 import useMetadataContext from "@theme/useMetadataContext"
 
 import sectionCss from "../../css/section.module.css"
@@ -77,25 +75,6 @@ const Footer = () => {
             </div> */}
           </div>
           <p className={footerStyles.footer__tagline}>{siteConfig.tagline}</p>
-
-          <Button
-            className={footerStyles.footer__github}
-            href={siteConfig.customFields.githubUrl}
-            icon={
-              <img
-                alt="GitHub logo"
-                height={22}
-                src="/img/github.svg"
-                title="GitHub"
-                width={22}
-              />
-            }
-            size="xsmall"
-            uppercase={false}
-            variant="primary"
-          >
-            Star us on GitHub
-          </Button>
         </div>
 
         <div

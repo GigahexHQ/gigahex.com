@@ -1,12 +1,13 @@
 import clsx from "clsx"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React from "react"
-import ReactTypingEffect from "react-typing-effect"
+import TextLoop from "react-text-loop"
+// import ReactTypingEffect from "react-typing-effect"
 
 import Button from "@theme/Button"
 import PageLayout from "@theme/PageLayout"
 // import FeaturesTiles from "../component/FeaturesTiles"
-import ButtonDropdown from "../theme/Button/ButtonDropdown"
+// import ButtonDropdown from "../theme/Button/ButtonDropdown"
 
 import ftrClsCss from "../css/index/footerConsole.module.css"
 import juCss from "../css/index/jumbotron.module.css"
@@ -62,20 +63,23 @@ const Top = () => {
             seCss.section__title,
             seCss["section__title--jumbotron"],
             seCss["section__title--accent"],
-            "text--center",
           )}
         >
-          The Desktop App <br />
-          for Apache{" "}
+          The Desktop App for
+          <br />
+          Apache{" "}
           <span className={juCss.typed__text}>
-            <ReactTypingEffect
+            <TextLoop interval={2500}>
+              <span>Spark</span>
+              <span>Hadoop</span>
+            </TextLoop>{" "}
+            {/* <ReactTypingEffect
               text={["Hadoop", "Spark"]}
-              speed={150}
-              eraseDelay={1000}
-              typingDelay={1000}
+              speed={100}
+              eraseDelay={500}
+              typingDelay={500}
               cursor=" "
-            />
-            .
+            /> */}
           </span>
         </h1>
 
@@ -89,9 +93,10 @@ const Top = () => {
           {siteConfig.tagline}
         </p>
 
-        <div className={juCss.jumbotron__actionbtns}>
-          <ButtonDropdown
-            dropdownBtnClass={juCss.jumbotron__actionbtn}
+        <div className={clsx(juCss.jumbotron__actionbtns)}>
+          <Button
+            className={clsx(juCss.actionbtn)}
+            uppercase={false}
             icon={
               <img
                 src="/img/pages/landing/appleIcon.svg"
@@ -100,17 +105,13 @@ const Top = () => {
                 className="apple-icon"
               />
             }
-            menuItems={[
-              {
-                item: "download for mac",
-                link: "#",
-              },
-            ]}
+            size="small"
           >
             Download for Mac
-          </ButtonDropdown>
+          </Button>
           <Button
             uppercase={false}
+            variant="secondary"
             icon={
               <img
                 src="/img/pages/landing/microSoftIcon.svg"
@@ -120,16 +121,16 @@ const Top = () => {
               />
             }
             className={`${juCss.actionbtn} disabled`}
-            size="xsmall"
+            size="small"
           >
-            Comming Soon
+            Coming Soon
           </Button>
         </div>
 
         <div className={clsx(juCss.jumbotron__image)}>
           <img
             className="shadow--md"
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
+            src="/img/hero-banner.png"
             alt="Langing page Image"
           />
         </div>
@@ -144,6 +145,7 @@ const FeaturesCard = () => {
       className={clsx(
         ftuCss.features__sec,
         seCss.section,
+        ftuCss.features__light,
         seCss["section--center"],
       )}
     >
@@ -231,7 +233,7 @@ const FooterConsole = () => {
             maxime numquam.
           </p>
           <div className={ftrClsCss.console__actionbtns}>
-            <ButtonDropdown
+            <Button
               icon={
                 <img
                   src="/img/pages/landing/appleIcon.svg"
@@ -240,16 +242,13 @@ const FooterConsole = () => {
                   className="apple-icon"
                 />
               }
-              menuItems={[
-                {
-                  item: "download for mac",
-                  link: "#",
-                },
-              ]}
-              dropdownBtnClass={ftrClsCss.console__actionbtn}
+              size="xsmall"
+              variant="primary"
+              uppercase={false}
+              className={clsx(ftrClsCss.console__actionbtn)}
             >
               Download for Mac
-            </ButtonDropdown>
+            </Button>
             <Button
               icon={
                 <img
@@ -259,11 +258,12 @@ const FooterConsole = () => {
                   className="microsoft-icon"
                 />
               }
+              variant="secondary"
               className={`${ftrClsCss.console__actionbtn} disabled`}
               size="xsmall"
               uppercase={false}
             >
-              Comming Soon
+              Coming Soon
             </Button>
           </div>
         </div>
@@ -277,7 +277,7 @@ const FooterConsole = () => {
           <div className={clsx(ftrClsCss.console__right__image)}>
             <img
               className="shadow-md"
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
+              src="/img/hero-banner.png"
               alt="landing page image"
             />
           </div>
@@ -288,7 +288,13 @@ const FooterConsole = () => {
 }
 
 const WatchInDemo = () => (
-  <section className={clsx(seCss.section, seCss["section--center"])}>
+  <section
+    className={clsx(
+      seCss.section,
+      seCss["section--center"],
+      seCss["section--light"],
+    )}
+  >
     <div className={clsx(wthCss.watch__sec)}>
       <h2
         className={clsx(
@@ -297,7 +303,7 @@ const WatchInDemo = () => (
           "text--center",
         )}
       >
-        Watch It in Action
+        Watch it in action
       </h2>
       <div className={clsx("container", wthCss.video__container)}>
         <YouTube
@@ -374,7 +380,12 @@ const FeaturesTiles = () => (
           </div>
         </div>
       </div>
-      <div className={clsx(featTiles.features__tiles__row)}>
+      <div
+        className={clsx(
+          featTiles.features__tiles__row,
+          featTiles.fetaure__tiles_light,
+        )}
+      >
         <div className={clsx(featTiles.tile__item__img)}>
           <div className={clsx(featTiles.tile__img__box, "shadow--md")}>
             <img

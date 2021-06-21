@@ -14,12 +14,12 @@
 }
 .console__actionbtns {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .console__actionbtn {
   font-size: var(--font-size-small);
-  width: 100%;
 }
 
 .console__actionbtn:first-child {
@@ -77,5 +77,11 @@
   }
   .console__actionbtn {
     margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 375px) {
+  .console__actionbtns {
+    flex-direction: column;
   }
 }

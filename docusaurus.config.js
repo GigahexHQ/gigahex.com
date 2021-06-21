@@ -5,13 +5,12 @@ const githubOrgUrl = "https://github.com/gigahexhq"
 const domain = "gigahex.com"
 
 const customFields = {
-  artifactHubUrl: "https://artifacthub.io/packages/helm/questdb/questdb",
   copyright: `Copyright © ${new Date().getFullYear()} Gigahex`,
   crunchbaseUrl: "https://www.crunchbase.com/organization/gigahex",
   demoUrl: `https://demo.${domain}`,
   description:
     "Gigahex is a desktop app to run sandbox big data clusters. It enables to quickly learn, prototype and develop big data applications.",
-  dockerUrl: "https://hub.docker.com/r/questdb/questdb",
+  dockerUrl: "https://hub.docker.com/u/gigahex",
   domain,
   githubOrgUrl,
   githubUrl: `${githubOrgUrl}`,
@@ -19,7 +18,7 @@ const customFields = {
   linkedInUrl: "https://www.linkedin.com/company/gigahex/",
   oneLiner: "Sandbox Big data cluster on desktop - Gigahex",
   slackUrl: `https://slack.${domain}`,
-  stackoverflowUrl: "https://stackoverflow.com/questions/tagged/questdb",
+
   twitterUrl: "https://twitter.com/GigahexApp",
   version: "1.0.0",
   videosUrl: "https://www.youtube.com/channel/UChqKEmOyiD9c6QFx2mjKwiA",
@@ -58,10 +57,11 @@ const config = {
   url: `https://${customFields.domain}`,
   baseUrl: "/",
   baseUrlIssueBanner: false,
-  favicon: "/img/favicon.png",
+  favicon: "/img/favicon.ico",
   organizationName: "Gigahex",
   projectName: "gigahex",
   customFields,
+  onBrokenLinks: "warn",
   plugins: [
     require.resolve("./plugins/fetch-release/index"),
     require.resolve("./plugins/webpack-ts/index"),
@@ -122,14 +122,11 @@ const config = {
       anonymizeIP: true,
     },
     prism: {
-      defaultLanguage: "questdb-sql",
+      defaultLanguage: "sql",
       additionalLanguages: ["rust", "csharp"],
       theme: require("./src/internals/prism-dracula"),
     },
-    algolia: {
-      apiKey: "b2a69b4869a2a85284a82fb57519dcda",
-      indexName: "questdb",
-    },
+
     navbar: {
       title: " ",
       logo: {
@@ -195,10 +192,6 @@ const config = {
               href: customFields.slackUrl,
             },
             {
-              label: "Stack Overflow",
-              to: customFields.stackoverflowUrl,
-            },
-            {
               label: "Twitter",
               href: customFields.twitterUrl,
             },
@@ -226,10 +219,6 @@ const config = {
             {
               label: "Videos",
               to: customFields.videosUrl,
-            },
-            {
-              label: "Roadmap",
-              href: `${customFields.githubUrl}/projects/3`,
             },
           ],
         },

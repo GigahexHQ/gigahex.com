@@ -14,10 +14,11 @@
   --palette-pink: #5446d1;
   --palette-blue: #5658dd;
   --palette-pink-darker: #552aa5;
-  --palette-questdb-black: #0f0f0f;
+  --palette--black: #0f0f0f;
   --palette-rock: #fff;
   --palette-rock-raw: 38, 40, 51;
   --palette-sky: #81d3f9;
+  --palette-light-bg: #f7f7fc;
   --palette-turquoise: #330cdf;
   --palette-black-10: rgba(0, 0, 0, 0.1);
   --palette-white: #fff;
@@ -84,7 +85,7 @@
   --ifm-list-paragraph-margin: 0.5rem;
   --ifm-menu-link-sublist-icon: url("/img/infima/arrow.svg");
   --ifm-navbar-background-color: var(--palette-charade);
-  --ifm-navbar-height: 120px;
+  --ifm-navbar-height: 80px;
   --ifm-navbar-item-padding-horizontal: 20px;
   --ifm-navbar-padding-horizontal: 0;
   --ifm-navbar-shadow: 0 1px 0 0 var(--palette-white-darker);
@@ -282,7 +283,7 @@ body {
 }
 
 .pagination-nav__link {
-  background: var(--palette-white-05);
+  background: var(--palette-pink);
 }
 
 /**
@@ -310,7 +311,6 @@ body {
 }
 
 .apple-icon {
-  margin-top: 4px;
   margin-right: 5px;
 }
 .microsoft-icon {

@@ -11,8 +11,8 @@
 }
 
 .actionbtn {
-  min-width: 240px;
-  font-size: var(--font-size-small);
+  min-width: 200px;
+  font-size: var(--font-size-normal);
 }
 .typed__text {
   color: var(--palette-pink);
@@ -27,7 +27,7 @@
 
 .jumbotron__image {
   margin: 3rem auto 0 auto;
-  max-width: 800px;
+  max-width: 1200px;
 }
 .jumbotron__image > img {
   border-radius: var(--ifm-global-img-border-radius);

@@ -2,13 +2,13 @@ import clsx from "clsx"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React, { ComponentProps, useCallback, useState, useEffect } from "react"
 
-import Button from "@theme/Button"
+// import Button from "@theme/Button"
 import useLockBodyScroll from "@theme/hooks/useLockBodyScroll"
 import useWindowSize, { windowSizes } from "@theme/hooks/useWindowSize"
 
 import styles from "./styles.module.css"
 import NavbarItem from "@theme/NavbarItem"
-import ButtonDropdown from "../Button/ButtonDropdown"
+// import ButtonDropdown from "../Button/ButtonDropdown"
 
 const DefaultNavItemPosition = "right"
 
@@ -102,42 +102,6 @@ function Navbar(): JSX.Element {
           {leftItems.map((item, i) => (
             <NavbarItem {...item} key={i} />
           ))}
-          <div className={styles.actionbtns}>
-            <ButtonDropdown
-              icon={
-                <img
-                  src="/img/pages/landing/appleIcon.svg"
-                  width="25px"
-                  height="25px"
-                  className="apple-icon"
-                />
-              }
-              menuItems={[
-                {
-                  item: "new gigahex",
-                  link: "#",
-                },
-              ]}
-              className={styles.navbar__actionbtn}
-            >
-              Download for Mac
-            </ButtonDropdown>
-            <Button
-              uppercase={false}
-              icon={
-                <img
-                  src="/img/pages/landing/microSoftIcon.svg"
-                  width={22}
-                  height={22}
-                  className="microsoft-icon"
-                />
-              }
-              className={`${styles.navbar__actionbtn} disabled`}
-              size="xsmall"
-            >
-              Comming Soon
-            </Button>
-          </div>
         </div>
         <div className="navbar__items navbar__items--right">
           {rightItems.map((item, i) => (

@@ -1,6 +1,9 @@
 .section {
   width: 100%;
 }
+.section--light {
+  background-color: var(--palette-light-bg);
+}
 
 .section--inner {
   --ifm-code-padding-horizontal: 1.5rem;
@@ -163,10 +166,6 @@
     font-size: var(--font-size-big-3);
   }
 
-  .section__title--accent {
-    text-align: center;
-  }
-
   .margin--hr--auto {
     margin: 0 auto;
   }
@@ -207,5 +206,11 @@
     margin-bottom: 5.5rem;
     flex-direction: column;
     align-items: center;
+  }
+}
+
+@media (max-width: 996px) {
+  .section__title--jumbotron {
+    font-size: var(--font-size-big-3);
   }
 }
