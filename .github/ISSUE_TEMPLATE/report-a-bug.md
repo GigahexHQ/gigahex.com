@@ -1,6 +1,6 @@
 ---
 name: Report a bug
-about: A typo, mistake or bug in QuestDB.io documentation
+about: A typo, mistake or bug in Gigahex website
 title: "Bug - <title>"
 labels: "bug"
 assignees: ""
@@ -8,7 +8,7 @@ assignees: ""
 
 <!--
 
-Hi 👋, thank you for submitting a bug report to QuestDB!
+Hi 👋, thank you for submitting a bug report to Gigahex!
 
 Don't forget to add more details to the title that describes the issue
 

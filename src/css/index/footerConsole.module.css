@@ -28,7 +28,6 @@
 
 .console__right__image {
   width: 100%;
-  overflow: hidden;
 }
 .console__right__image > img {
   object-fit: cover;
