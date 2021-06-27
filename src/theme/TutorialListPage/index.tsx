@@ -42,7 +42,7 @@ function TutorialListPage(props: Props) {
     ({ content }) => content.frontMatter.featured === true,
   )
   const description =
-    "Resources from our community contributors and the QuestDB Team for learning and mastering QuestDB."
+    "Resources from our community contributors and the Gigahex Team for learning and mastering Gigahex."
 
   return (
     <PageLayout
@@ -65,7 +65,7 @@ function TutorialListPage(props: Props) {
             </p>
             <Button
               className={styles.jumbotron__cta}
-              href="https://github.com/questdb/questdb.io/issues/new?labels=Tutorial&template=submit-a-tutorial.md"
+              href="https://github.com/gigahexhq/gigahex.com/issues/new?labels=Tutorial&template=submit-a-tutorial.md"
             >
               Submit a tutorial
             </Button>

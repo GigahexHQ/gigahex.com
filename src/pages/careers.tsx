@@ -10,9 +10,9 @@ import liCss from "../css/careers/list.module.css"
 import seCss from "../css/section.module.css"
 
 const CareersPage = () => {
-  const title = "Careers at QuestDB"
+  const title = "Careers at Gigahex"
   const description =
-    "Join us at QuestDB to build breakthrough technology that will power the infrastructure of tomorrow."
+    "Join us at Gigahex to build breakthrough technology that will power the infrastructure of tomorrow."
   const titleRef = useRef<HTMLHeadingElement | null>(null)
   const handleClick = useCallback(() => {
     titleRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -65,7 +65,7 @@ const CareersPage = () => {
             />
           </div>
           <div className={caCss.card__side}>
-            <h2 className={caCss.card__title}>Working at QuestDB</h2>
+            <h2 className={caCss.card__title}>Working at Gigahex</h2>
             <p className={caCss.card__content}>
               We hire talented and passionate people who share our mission to
               empower developers to solve their problems with data. We are
@@ -102,7 +102,7 @@ const CareersPage = () => {
               looking for a role that is not listed, you can contact us anyway!
               Send your CV with any relevant links (GitHub, LinkedIn, personal
               website, etc.) to{" "}
-              <a href="mailto:careers@questdb.io">careers@questdb.io</a>, we
+              <a href="mailto:careers@gigahex.com">careers@gigahex.com</a>, we
               will review your application and be in touch.
             </p>
           </div>
