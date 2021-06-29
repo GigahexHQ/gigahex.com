@@ -124,7 +124,6 @@
   }
   .feature__tile__cont__title {
     font-size: var(--font-size-big-2);
-    margin-left: 35px;
   }
   .features__tiles__row {
     padding: 4rem 1.5rem;

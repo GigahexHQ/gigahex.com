@@ -15,5 +15,8 @@ if (process.env.NODE_ENV === "development") {
 }
 
 module.exports = {
-  docs: [],
+  docs: {
+    Home: ["about", "installation"],
+    Workspaces: ["sandbox-clusters", "spark-job"],
+  },
 }

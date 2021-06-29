@@ -29,7 +29,7 @@ const FeatureCard = ({ title, desc, icon }: IFeatureCard) => {
         ftuCss.feature__card,
         "shadow--lw",
         "margin-bottom--lg",
-        "padding--lg",
+        "padding--md",
       )}
     >
       <div className={clsx(ftuCss.feature__card__header, "margin-bottom--md")}>

@@ -8,7 +8,7 @@
   --palette-charade: #fbfbfd;
   --palette-gray: #636363;
   --palette-border-grey: #cabbe9;
-  --palette-green: #66bb6a;
+  --palette-green: #3ec234;
   --palette-midnight: #141725;
   --palette-pale-blue: #b1b5d3;
   --palette-pink: #5446d1;
@@ -25,11 +25,11 @@
   --palette-white-03: rgba(255, 255, 255, 0.03);
   --palette-white-05: rgba(255, 255, 255, 0.05);
   --palette-white-10: rgba(255, 255, 255, 0.1);
-  --palette-white-20: rgba(255, 255, 255, 0.2);
+  --palette-white-20: #f2f2f2;
   --palette-white-30: rgba(255, 255, 255, 0.3);
   --palette-white-40: rgba(255, 255, 255, 0.4);
   --palette-white-darker: #d9d9d9;
-  --palette-yellow: #ffd54f;
+  --palette-yellow: #ebba33;
 
   --image-shadow: 0 10px 10px 5px rgba(165, 166, 170, 0.94);
 
@@ -150,7 +150,7 @@ nav {
 
 .admonition {
   --ifm-color-info: var(--palette-pale-blue);
-  --ifm-color-success: var(--ifm-color-primary-lightest);
+  --ifm-color-success: var(--palette-green);
   --ifm-heading-color: #000;
 }
 
@@ -192,6 +192,22 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+.video-container {
+  height: 0;
+  margin: 0 0 30px;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  position: relative;
+}
+.video-container > iframe {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 
 /**

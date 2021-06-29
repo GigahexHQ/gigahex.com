@@ -145,6 +145,12 @@ const config = {
           position: "left",
           to: "/about/",
         },
+        {
+          label: "Documentation",
+          activeBasePath: "docs",
+          position: "left",
+          to: "docs/",
+        },
       ],
     },
     footer: {
