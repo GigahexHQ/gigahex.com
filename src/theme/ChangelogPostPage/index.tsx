@@ -58,7 +58,7 @@ function ChangelogPostPage({ content }: Changelog) {
               </h4>
             </h4>
           </div>
-          <main className="col col--8 ">
+          <main className="col col--10 ">
             <ChangelogPostItem frontMatter={frontMatter} metadata={metadata}>
               <Content />
             </ChangelogPostItem>

@@ -121,7 +121,7 @@ function Navbar(): JSX.Element {
             href="/"
             onClick={hideSidebar}
           >
-            QuestDB
+            Gigahex
           </a>
         </div>
         <div className="navbar-sidebar__items">

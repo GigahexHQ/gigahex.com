@@ -30,5 +30,4 @@
   object-fit: cover;
   border-top-left-radius: var(--ifm-global-border-radius);
   border-top-right-radius: var(--ifm-global-border-radius);
-  background: var(--palette-questdb-black);
 }

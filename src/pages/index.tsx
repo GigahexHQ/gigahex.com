@@ -15,7 +15,6 @@ import wthCss from "../css/index/watch.module.css"
 import ftuCss from "../css/index/ftuCard.module.css"
 import seCss from "../css/section.module.css"
 import featTiles from "../css/index/featureTiles.module.css"
-import YouTube from "react-youtube"
 
 type IFeatureCard = {
   title: string
@@ -30,7 +29,7 @@ const FeatureCard = ({ title, desc, icon }: IFeatureCard) => {
         ftuCss.feature__card,
         "shadow--lw",
         "margin-bottom--lg",
-        "padding--lg",
+        "padding--md",
       )}
     >
       <div className={clsx(ftuCss.feature__card__header, "margin-bottom--md")}>
@@ -97,6 +96,9 @@ const Top = () => {
           <Button
             className={clsx(juCss.actionbtn)}
             uppercase={false}
+            onClick={() => {
+              window.location.href = `${siteConfig.customFields.downloadUrl}`
+            }}
             icon={
               <img
                 src="/img/pages/landing/appleIcon.svg"
@@ -151,55 +153,52 @@ const FeaturesCard = () => {
     >
       <div className={clsx(ftuCss.features__top__info, "text--center")}>
         <h2 className={clsx(seCss.section__title)}>
-          Designed for those who work with Big data on a daily basis
+          Designed for developers, built for speed.
         </h2>
-        <p className={clsx(seCss.section__subtitle)}>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus
-          fuga, harum soluta nihil quidem at. Consequatur
-        </p>
+        {/* <p className={clsx(seCss.section__subtitle)}></p> */}
       </div>
       <div className="container">
         <div className={clsx("row", ftuCss.features__row)}>
           <div className={ftuCss.feature__col}>
             <FeatureCard
-              title="All Spark flavours"
-              desc="Whether you are running your Apache Spark opensource or the one provided by AWS EMR, Databricks or Qubole. It just works "
+              title="Fast development"
+              desc="Bootstrap a Spark and Hadoop cluster under a minute, and start playing"
               icon="/img/pages/landing/feature-tile-icon-01.svg"
             />
           </div>
           <div className={ftuCss.feature__col}>
             <FeatureCard
-              title="CLI Integration"
-              desc=" Gigahex comes with a CLI, which automatically configures your Spark application to publish all the metrics without the need to change the code."
+              title="Complete cluster control"
+              desc="Launch an interactive shell and start exploring Hadoop, YARN and Spark. "
               icon="/img/pages/landing/feature-tile-icon-02.svg"
             />
           </div>
           <div className={ftuCss.feature__col}>
             <FeatureCard
-              title="Deploy from anywhere"
-              desc="Install the Gigahex agent in your laptop, On-Prem cluster or Cloud, and start deploying spark with real time monitoring."
+              title="Open Source driven"
+              desc="Runs on open source version of Spark and Hadoop."
               icon="/img/pages/landing/feature-tile-icon-03.svg"
             />
           </div>
           <div className={ftuCss.feature__col}>
             <FeatureCard
-              title="Peace of mind"
-              desc=" Minimize the resource wastage for your applications and set alerts if resource usage exceeds the limits."
+              title="Runtime insights"
+              desc="Debug and identify performance bottleneck of Spark applications in realtime monitoring"
               icon="/img/pages/landing/feature-tile-icon-04.svg"
             />
           </div>
           <div className={ftuCss.feature__col}>
             <FeatureCard
-              title="Monitor trend"
-              desc="Monitor the trend of your application runtime and resource usage and tune the configuration when required."
-              icon="/img/pages/landing/feature-tile-icon-05.svg"
+              title="Lightweight clusters"
+              desc="Runs on lightweight docker containers, allowing you to create more clusters."
+              icon="/img/pages/landing/container.svg"
             />
           </div>
           <div className={ftuCss.feature__col}>
             <FeatureCard
-              title="Multiple deployment"
-              desc="Deploy your spark applications with multiple configuration and compare the resource utilization to get the best cost to performance ratio."
-              icon="/img/pages/landing/feature-tile-icon-06.svg"
+              title="Compare deployments"
+              desc="Test your application against different versions of Spark and Hadoop"
+              icon="/img/pages/landing/deploy.svg"
             />
           </div>
         </div>
@@ -209,6 +208,7 @@ const FeaturesCard = () => {
 }
 
 const FooterConsole = () => {
+  const { siteConfig } = useDocusaurusContext()
   return (
     <section
       className={clsx(
@@ -226,14 +226,18 @@ const FooterConsole = () => {
         <div
           className={clsx(ftrClsCss.footerCol, ftrClsCss.footer__console__left)}
         >
-          <h2 className={ftrClsCss.flashy__title}>Download Gigahex</h2>
+          <h2 className={ftrClsCss.flashy__title}>And Manage deployments</h2>
           <p className={clsx(ftrClsCss.flashy__content, "margin-bottom--lg")}>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem,
-            maiores ea eius minus cum adipisci, pariatur dolorum quos quidem
-            maxime numquam.
+            There&lsquo;s more. You can also have multiple deployments
+            configuration to test your application against different cluster
+            managers.
           </p>
+
           <div className={ftrClsCss.console__actionbtns}>
             <Button
+              onClick={() => {
+                window.location.href = `${siteConfig.customFields.downloadUrl}`
+              }}
               icon={
                 <img
                   src="/img/pages/landing/appleIcon.svg"
@@ -247,7 +251,7 @@ const FooterConsole = () => {
               uppercase={false}
               className={clsx(ftrClsCss.console__actionbtn)}
             >
-              Download for Mac
+              Download Now
             </Button>
             <Button
               icon={
@@ -276,8 +280,8 @@ const FooterConsole = () => {
         >
           <div className={clsx(ftrClsCss.console__right__image)}>
             <img
-              className="shadow-md"
-              src="/img/hero-banner.png"
+              className="shadow--md"
+              src="/img/pages/landing/deployments.png"
               alt="landing page image"
             />
           </div>
@@ -306,17 +310,26 @@ const WatchInDemo = () => (
         Watch it in action
       </h2>
       <div className={clsx("container", wthCss.video__container)}>
-        <YouTube
-          videoId="cdQAMucLugc"
-          className={clsx(wthCss.ytb__video, "shadaow--md")}
-          opts={{
-            width: "100%",
-            playerVars: {
-              autoplay: 0,
-            },
+        <div
+          style={{
+            position: "relative",
+            paddingBottom: "59.715025906735754%",
+            height: 0,
           }}
-          onReady={(event) => event.target.pauseVideo()}
-        />
+        >
+          <iframe
+            src="https://www.loom.com/embed/0dbafc2d13ec436b9fe8bf86d931f1cc"
+            frameBorder="0"
+            allowFullScreen
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        </div>
       </div>
     </div>
   </section>
@@ -339,13 +352,8 @@ const FeaturesTiles = () => (
         )}
       >
         <h2 className={clsx(seCss.section__title, "text--center")}>
-          Platform that saves thousands&rsquo;s of developers hours
+          Desktop app that saves thousands of developers&rsquo; hours
         </h2>
-
-        <p className={clsx(seCss.section__subtitle, "text--center")}>
-          Debugging production issues can be daunting, frustrating, timetaking
-          and thats why we are hell bent to make this process dead easy.
-        </p>
       </div>
     </div>
     <div className={clsx(seCss.section, featTiles.features__tiles__container)}>
@@ -355,27 +363,25 @@ const FeaturesTiles = () => (
           data-reveal-container=".split-item"
         >
           <h2 className={featTiles.feature__tile__cont__title}>
-            Manage Deployment Environments
+            Launch Sandbox clusters
           </h2>
           <p
             className={featTiles.feature__tile__cont__desc}
             style={{ marginBottom: 20 }}
           >
-            <b style={{ color: "#000" }}>Fast deployments. </b> Create complex
-            deployments in few minutes. Deploy to staging, test and prod
-            environments.
+            <b style={{ color: "#000" }}>Fast provisioning. </b> Launch single
+            node clusters on your desktop under a minute.
           </p>
           <p className={featTiles.feature__tile__cont__desc}>
-            <b style={{ color: "#000" }}>Debug deployment with logs.</b> Quickly
-            navigate to the logs and spark metric dashboard from deployments
-            view.
+            <b style={{ color: "#000" }}>Focus on development.</b> Forget the
+            mess of bootstrapping and managing clusters on your own.
           </p>
         </div>
         <div className={clsx(featTiles.tile__item__img)}>
           <div className={clsx(featTiles.tile__img__box, "shadow--md")}>
             <img
-              src="/img/pages/landing/features-split-image-01.png"
-              alt="Features split 01"
+              src="/img/pages/landing/choose-cluster.png"
+              alt="Choose cluster"
             />
           </div>
         </div>
@@ -389,7 +395,7 @@ const FeaturesTiles = () => (
         <div className={clsx(featTiles.tile__item__img)}>
           <div className={clsx(featTiles.tile__img__box, "shadow--md")}>
             <img
-              src="/img/pages/landing/features-split-image-02.png"
+              src="/img/pages/landing/app-insights.png"
               alt="Features split 02"
             />
           </div>
@@ -399,28 +405,7 @@ const FeaturesTiles = () => (
           data-reveal-container=".split-item"
         >
           <h2 className={featTiles.feature__tile__cont__title}>
-            Monitor Resource Usage
-          </h2>
-          <p
-            className={featTiles.feature__tile__cont__desc}
-            style={{ marginBottom: 20 }}
-          >
-            <b style={{ color: "#000" }}>Fast debugging.</b> Quickly drill down
-            to the individual job or stage thats causing the performance issue.
-          </p>
-          <p className={featTiles.feature__tile__cont__desc}>
-            <b style={{ color: "#000" }}>Real time monitoring.</b>Get instant
-            feedback and deploy the optimized code, saving your time and SLA.
-          </p>
-        </div>
-      </div>
-      <div className={clsx(featTiles.features__tiles__row)}>
-        <div
-          className={clsx(featTiles.tile__item__content)}
-          data-reveal-container=".split-item"
-        >
-          <h2 className={featTiles.feature__tile__cont__title}>
-            Get Performance Insights
+            Get Runtime Insights
           </h2>
           <p
             className={featTiles.feature__tile__cont__desc}
@@ -435,10 +420,33 @@ const FeaturesTiles = () => (
             stages and logs.
           </p>
         </div>
+      </div>
+      <div className={clsx(featTiles.features__tiles__row)}>
+        <div
+          className={clsx(featTiles.tile__item__content)}
+          data-reveal-container=".split-item"
+        >
+          <h2 className={featTiles.feature__tile__cont__title}>
+            Realtime Monitoring
+          </h2>
+          <p
+            className={featTiles.feature__tile__cont__desc}
+            style={{ marginBottom: 20 }}
+          >
+            <b style={{ color: "#000" }}>Faster delivery.</b> Get instant
+            feedback on resource usage pattern and deploy the optimized code,
+            saving time and cost.
+          </p>
+          <p className={featTiles.feature__tile__cont__desc}>
+            <b style={{ color: "#000" }}>Faster debugging.</b> Quickly drill
+            down to individual job and stages and isolate the performance
+            bottleneck in minutes instead of hours and days.
+          </p>
+        </div>
         <div className={clsx(featTiles.tile__item__img)}>
           <div className={clsx(featTiles.tile__img__box, "shadow--md")}>
             <img
-              src="/img/pages/landing/features-split-image-03.png"
+              src="/img/pages/landing/runtime-monitor.png"
               alt="Features split 03"
             />
           </div>

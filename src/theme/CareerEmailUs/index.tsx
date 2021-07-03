@@ -14,13 +14,13 @@ const CareerEmailUs = ({ title }: Props) => {
       <p className={styles.content}>
         Email us with &quot;{title}&quot; in the subject line. Attach any
         relevant links to your portfolio (LinkedIn, GitHub, personal website,
-        etc.) and a few words about why you are interested in QuestDB.
+        etc.) and a few words about why you are interested in Gigahex.
       </p>
       <a
         className={styles.link}
-        href={"mailto:careers@questdb.io?subject=" + title}
+        href={"mailto:careers@gigahex.com?subject=" + title}
       >
-        careers@questdb.io
+        careers@gigahex.com
       </a>
     </section>
   )

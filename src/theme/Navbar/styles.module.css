@@ -75,12 +75,6 @@
 }
 
 @media (max-width: 768px) {
-  .getQuestdb {
-    margin-left: 0.75rem;
-    padding: 0.5rem;
-    font-size: calc(var(--font-size-small) - 1px);
-  }
-
   :global(.DocSearch-Button) {
     margin: 0 !important;
   }
@@ -123,10 +117,6 @@
 }
 
 @media (max-width: 1150px) and (min-width: 996px) {
-  .getQuestdb {
-    margin-left: 1.7rem;
-  }
-
   :global(.navbar__link) {
     --ifm-navbar-item-padding-horizontal: 0.85rem;
   }

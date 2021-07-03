@@ -63,11 +63,11 @@ const Footer = () => {
         >
           <div className={clsx(footerStyles.footer__logo__container)}>
             <img
-              alt="QuestDB logo"
+              alt="Gigahex logo"
               className={footerStyles.footer__logo}
               height={30}
               src="/img/navbar/logo-min.png"
-              title="QuestDB - Fastest open source database for time series and analytics"
+              title="Gigahex - Desktop app for Spark and Hadoop"
               width={120}
             />
             {/* <div className={clsx(footerStyles.footer__brand__name)}>

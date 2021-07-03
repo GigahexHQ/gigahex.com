@@ -1,13 +1,14 @@
 const visit = require("unist-util-visit")
 const ssrTemplate = require("./src/internals/ssr.template")
 
-const githubOrgUrl = "https://github.com/gigahexhq"
+const githubOrgUrl = "https://github.com/GigahexHQ/gigahex/discussions"
 const domain = "gigahex.com"
 
 const customFields = {
   copyright: `Copyright © ${new Date().getFullYear()} Gigahex`,
   crunchbaseUrl: "https://www.crunchbase.com/organization/gigahex",
-  demoUrl: `https://demo.${domain}`,
+  downloadUrl:
+    "https://gigahex-app.s3.eu-west-2.amazonaws.com/Gigahex-0.1.9.dmg",
   description:
     "Gigahex is a desktop app to run sandbox big data clusters. It enables to quickly learn, prototype and develop big data applications.",
   dockerUrl: "https://hub.docker.com/u/gigahex",
@@ -17,7 +18,7 @@ const customFields = {
   helmVersion: "0.3.0",
   linkedInUrl: "https://www.linkedin.com/company/gigahex/",
   oneLiner: "Sandbox Big data cluster on desktop - Gigahex",
-  slackUrl: `https://slack.${domain}`,
+  slackUrl: `https://join.slack.com/t/gigahexcomm/shared_invite/zt-s7ow0mw5-egYmATa4QqU8TqAFWbK~4A`,
 
   twitterUrl: "https://twitter.com/GigahexApp",
   version: "1.0.0",
@@ -53,7 +54,7 @@ function variable() {
 const config = {
   title: "Big data development, faster and easier.",
   tagline:
-    "Install spark and Hadoop sandbox cluster in 60 second It's build for busy developers.",
+    "Install and manage multiple Spark and Hadoop sandbox clusters on desktop, for faster development and testing.",
   url: `https://${customFields.domain}`,
   baseUrl: "/",
   baseUrlIssueBanner: false,
@@ -116,7 +117,7 @@ const config = {
       disableSwitch: true,
       respectPrefersColorScheme: false,
     },
-    image: "/img/og.gif",
+    image: "/img/brand-og.png",
     gtag: {
       trackingID: "GTM-PVR7M2G",
       anonymizeIP: true,
@@ -150,14 +151,10 @@ const config = {
           to: "/about/",
         },
         {
-          label: "Blog",
-          to: "/blog",
-          position: "left",
-        },
-        {
           label: "Documentation",
-          to: "/docs/introduction/",
+          activeBasePath: "docs",
           position: "left",
+          to: "docs/",
         },
       ],
     },
@@ -167,16 +164,8 @@ const config = {
           title: "Gigahex",
           items: [
             {
-              label: "Enterprise",
-              to: "/enterprise/",
-            },
-            {
-              label: "Customers",
-              to: "/customers/",
-            },
-            {
-              label: "Careers",
-              to: "/careers/",
+              label: "About Us",
+              to: "/about/",
             },
           ],
         },
@@ -184,7 +173,7 @@ const config = {
           title: "Community",
           items: [
             {
-              label: "GitHub",
+              label: "GitHub Discussions",
               href: customFields.githubUrl,
             },
             {
@@ -201,24 +190,12 @@ const config = {
           title: "More",
           items: [
             {
-              label: "Documentation",
-              to: "/docs/introduction/",
+              label: "Changelog",
+              to: "/changelog/",
             },
             {
               label: "Tutorials",
               to: "/tutorial/",
-            },
-            {
-              label: "Changelogs",
-              to: "/changelog/",
-            },
-            {
-              label: "Blog",
-              to: "/blog/",
-            },
-            {
-              label: "Videos",
-              to: customFields.videosUrl,
             },
           ],
         },
