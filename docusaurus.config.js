@@ -54,7 +54,7 @@ function variable() {
 const config = {
   title: "Big data development, faster and easier.",
   tagline:
-    "Install and manage multiple Spark and Hadoop sandbox cluster for faster development and testing.",
+    "Install and manage multiple Spark and Hadoop sandbox clusters on desktop, for faster development and testing.",
   url: `https://${customFields.domain}`,
   baseUrl: "/",
   baseUrlIssueBanner: false,

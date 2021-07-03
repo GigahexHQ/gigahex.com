@@ -132,7 +132,7 @@ const Top = () => {
         <div className={clsx(juCss.jumbotron__image)}>
           <img
             className="shadow--md"
-            src="/img/main-screenshot.png"
+            src="/img/hero-banner.png"
             alt="Langing page Image"
           />
         </div>
