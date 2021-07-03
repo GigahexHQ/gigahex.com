@@ -136,6 +136,11 @@ const config = {
       },
       items: [
         {
+          label: "Tutorials",
+          position: "left",
+          to: "/tutorial/",
+        },
+        {
           label: "Changelog",
           position: "left",
           to: "/changelog/",
@@ -187,6 +192,10 @@ const config = {
             {
               label: "Changelog",
               to: "/changelog/",
+            },
+            {
+              label: "Tutorials",
+              to: "/tutorial/",
             },
           ],
         },
