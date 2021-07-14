@@ -34,7 +34,7 @@ function ChangelogPostItem({
             </div>
           )}
           <header>
-            <h1 className={clsx("margin-bottom--sm", styles.title)}>{title}</h1>
+            <h2 className={clsx("margin-bottom--sm", styles.title)}>{title}</h2>
           </header>
 
           <section className="markdown">
@@ -48,7 +48,7 @@ function ChangelogPostItem({
   return (
     <article className="margin-bottom--xl">
       <header>
-        <h1 className="margin-bottom--sm">{title}</h1>
+        <h2 className="margin-bottom--sm">{title}</h2>
       </header>
 
       <section className="markdown">

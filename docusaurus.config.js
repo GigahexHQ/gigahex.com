@@ -8,7 +8,7 @@ const customFields = {
   copyright: `Copyright © ${new Date().getFullYear()} Gigahex`,
   crunchbaseUrl: "https://www.crunchbase.com/organization/gigahex",
   downloadUrl:
-    "https://gigahex-app.s3.eu-west-2.amazonaws.com/Gigahex-0.1.11.dmg",
+    "https://gigahex-app.s3.eu-west-2.amazonaws.com/Gigahex-0.1.12.dmg",
   description:
     "Gigahex is a desktop app to run sandbox big data clusters. It enables to quickly learn, prototype and develop big data applications.",
   dockerUrl: "https://hub.docker.com/u/gigahex",
@@ -52,7 +52,7 @@ function variable() {
 }
 
 const config = {
-  title: "Big data development, faster and easier.",
+  title: "Gigahex - Apache Spark and Hadoop on Desktop",
   tagline:
     "Install and manage multiple Spark and Hadoop sandbox clusters on desktop, for faster development and testing.",
   url: `https://${customFields.domain}`,
@@ -175,10 +175,6 @@ const config = {
             {
               label: "GitHub Discussions",
               href: customFields.githubUrl,
-            },
-            {
-              label: "Slack",
-              href: customFields.slackUrl,
             },
             {
               label: "Twitter",
