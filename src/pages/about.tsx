@@ -118,8 +118,8 @@ const TeamList = () => (
           </div>
           <div className={clsx(abtCss.team__list__col)}>
             <PersonCard
-              twitterLink="https://twitter.com/Shadab99Alam"
-              linkdinLink="https://www.linkedin.com/in/shadab-alam-8a8a8415b/"
+              twitterLink="https://twitter.com/Shadab19it"
+              linkdinLink="https://www.linkedin.com/in/shadabalm/"
               imageWidth={150}
               personName="Shadab Alam"
               personDesc="Founding Engineer, React Developer"
