@@ -81,6 +81,12 @@ const config = {
       },
     ],
     [
+      require.resolve("./plugins/newsLetter/compiled/index"),
+      {
+        remarkPlugins: [variable],
+      },
+    ],
+    [
       "@docusaurus/plugin-pwa",
       {
         pwaHead: [
@@ -146,6 +152,11 @@ const config = {
           to: "/changelog/",
         },
         {
+          label: "Newsletter",
+          position: "left",
+          to: "/newsletter/",
+        },
+        {
           label: "About Us",
           position: "left",
           to: "/about/",
@@ -196,6 +207,10 @@ const config = {
             {
               label: "Tutorials",
               to: "/tutorial/",
+            },
+            {
+              label: "Newletter",
+              to: "/newsletter/",
             },
           ],
         },

@@ -13,3 +13,11 @@ tsc \
     --outDir \
     plugins/changelog/compiled \
     plugins/changelog/index.ts plugins/changelog/markdownLoader.ts
+
+
+# Compile "newsLetter" plugin    
+tsc \
+    --esModuleInterop \
+    --outDir \
+    plugins/newsLetter/compiled \
+    plugins/newsLetter/index.ts plugins/newsLetter/markdownLoader.ts
