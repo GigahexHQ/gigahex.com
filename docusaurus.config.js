@@ -80,7 +80,7 @@ const config = {
       },
     ],
     [
-      require.resolve("./plugins/newsLetter/compiled/index"),
+      require.resolve("./plugins/newsletter/compiled/index"),
       {
         remarkPlugins: [variable],
       },
