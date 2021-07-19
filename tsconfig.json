@@ -44,9 +44,15 @@
       "@theme/TutorialListPage": ["src/theme/TutorialListPage"],
       "@theme/TutorialPostItem": ["src/theme/TutorialPostItem"],
       "@theme/TutorialPostPage": ["src/theme/TutorialgPostPage"],
+
       "@theme/ChangelogPostItem": ["src/theme/ChangelogPostItem"],
       "@theme/ChangelogPostPage": ["src/theme/ChangelogPostPage"],
       "@theme/ChangelogListPage": ["src/theme/ChangelogListPage"],
+
+      "@theme/NewsLetterPostItem": ["src/theme/NewsLetterPostItem"],
+      "@theme/NewsLetterPostPage": ["src/theme/NewsLetterPostPage"],
+      "@theme/NewsLetterListPage": ["src/theme/NewsLetterListPage"],
+
       "@theme/useMetadataContext": ["src/theme/useMetadataContext"],
       "@theme/useResizeObserver": ["src/theme/useResizeObserver"],
       "@theme/useWindowWidth": ["src/theme/useWindowWidth"]

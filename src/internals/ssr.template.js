@@ -10,8 +10,6 @@ module.exports = ({ customFields, favicon, organizationName, url }) => `
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@GigahexApp" />
     <meta name="generator" content="Docusaurus v<%= it.version %>" />
-    <link href="https://www.googletagmanager.com" rel="dns-prefetch" />
-    <link href="https://www.google-analytics.com" rel="dns-prefetch" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/img/icons/128.png" sizes="128x128" />
     <meta name="msapplication-config" content="/browserconfig.xml" />
@@ -41,6 +39,7 @@ module.exports = ({ customFields, favicon, organizationName, url }) => `
       <script type="text/javascript" src="<%= it.baseUrl %><%= script %>" defer></script>
     <% }); %>
     <%~ it.postBodyTags %>
+    
   </body>
 </html>
 `
