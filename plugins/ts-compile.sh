@@ -19,5 +19,5 @@ tsc \
 tsc \
     --esModuleInterop \
     --outDir \
-    plugins/newsLetter/compiled \
-    plugins/newsLetter/index.ts plugins/newsLetter/markdownLoader.ts
+    plugins/newsletter/compiled \
+    plugins/newsletter/index.ts plugins/newsletter/markdownLoader.ts

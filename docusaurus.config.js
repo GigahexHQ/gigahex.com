@@ -52,7 +52,7 @@ function variable() {
 }
 
 const config = {
-  title: "Big data development, faster and easier.",
+  title: "Gigahex - A Big Data Sandbox",
   tagline:
     "Install and manage multiple Spark and Hadoop sandbox clusters on desktop, for faster development and testing.",
   url: `https://${customFields.domain}`,
@@ -64,7 +64,6 @@ const config = {
   customFields,
   onBrokenLinks: "warn",
   plugins: [
-    require.resolve("./plugins/fetch-release/index"),
     require.resolve("./plugins/webpack-ts/index"),
     require.resolve("./plugins/optimize/index"),
     require.resolve("./plugins/manifest/index"),
@@ -209,7 +208,7 @@ const config = {
               to: "/tutorial/",
             },
             {
-              label: "Newletter",
+              label: "Newsletter",
               to: "/newsletter/",
             },
           ],

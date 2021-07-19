@@ -32,7 +32,6 @@
   text-decoration: none;
   color: var(--palette--black);
   border-bottom: 1px solid var(--palette--black);
-  transform: scale(1.05);
 }
 
 @media (max-width: 996px) {

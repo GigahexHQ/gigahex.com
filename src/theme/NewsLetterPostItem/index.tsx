@@ -29,7 +29,7 @@ function NewsLetterPostItem({
     return (
       <div className={clsx(styles.newsletter__title, "margin-bottom--sm")}>
         <div>{title}</div>
-        <div>#{postNumber + 1}</div>
+        <div>#{postNumber}</div>
       </div>
     )
   }

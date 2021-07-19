@@ -46,7 +46,7 @@ function renderItem(allNewsletter: NewsLetter[]) {
               isNewsLetterList
               truncated={truncated}
               metadata={content.metadata}
-              postNumber={i}
+              postNumber={allNewsletter.length - i}
             >
               <Content />
             </NewsLetterPostItem>
@@ -69,7 +69,7 @@ function NewsLetterListPage(props: Props) {
     <PageLayout
       canonical="/newsletter"
       description={description}
-      title="Newletter"
+      title="Newsletter"
       wrapperClassName="newsletter-wrapper"
     >
       <section className={clsx(seCss.section, seCss["section--odd"])}>
@@ -86,13 +86,13 @@ function NewsLetterListPage(props: Props) {
               >
                 twitter
               </a>
-              to get subscribe.
+              to stay updated on Data Engineering best practices.
             </p>
             <Button
               className={styles.jumbotron__btn}
               href="https://github.com/gigahexhq/gigahex.com/issues/new?labels=Tutorial&template=submit-a-tutorial.md"
             >
-              Submit an Article
+              Share your Content
             </Button>
           </div>
         </div>

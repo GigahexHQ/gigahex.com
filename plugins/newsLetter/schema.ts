@@ -5,9 +5,9 @@ import { NewsLetterPluginOptions } from "./types"
 
 export const DEFAULT_OPTIONS: NewsLetterPluginOptions = {
   include: ["*.md", "*.mdx"],
-  path: "newsLetter",
+  path: "newsletter",
   remarkPlugins: [],
-  routeBasePath: "newsLetter",
+  routeBasePath: "newsletter",
   truncateMarker: /<!--\s*(truncate)\s*-->/,
   newsLetterDescription: "NewsLetters",
   newsLetterListComponent: "@theme/NewsLetterListPage",

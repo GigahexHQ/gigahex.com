@@ -34,7 +34,7 @@ function NewsLetterPostPage({ content }: NewsLetter) {
         >
           twitter
         </a>
-        to get subscribe.
+        to stay updated on Data Engineering best practices.
       </div>
       <section
         className={clsx("container", "margin-vert--lg", styles.post__page)}
