@@ -90,7 +90,7 @@ function NewsLetterListPage(props: Props) {
             </p>
             <Button
               className={styles.jumbotron__btn}
-              href="https://github.com/gigahexhq/gigahex.com/issues/new?labels=Tutorial&template=submit-a-tutorial.md"
+              href="https://github.com/gigahexhq/gigahex.com/issues/new?labels=Tutorial&template=share-content.yaml"
             >
               Share your Content
             </Button>

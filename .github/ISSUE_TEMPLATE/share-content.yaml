@@ -1,0 +1,28 @@
+name: Share content
+description: Share your article/video/discussion thread for newsletter
+title: "[Content]: "
+labels: [new-content]
+assignees:
+  - amezng
+body:
+  - type: textarea
+    id: article-summary
+    attributes:
+      label: Provide the summary of the content.
+      placeholder: This article helps us to understand...
+    validations:
+      required: true
+  - type: dropdown
+    id: content-type
+    attributes:
+      label: What kind of content is this?
+      multiple: false
+      options:
+        - Article
+        - Video
+        - Discussion Thread
+        - Tutorial
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing the article. Your request will be reviewed within 24 hours.
