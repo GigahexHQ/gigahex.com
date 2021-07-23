@@ -134,6 +134,13 @@ nav {
   --ifm-link-color: var(--palette-pink);
 }
 
+.docusaurus-highlight-code-line {
+  background-color: rgb(72, 77, 91);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
 .markdown {
   --ifm-h2-vertical-rhythm-top: 3;
   --ifm-h3-vertical-rhythm-top: 2;

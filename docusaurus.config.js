@@ -128,9 +128,8 @@ const config = {
       anonymizeIP: true,
     },
     prism: {
-      defaultLanguage: "sql",
-      additionalLanguages: ["rust", "csharp"],
-      theme: require("./src/internals/prism-dracula"),
+      additionalLanguages: ["java"],
+      theme: require("prism-react-renderer/themes/dracula"),
     },
 
     navbar: {
