@@ -21,8 +21,7 @@ file system and database.
 
 Spark listeners allows you to hook custom code on different events emitted while
 the spark application is running. These events help us to capture metrics, that
-could be quite helpful to debugging and optimizing the code. The default SparkUI
-that comes in-built with Spark, leverages these events to paint the UI.
+could be quite helpful in debugging and optimizing the code.
 
 ### Pre-requisites
 
@@ -168,6 +167,6 @@ INFO SparkMetricsListener: *****************************************************
 ```
 
 The complete example can be found in the Github
-[repository](https://github.com/GigahexHQ/spark-scala-samples). If you have any
-queries, do post in
+[repository](https://github.com/GigahexHQ/spark-scala-samples/blob/main/src/main/scala/org/apache/spark/listeners/SparkMetricsListener.scala).
+If you have any queries, do post in
 [Q&A section](https://github.com/GigahexHQ/spark-scala-samples/discussions/categories/q-a)
