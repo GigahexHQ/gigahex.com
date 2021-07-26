@@ -30,6 +30,7 @@
   font-size: var(--font-size-large);
   background: var(--palette-pale-blue);
   padding: 3px 0;
+  z-index: 10;
 }
 
 @media (max-width: 996px) {
