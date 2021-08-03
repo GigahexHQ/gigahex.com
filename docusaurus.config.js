@@ -124,7 +124,7 @@ const config = {
     },
     image: "/img/brand-og.png",
     gtag: {
-      trackingID: "GTM-PVR7M2G",
+      trackingID: "UA-130638312-1",
       anonymizeIP: true,
     },
     prism: {
