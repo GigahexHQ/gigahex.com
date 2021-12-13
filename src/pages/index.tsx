@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React from "react"
-import TextLoop from "react-text-loop"
+// import TextLoop from "react-text-loop"
 // import ReactTypingEffect from "react-typing-effect"
 
 import Button from "@theme/Button"
@@ -57,26 +57,24 @@ const Top = () => {
       )}
     >
       <div className={juCss.jumbotron}>
-        <h1
-          className={clsx(
-            seCss.section__title,
-            seCss["section__title--jumbotron"],
-            seCss["section__title--accent"],
-          )}
-          style={{ color: "#fff" }}
-        >
-          The Desktop App for
-          <br />
-          Apache{" "}
-          <span className={juCss.typed__text}>
-            <TextLoop interval={2500}>
-              <span>Spark</span>
+        <div className={juCss.jumbotron__center__title}>
+          <h1
+            className={clsx(
+              seCss.section__title,
+              seCss["section__title--jumbotron"],
+              seCss["section__title--accent"],
+            )}
+            style={{ color: "#fff", textAlign: "center" }}
+          >
+            The Desktop App for
+            <br />
+            Apache{" "}
+            <span className={juCss.typed__text}>
               <span>Hadoop</span>
-            </TextLoop>{" "}
-          </span>
-        </h1>
+            </span>
+          </h1>
 
-        <p
+          {/* <p
           className={clsx(
             seCss.section__subtitle,
             seCss["section__subtitle--accent"],
@@ -84,28 +82,28 @@ const Top = () => {
           )}
         >
           {siteConfig.tagline}
-        </p>
+        </p> */}
 
-        <div className={clsx(juCss.jumbotron__actionbtns)}>
-          <Button
-            className={clsx(juCss.actionbtn)}
-            uppercase={false}
-            onClick={() => {
-              window.location.href = `${siteConfig.customFields.downloadUrl}`
-            }}
-            icon={
-              <img
-                src="/img/pages/landing/appleIcon.svg"
-                width={25}
-                height={25}
-                className="apple-icon"
-              />
-            }
-            size="small"
-          >
-            Download for Mac
-          </Button>
-          <Button
+          <div className={clsx(juCss.jumbotron__actionbtns)}>
+            <Button
+              className={clsx(juCss.actionbtn)}
+              uppercase={false}
+              onClick={() => {
+                window.location.href = `${siteConfig.customFields.downloadUrl}`
+              }}
+              icon={
+                <img
+                  src="/img/pages/landing/appleIcon.svg"
+                  width={25}
+                  height={25}
+                  className="apple-icon"
+                />
+              }
+              size="small"
+            >
+              Download for Mac
+            </Button>
+            {/* <Button
             uppercase={false}
             variant="secondary"
             icon={
@@ -120,9 +118,9 @@ const Top = () => {
             size="small"
           >
             Coming Soon
-          </Button>
+          </Button> */}
+          </div>
         </div>
-
         <div className={clsx(juCss.jumbotron__image)}>
           <img
             className=""

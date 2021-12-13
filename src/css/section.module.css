@@ -175,7 +175,6 @@
 
   .section__title--jumbotron {
     font-size: var(--font-size-big-4);
-    color: var(--palette-rock) !important;
   }
 
   .section__subtitle {

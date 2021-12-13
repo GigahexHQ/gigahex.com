@@ -1,14 +1,18 @@
 .jumbotron {
-  padding: 5rem 0;
+  padding: 2rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: #0D1E4B; */
+  position: relative;
 }
 .jumbotron__actionbtns {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 20px;
+  place-items: center;
+}
+
+.jumbotron__center__title {
+  top: 40px;
+  position: absolute;
 }
 
 .actionbtn {
