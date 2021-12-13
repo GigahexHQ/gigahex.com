@@ -31,8 +31,8 @@
 }
 .jumbotron__image > img {
   border-radius: var(--ifm-global-img-border-radius);
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: 900;
   object-fit: cover;
 }
 
