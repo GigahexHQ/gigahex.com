@@ -54,7 +54,9 @@ function TutorialListPage(props: Props) {
       <section className={clsx(seCss.section, seCss["section--odd"])}>
         <div className={styles.jumbotron}>
           <div className={styles.jumbotron__left}>
-            <h1 className={seCss.section__title}>Tutorials</h1>
+            <h1 className={seCss.section__title} style={{ color: "#fff" }}>
+              Tutorials
+            </h1>
             <p
               className={clsx(
                 seCss.section__subtitle,
