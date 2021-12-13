@@ -44,7 +44,7 @@ const FeatureCard = ({ title, desc, icon }: IFeatureCard) => {
     </div>
   )
 }
-
+// odd section
 const Top = () => {
   const { siteConfig } = useDocusaurusContext()
 
@@ -63,6 +63,7 @@ const Top = () => {
             seCss["section__title--jumbotron"],
             seCss["section__title--accent"],
           )}
+          style={{ color: "#fff" }}
         >
           The Desktop App for
           <br />
@@ -72,13 +73,6 @@ const Top = () => {
               <span>Spark</span>
               <span>Hadoop</span>
             </TextLoop>{" "}
-            {/* <ReactTypingEffect
-              text={["Hadoop", "Spark"]}
-              speed={100}
-              eraseDelay={500}
-              typingDelay={500}
-              cursor=" "
-            /> */}
           </span>
         </h1>
 
@@ -141,6 +135,7 @@ const Top = () => {
   )
 }
 
+// even section
 const FeaturesCard = () => {
   return (
     <section
@@ -206,7 +201,7 @@ const FeaturesCard = () => {
     </section>
   )
 }
-
+// odd section
 const FooterConsole = () => {
   const { siteConfig } = useDocusaurusContext()
   return (
@@ -290,7 +285,7 @@ const FooterConsole = () => {
     </section>
   )
 }
-
+// even section
 const WatchInDemo = () => (
   <section
     className={clsx(
@@ -335,6 +330,7 @@ const WatchInDemo = () => (
   </section>
 )
 
+// odd section
 const FeaturesTiles = () => (
   <section
     className={clsx(
@@ -351,9 +347,12 @@ const FeaturesTiles = () => (
           "padding-bottom--lg",
         )}
       >
-        <h2 className={clsx(seCss.section__title, "text--center")}>
+        <h1
+          className={clsx(seCss.section__title, "text--center")}
+          style={{ color: "#fff" }}
+        >
           Desktop app that saves thousands of developers&rsquo; hours
-        </h2>
+        </h1>
       </div>
     </div>
     <div className={clsx(seCss.section, featTiles.features__tiles__container)}>
@@ -362,18 +361,21 @@ const FeaturesTiles = () => (
           className={clsx(featTiles.tile__item__content)}
           data-reveal-container=".split-item"
         >
-          <h2 className={featTiles.feature__tile__cont__title}>
+          <h2
+            className={clsx(featTiles.feature__tile__cont__title)}
+            style={{ color: "#fff" }}
+          >
             Launch Sandbox clusters
           </h2>
           <p
             className={featTiles.feature__tile__cont__desc}
             style={{ marginBottom: 20 }}
           >
-            <b style={{ color: "#000" }}>Fast provisioning. </b> Launch single
+            <b style={{ color: "#fff" }}>Fast provisioning. </b> Launch single
             node clusters on your desktop under a minute.
           </p>
           <p className={featTiles.feature__tile__cont__desc}>
-            <b style={{ color: "#000" }}>Focus on development.</b> Forget the
+            <b style={{ color: "#fff" }}>Focus on development.</b> Forget the
             mess of bootstrapping and managing clusters on your own.
           </p>
         </div>
@@ -426,19 +428,22 @@ const FeaturesTiles = () => (
           className={clsx(featTiles.tile__item__content)}
           data-reveal-container=".split-item"
         >
-          <h2 className={featTiles.feature__tile__cont__title}>
+          <h2
+            className={featTiles.feature__tile__cont__title}
+            style={{ color: "#fff" }}
+          >
             Realtime Monitoring
           </h2>
           <p
             className={featTiles.feature__tile__cont__desc}
             style={{ marginBottom: 20 }}
           >
-            <b style={{ color: "#000" }}>Faster delivery.</b> Get instant
+            <b style={{ color: "#fff" }}>Faster delivery.</b> Get instant
             feedback on resource usage pattern and deploy the optimized code,
             saving time and cost.
           </p>
           <p className={featTiles.feature__tile__cont__desc}>
-            <b style={{ color: "#000" }}>Faster debugging.</b> Quickly drill
+            <b style={{ color: "#fff" }}>Faster debugging.</b> Quickly drill
             down to individual job and stages and isolate the performance
             bottleneck in minutes instead of hours and days.
           </p>

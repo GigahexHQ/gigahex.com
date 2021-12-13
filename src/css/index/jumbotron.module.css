@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* background-color: #0D1E4B; */
 }
 .jumbotron__actionbtns {
   display: grid;
@@ -32,7 +33,7 @@
 .jumbotron__image > img {
   border-radius: var(--ifm-global-img-border-radius);
   width: auto;
-  height: 900;
+  height: 900px;
   object-fit: cover;
 }
 
