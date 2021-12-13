@@ -29,6 +29,7 @@
     "clsx": "1.1.1",
     "date-fns": "2.16.1",
     "moment": "^2.29.1",
+    "prism-react-renderer": "^1.2.1",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-mailchimp-subscribe": "^2.1.3",
