@@ -32,8 +32,8 @@
 }
 .jumbotron__image > img {
   border-radius: var(--ifm-global-img-border-radius);
-  width: auto;
-  height: 900px;
+  width: 100vw;
+  height: auto;
   object-fit: cover;
 }
 
@@ -56,6 +56,9 @@
   .jumbotron__image {
     padding: 0;
   }
+  /* .jumbotron__image > img {
+    height: 360px;
+  } */
   .jumbotron__actionbtns {
     grid-template-columns: 1fr;
     grid-row-gap: 15px;
