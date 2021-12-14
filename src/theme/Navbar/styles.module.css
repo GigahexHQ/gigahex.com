@@ -26,8 +26,13 @@
 }
 :global(.navbar) {
   box-shadow: none;
-  background-color: var(--palette-rock);
+  background-color: #d3d8fd;
   padding-bottom: 10px;
+  transition: all 0.4s ease-in-out;
+  transform-origin: center;
+}
+:global(.bg-white) {
+  background-color: var(--palette-rock);
 }
 :global(.navbar__items) {
   padding-top: 15px;

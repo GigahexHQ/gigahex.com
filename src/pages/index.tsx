@@ -145,7 +145,7 @@ const FeaturesCard = () => {
       )}
     >
       <div className={clsx(ftuCss.features__top__info, "text--center")}>
-        <h2 className={clsx(seCss.section__title)}>
+        <h2 className={clsx(seCss.section__title, "padding-bottom--md")}>
           Designed for developers, built for speed.
         </h2>
         {/* <p className={clsx(seCss.section__subtitle)}></p> */}
@@ -335,14 +335,14 @@ const FeaturesTiles = () => (
       seCss.section,
       seCss["section--center"],
       seCss["section--odd"],
-      "padding-vert--lg",
+      "padding-top--xl padding-bottom--lg",
     )}
   >
     <div className={clsx(featTiles.features__tiles__top)}>
       <div
         className={clsx(
           featTiles.features__tiles__jumbotron,
-          "padding-bottom--lg",
+          "padding-bottom--md",
         )}
       >
         <h1

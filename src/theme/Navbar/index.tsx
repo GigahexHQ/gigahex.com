@@ -43,6 +43,7 @@ function Navbar(): JSX.Element {
     },
   } = useDocusaurusContext()
   const [sidebarShown, setSidebarShown] = useState(false)
+  const [colorChange, setColorchange] = useState(false)
 
   useLockBodyScroll(sidebarShown)
 
@@ -63,10 +64,20 @@ function Navbar(): JSX.Element {
 
   const { leftItems, rightItems } = splitNavItemsByPosition(items)
 
+  const changeNavbarColor = () => {
+    if (window.scrollY >= 300) {
+      setColorchange(true)
+    } else {
+      setColorchange(false)
+    }
+  }
+  window.addEventListener("scroll", changeNavbarColor)
+
   return (
     <nav
       className={clsx("navbar", "navbar--light", "navbar--fixed-top", {
         "navbar-sidebar--show": sidebarShown,
+        "bg-white": colorChange,
       })}
     >
       <div className={clsx("navbar__inner", styles.inner)}>
