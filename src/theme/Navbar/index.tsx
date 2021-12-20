@@ -65,7 +65,7 @@ function Navbar(): JSX.Element {
   const { leftItems, rightItems } = splitNavItemsByPosition(items)
 
   const changeNavbarColor = () => {
-    if (window.scrollY >= 300) {
+    if (window.scrollY >= 100) {
       setColorchange(true)
     } else {
       setColorchange(false)
