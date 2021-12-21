@@ -47,7 +47,8 @@ const FeatureCard = ({ title, desc, icon }: IFeatureCard) => {
 // odd section
 const Top = () => {
   const { siteConfig } = useDocusaurusContext()
-
+  const dockerCmd =
+    "docker run --rm -it -p 7080:7080  -v /var/run/docker.sock:/var/run/docker.sock  -v ~/.coder:/var/run/gigahex  gigahexcom/gigahex:1.25.1"
   return (
     <section
       className={clsx(
@@ -73,17 +74,6 @@ const Top = () => {
               <span>Hadoop</span>
             </span>
           </h1>
-
-          {/* <p
-          className={clsx(
-            seCss.section__subtitle,
-            seCss["section__subtitle--accent"],
-            "text--center",
-          )}
-        >
-          {siteConfig.tagline}
-        </p> */}
-
           <div className={clsx(juCss.jumbotron__actionbtns)}>
             <Button
               className={clsx(juCss.actionbtn)}
@@ -103,22 +93,6 @@ const Top = () => {
             >
               Download for Mac
             </Button>
-            {/* <Button
-            uppercase={false}
-            variant="secondary"
-            icon={
-              <img
-                src="/img/pages/landing/microSoftIcon.svg"
-                width={22}
-                height={22}
-                className="microsoft-icon"
-              />
-            }
-            className={`${juCss.actionbtn} disabled`}
-            size="small"
-          >
-            Coming Soon
-          </Button> */}
           </div>
         </div>
         <div className={clsx(juCss.jumbotron__image)}>
@@ -127,6 +101,80 @@ const Top = () => {
             src="/img/new-hero-gigahex-min.png"
             alt="Langing page Image"
           />
+        </div>
+      </div>
+
+      <div
+        className={clsx(
+          juCss.gigahex_installer_banner,
+          seCss.section,
+          seCss["section--center"],
+        )}
+      >
+        <div className={clsx("row", juCss.gigahex_installer_container)}>
+          <div
+            className={clsx("col col--6", seCss["content--center"])}
+            style={{ padding: "3rem 1rem" }}
+          >
+            <div className={clsx("row")}>
+              <div className={clsx("col col--4", seCss["content--center"])}>
+                <div
+                  className={clsx(juCss.docker__logo, seCss["content--center"])}
+                >
+                  <img src="/img/docker.png" width={130} alt="docker Image" />
+                </div>
+              </div>
+              <div className="col col--8">
+                <h2 className={clsx(juCss.installer__title)}>
+                  Install Gigahex on Docker
+                </h2>
+                <p
+                  className={clsx(
+                    "margin-bottom--none",
+                    juCss.installer__feature,
+                  )}
+                >
+                  Be up and running in minutes
+                </p>
+                <p
+                  className={clsx(
+                    "margin-bottom--none margin-bottom--md",
+                    juCss.installer__feature,
+                  )}
+                >
+                  Free 60-day trual for 5 users
+                </p>
+                <p className={clsx(juCss.contact_us_desc)}>
+                  Learn more about running <a href="">Gigahex on Docker</a> or{" "}
+                  <a href="">contact us</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            className={clsx(
+              "col col--6",
+              seCss["content--center"],
+              juCss.installer__right_content,
+            )}
+          >
+            <div style={{ padding: "3rem" }}>
+              <p className={clsx(juCss.installer__code, "margin-top--md")}>
+                <span className={juCss.doller__sign}>$</span> {dockerCmd}
+              </p>
+
+              <Button
+                className={clsx(juCss.actionbtn, juCss.cmd__copy__btn)}
+                uppercase={false}
+                onClick={async () => {
+                  await navigator.clipboard.writeText(dockerCmd)
+                }}
+                size="small"
+              >
+                COPY COMMANDS
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

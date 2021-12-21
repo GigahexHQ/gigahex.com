@@ -31,6 +31,7 @@ const PageLayout = ({
   wrapperClassName,
 }: Props) => {
   const { siteConfig } = useDocusaurusContext()
+  const [isPageLoaded, setPageLoaded] = React.useState<boolean>(false)
   const {
     title: siteTitle,
     themeConfig: { image: defaultImage },
@@ -41,6 +42,12 @@ const PageLayout = ({
   const metaImageUrl = useBaseUrl(metaImage, { absolute: true })
   const isBlogPost =
     description?.match(/^Blog/g) == null && wrapperClassName === "blog-wrapper"
+
+  window.onload = () => {
+    setTimeout(() => {
+      setPageLoaded(true)
+    }, 500)
+  }
 
   return (
     <MetadataContextProvider value={{ altFooter, isBlogPost }}>
@@ -82,16 +89,26 @@ const PageLayout = ({
             />
           )}
         </Head>
-
-        <Navbar />
-        <div
-          className={clsx(styles.wrapper, wrapperClassName, {
-            [styles.flex]: flex,
-          })}
-        >
-          {children}
-        </div>
-        {noFooter !== true && <Footer />}
+        {isPageLoaded ? (
+          <>
+            <Navbar />
+            <div
+              className={clsx(styles.wrapper, wrapperClassName, {
+                [styles.flex]: flex,
+              })}
+            >
+              {children}
+            </div>
+            {noFooter !== true && <Footer />}
+          </>
+        ) : (
+          <div className={styles.wrap}>
+            <div className={styles.loading}>
+              <div className={styles.bounceball} />
+              <div className={styles.text}>Loading...</div>
+            </div>
+          </div>
+        )}
       </LayoutProviders>
     </MetadataContextProvider>
   )
