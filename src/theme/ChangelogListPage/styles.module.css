@@ -31,13 +31,13 @@
 
 .social__links > a {
   margin-right: 10px;
-  color: var(--palette-blue);
+  color: var(--palette-rock);
   font-size: var(--font-size-large);
   font-weight: 600;
-  text-decoration: none;
+  text-decoration: underline;
 }
 .social__links > a:hover {
-  color: var(--palette-gray);
+  color: var(--palette-pale-blue);
 }
 .changelog__item__row {
   justify-content: center !important;
