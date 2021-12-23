@@ -8,6 +8,7 @@ import useWindowSize, { windowSizes } from "@theme/hooks/useWindowSize"
 
 import styles from "./styles.module.css"
 import NavbarItem from "@theme/NavbarItem"
+import { Link } from "@docusaurus/router"
 // import ButtonDropdown from "../Button/ButtonDropdown"
 
 const DefaultNavItemPosition = "right"
@@ -107,9 +108,9 @@ function Navbar(): JSX.Element {
               />
             </svg>
           </div>
-          <a className={clsx("navbar__brand", styles.brand)} href="/">
+          <Link className={clsx("navbar__brand", styles.brand)} to="/">
             Gigahex
-          </a>
+          </Link>
           {leftItems.map((item, i) => (
             <NavbarItem {...item} key={i} />
           ))}
