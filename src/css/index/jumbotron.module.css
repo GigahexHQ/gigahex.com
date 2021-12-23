@@ -33,6 +33,7 @@
 .jumbotron__image {
   margin: 3rem auto 0 auto;
   max-width: 1200px;
+  min-height: 1000px;
 }
 .jumbotron__image > img {
   border-radius: var(--ifm-global-img-border-radius);
