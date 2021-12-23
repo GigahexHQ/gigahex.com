@@ -358,18 +358,9 @@ const WatchInDemo = () => (
             height: 0,
           }}
         >
-          <iframe
-            src="https://www.loom.com/embed/0dbafc2d13ec436b9fe8bf86d931f1cc"
-            frameBorder="0"
-            allowFullScreen
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-            }}
-          />
+          <video controls={true} src="video.mp4" width="100%">
+            Your browser does not support the HTML5 Video element.
+          </video>
         </div>
       </div>
     </div>
