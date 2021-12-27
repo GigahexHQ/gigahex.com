@@ -52,15 +52,15 @@
   overflow: hidden;
 }
 .installer__title {
-  font-size: 2.3rem;
+  font-size: 2rem;
 }
 .doller__sign {
   color: #58afb9;
   font-weight: 600;
 }
 .docker__logo {
-  width: 170px;
-  height: 170px;
+  min-width: 150px;
+  min-height: 150px;
   border-radius: 50%;
   background-color: #c1e5f7;
 }
@@ -70,6 +70,10 @@
   font-weight: 300 !important;
   font-family: Fira Code, SFMono-Regular, Consolas, Liberation Mono, Menlo,
     monospace;
+}
+.container_code {
+  color: #000;
+  background-color: transparent;
 }
 .installer__right_content {
   padding: 3rem 2rem;
@@ -82,9 +86,13 @@
   font-size: 1rem;
 }
 .installer__feature {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 400;
   color: #000 !important;
+  display: flex;
+}
+.installer__feature > svg {
+  font-size: 32px;
 }
 .contact_us_desc {
   color: #747474 !important;
