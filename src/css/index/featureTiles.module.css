@@ -61,7 +61,7 @@
   border-radius: var(--ifm-global-img-border-radius);
 }
 
-@media (max-width: 996px) {
+@media (max-width: 1024px) {
   .features__tiles__row:nth-child(2) {
     flex-direction: column-reverse;
   }
@@ -72,7 +72,7 @@
     width: 100%;
   }
   .features__tiles__row {
-    padding: 0 3rem;
+    padding: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;

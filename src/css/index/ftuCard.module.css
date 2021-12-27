@@ -44,3 +44,13 @@
   justify-content: space-around;
   flex-wrap: wrap;
 }
+@media (max-width: 776px) {
+  .features__sec {
+    padding: 12rem 0 4rem 0;
+  }
+}
+@media (max-width: 426px) {
+  .features__sec {
+    padding: 13rem 0 4rem 0;
+  }
+}

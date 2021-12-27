@@ -75,15 +75,21 @@
   color: #000;
   background-color: transparent;
 }
+.installer__left__content {
+  padding: 2rem 1rem !important;
+}
 .installer__right_content {
   padding: 3rem 2rem;
   background-color: #f4f9fb;
 }
+.installer__right_content > div {
+  padding: 3rem;
+}
 .cmd__copy__btn {
   float: right;
-  width: 120px;
+  padding: 0 10px 0 20px;
   height: 40px;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 .installer__feature {
   font-size: 1.2rem;
@@ -102,7 +108,55 @@
   font-weight: 400;
 }
 
+@media (max-width: 1024px) {
+  .actionbtn {
+    font-size: var(--font-size-big-1);
+  }
+  .jumbotron__image > img {
+    width: 85vw;
+  }
+  .jumbotron__image {
+    min-height: 900px;
+    padding: 0;
+  }
+  .gigahex_installer_container {
+    max-width: 900px;
+    float: left;
+  }
+  .installer__title {
+    font-size: 2rem;
+  }
+  .installer__feature {
+    font-size: 1rem;
+  }
+  .docker__logo {
+    min-width: 130px;
+    min-height: 130px;
+  }
+  .cmd__copy__btn {
+    font-size: 0.9rem;
+  }
+}
+
 @media (max-width: 996px) {
+  .gigahex_installer_banner {
+    padding: 0 3rem;
+  }
+  .installer__title {
+    margin-top: 20px;
+    text-align: center;
+  }
+  .installer__feature {
+    text-align: center;
+    max-width: 300px;
+    margin: 0 auto;
+    line-height: 2;
+  }
+  .cmd__copy__btn {
+    margin-left: 50px;
+
+    float: none;
+  }
   .jumbotron {
     padding-top: 2rem;
     align-items: center;
@@ -115,10 +169,17 @@
 }
 
 @media (max-width: 776px) {
+  .gigahex_installer_banner {
+    margin-bottom: -18rem;
+  }
+  .gigahex_installer_banner {
+    padding: 0 4rem;
+  }
   .jumbotron {
     padding: 3rem 2rem 2rem 2rem;
   }
   .jumbotron__image {
+    min-height: 500px;
     padding: 0;
   }
   /* .jumbotron__image > img {
@@ -127,5 +188,48 @@
   .jumbotron__actionbtns {
     grid-template-columns: 1fr;
     grid-row-gap: 15px;
+  }
+}
+
+@media (max-width: 426px) {
+  .gigahex_installer_banner {
+    margin-bottom: -20rem;
+  }
+  .jumbotron__center__title {
+    top: 40px;
+  }
+  .installer__title {
+    margin-top: 20px;
+    text-align: center;
+  }
+  .installer__feature {
+    font-size: 1rem;
+  }
+  .jumbotron__image {
+    min-height: 300px;
+  }
+  .installer__right_content > div {
+    padding: 2rem 0rem;
+  }
+  .actionbtn {
+    font-size: var(--font-size-normal);
+  }
+}
+
+@media (max-width: 376px) {
+  .gigahex_installer_banner {
+    margin-bottom: -20rem;
+  }
+  .jumbotron__center__title {
+    top: 30px;
+  }
+  .gigahex_installer_container {
+    width: 330px;
+  }
+  .installer__right_content > div {
+    padding: 2rem 0.5rem;
+  }
+  .container_code {
+    font-size: 0.9rem;
   }
 }
