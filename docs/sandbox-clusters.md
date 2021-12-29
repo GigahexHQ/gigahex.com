@@ -12,16 +12,14 @@ Sandbox clusters are single node clusters running on docker containers.
 
 ![Sandbox cluster!](/img/docs/sandbox-cluster/sandbox-list.png "Sandbox cluster")
 
-- Provide sandbox cluster details as per your requirement. Make sure you mount a
-  directory your desktop on to the container running the cluster. This will
-  enable for faster development and deployment.
+- Provide sandbox cluster details as per your requirement.
 
-![Create cluster!](/img/docs/sandbox-cluster/create-cluster.png "Create sandbox cluster")
+![Create cluster!](/img/docs/sandbox-cluster/build_cluster.png "Create sandbox cluster")
 
 - Click on the start button to initialize and run the cluster. Once the cluster
   has been started, you can view the resources allocated and the logs.
 
-![Cluster state!](/img/docs/sandbox-cluster/cluster-state.png "Cluster state")
+![Cluster state!](/img/docs/sandbox-cluster/cluster_info.png "Cluster state")
 
 ### Open Interactive Shell
 
@@ -29,19 +27,13 @@ Now that we have the cluster up and running, we can interact with the cluster by
 opening an interacting shell from the terminal using the following command
 
 ```bash
-docker exec -it <container-id> /bin/bash
+docker exec -it gigahex /bin/bash
 ```
-
-In order to generate the command, click on the **Open Terminal** button, located
-at right top side of the cluster dashboard. On clicking of that button, you will
-be able to get the command to open interactive shell as shown below.
-
-![Docker open terminal command!](/img/docs/sandbox-cluster/docker-cmd.png "Docker command")
 
 ### Interact with Spark and Hadoop
 
 Once you've open the interactive shell for the cluster, you can run
-`spark-shell` and `hdfs` commands to explore Spark and Hadoop respectively.
+`spark-shell` commands to explore Spark.
 
 ![Spark shell!](/img/docs/sandbox-cluster/spark-shell.png "Spark shell")
 

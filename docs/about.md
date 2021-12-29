@@ -11,8 +11,8 @@ Learn about Gigahex, our mission and why you should start using it.
 
 Gigahex speeds up building data applications, by creating developer centric user
 interface for interacting with distributed systems like Apache Spark and Hadoop.
-It attempts to bring the same user experience as you would have while
-interacting with a native desktop applications.
+It provides a single interface to manage multiple distributed systems running
+On-Prem or Cloud clusters.
 
 ## Mission
 
@@ -35,5 +35,5 @@ production.
 
 Gigahex has a concept of workspace, which is analogous to a project, where you
 can manage different clusters for development, staging and production and deploy
-jobs and monitor them. It's a single platform with a desktop client, to manage
-your entire development and management needs for big data applications.
+jobs and monitor them. It's a single platform with a web based interface, to
+manage your entire development and management needs for big data applications.

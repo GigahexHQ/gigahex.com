@@ -47,10 +47,11 @@ const FeatureCard = ({ title, desc, icon }: IFeatureCard) => {
 // odd section
 const Top = () => {
   const [copied, setCopied] = React.useState(false)
-  const { siteConfig } = useDocusaurusContext()
+  // const { siteConfig } = useDocusaurusContext()
   const dockerCmd = ` docker run --rm -it -p 9080:9080 \\
   --name gigahex \\
-  -v gxdb:/var -v gxbin:/usr/local \\
+  -v gxdb:/var \\
+  -v gxbin:/usr/local \\
   gigahex/gxc:0.1.0`
 
   React.useEffect(() => {
@@ -80,15 +81,12 @@ const Top = () => {
             )}
             style={{ color: "#fff", textAlign: "center" }}
           >
-            The Desktop App for
+            Provision and Manage
             <br />
-            Apache{" "}
-            <span className={juCss.typed__text}>
-              <span>Hadoop</span>
-            </span>
+            Apache Spark clusters
           </h1>
           <div className={clsx(juCss.jumbotron__actionbtns)}>
-            <Button
+            {/* <Button
               className={clsx(juCss.actionbtn)}
               uppercase={false}
               onClick={() => {
@@ -105,7 +103,7 @@ const Top = () => {
               size="small"
             >
               Download for Mac
-            </Button>
+            </Button> */}
           </div>
         </div>
         <div className={clsx(juCss.jumbotron__image)}>
@@ -267,42 +265,42 @@ const FeaturesCard = () => {
           <div className={ftuCss.feature__col}>
             <FeatureCard
               title="Fast development"
-              desc="Bootstrap a Spark and Hadoop cluster under a minute, and start playing"
+              desc="Bootstrap a Spark cluster under a minute, and start playing"
               icon="/img/pages/landing/feature-tile-icon-01.svg"
             />
           </div>
           <div className={ftuCss.feature__col}>
             <FeatureCard
               title="Complete cluster control"
-              desc="Launch an interactive shell and start exploring Hadoop, YARN and Spark. "
+              desc="Launch an interactive shell and start exploring Spark. "
               icon="/img/pages/landing/feature-tile-icon-02.svg"
             />
           </div>
           <div className={ftuCss.feature__col}>
             <FeatureCard
               title="Open Source driven"
-              desc="Runs on open source version of Spark and Hadoop."
+              desc="Runs on open source version of Spark. Always stay at the edge"
               icon="/img/pages/landing/feature-tile-icon-03.svg"
             />
           </div>
           <div className={ftuCss.feature__col}>
             <FeatureCard
-              title="Runtime insights"
-              desc="Debug and identify performance bottleneck of Spark applications in realtime monitoring"
+              title="Stay focused"
+              desc="Focus on developing and deploying applications, and not on complex infrastructure management"
               icon="/img/pages/landing/feature-tile-icon-04.svg"
             />
           </div>
           <div className={ftuCss.feature__col}>
             <FeatureCard
-              title="Lightweight clusters"
-              desc="Runs on lightweight docker containers, allowing you to create more clusters."
+              title="Manage multiple clusters"
+              desc="Manage multiple Spark clusters from single interface"
               icon="/img/pages/landing/container.svg"
             />
           </div>
           <div className={ftuCss.feature__col}>
             <FeatureCard
-              title="Compare deployments"
-              desc="Test your application against different versions of Spark and Hadoop"
+              title="Move to production faster"
+              desc="Develop and test locally and deploy to production with complete confidence"
               icon="/img/pages/landing/deploy.svg"
             />
           </div>
@@ -489,7 +487,7 @@ const FeaturesTiles = () => (
         <div className={clsx(featTiles.tile__item__img)}>
           <div className={clsx(featTiles.tile__img__box, "shadow--md")}>
             <img
-              src="/img/pages/landing/choose-cluster.png"
+              src="/img/pages/landing/build_cluster.png"
               alt="Choose cluster"
             />
           </div>
