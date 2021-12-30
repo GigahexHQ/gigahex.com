@@ -13,9 +13,21 @@
   height: 550px;
 }
 
-@media (max-width: 996px) {
+@media (max-width: 1024px) {
   .video__container {
-    padding: 2rem;
+    padding: 2rem 3rem;
+  }
+
+  .ytb__video {
+    height: 350px;
+  }
+}
+@media (max-width: 376px) {
+  .watch__sec {
+    padding: 3rem 0;
+  }
+  .video__container {
+    padding: 0rem 2rem;
   }
 
   .ytb__video {

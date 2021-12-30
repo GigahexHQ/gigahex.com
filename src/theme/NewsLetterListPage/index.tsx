@@ -75,7 +75,10 @@ function NewsLetterListPage(props: Props) {
       <section className={clsx(seCss.section, seCss["section--odd"])}>
         <div className={styles.jumbotron}>
           <div>
-            <h1 className={clsx(seCss.section__title, "margin-bottom--md")}>
+            <h1
+              className={clsx(seCss.section__title, "margin-bottom--md")}
+              style={{ color: "#fff" }}
+            >
               Data Engineering Newsletter
             </h1>
             <p className={clsx(seCss.section__subtitle, "margin-bottom--lg")}>

@@ -62,7 +62,10 @@
 }
 
 .section--odd {
-  background: var(--palette-rock);
+  background: var(--palette-dark-blue);
+}
+.section--odd p {
+  color: var(--palette-pale-blue);
 }
 .section--showcase {
   --ifm-pre-padding: 1rem 0;
@@ -140,6 +143,17 @@
 }
 .margin__bottom__3 {
   margin-bottom: 3rem;
+}
+@media (max-width: 1024px) {
+  .section__footer--console {
+    padding: 0 3rem;
+  }
+}
+@media (max-width: 424px) {
+  .section__footer--console {
+    margin-top: 3rem;
+    padding: 0 1rem 1rem 0;
+  }
 }
 
 @media (max-width: 996px) {

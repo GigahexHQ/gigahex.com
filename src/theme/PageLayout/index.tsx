@@ -82,7 +82,6 @@ const PageLayout = ({
             />
           )}
         </Head>
-
         <Navbar />
         <div
           className={clsx(styles.wrapper, wrapperClassName, {

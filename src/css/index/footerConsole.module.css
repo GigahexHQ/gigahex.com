@@ -39,6 +39,7 @@
   margin-bottom: 1rem;
   font-size: var(--font-size-big-3);
   font-weight: var(--ifm-font-weight-bold);
+  color: #fff;
 }
 .flashy__content {
   font-size: var(--font-size-big-1);

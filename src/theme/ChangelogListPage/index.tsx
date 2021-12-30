@@ -69,7 +69,10 @@ function ChangelogListPage(props: Props) {
       <section className={clsx(seCss.section, seCss["section--odd"])}>
         <div className={styles.jumbotron}>
           <div className={styles.jumbotron__center}>
-            <h1 className={clsx(styles.jumbotron__title, seCss.section__title)}>
+            <h1
+              className={clsx(styles.jumbotron__title, seCss.section__title)}
+              style={{ color: "#fff" }}
+            >
               Changelog
             </h1>
             <p className={clsx(styles.jumbotron__subtitle)}>{description}</p>
