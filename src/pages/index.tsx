@@ -337,25 +337,6 @@ const FooterConsole = () => {
           </p>
 
           <div className={ftrClsCss.console__actionbtns}>
-            <Button
-              onClick={() => {
-                window.location.href = `${siteConfig.customFields.downloadUrl}`
-              }}
-              icon={
-                <img
-                  src="/img/pages/landing/appleIcon.svg"
-                  width="25px"
-                  height="25px"
-                  className="apple-icon"
-                />
-              }
-              size="xsmall"
-              variant="primary"
-              uppercase={false}
-              className={clsx(ftrClsCss.console__actionbtn)}
-            >
-              Download Now
-            </Button>
             {/* <Button
               icon={
                 <img
