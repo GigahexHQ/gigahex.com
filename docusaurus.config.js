@@ -149,10 +149,15 @@ const config = {
           position: "left",
           to: "/changelog/",
         },
+        // {
+        //   label: "Newsletter",
+        //   position: "left",
+        //   to: "/newsletter/",
+        // },
         {
-          label: "Newsletter",
+          label: "Pricing",
           position: "left",
-          to: "/newsletter/",
+          to: "/pricing/",
         },
         {
           label: "About Us",
@@ -202,9 +207,13 @@ const config = {
               label: "Tutorials",
               to: "/tutorial/",
             },
+            // {
+            //   label: "Newsletter",
+            //   to: "/newsletter/",
+            // },
             {
-              label: "Newsletter",
-              to: "/newsletter/",
+              label: "Pricing",
+              to: "/pricing/",
             },
           ],
         },
