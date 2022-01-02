@@ -311,7 +311,6 @@ const FeaturesCard = () => {
 }
 // odd section
 const FooterConsole = () => {
-  const { siteConfig } = useDocusaurusContext()
   return (
     <section
       className={clsx(
