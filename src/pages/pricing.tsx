@@ -41,9 +41,15 @@ const Pricing = () => {
                 <div
                   className={clsx(pricingCss.circle__icon, "margin-bottom--md")}
                 />
-                <h2>Basic</h2>
+                <h2 className={clsx("margin-bottom--none")}>Basic</h2>
+                <div className={clsx(pricingCss.plan__desc)}>
+                  Perfect plan for startes
+                </div>
+
                 <h2 className={clsx("margin-bottom--sm")}>Free</h2>
-                <div className={clsx(pricingCss.plan__desc)}>for lifetime</div>
+                <div className={clsx(pricingCss.plan__duration)}>
+                  for lifetime
+                </div>
               </div>
               <div className={clsx("card__body", pricingCss.card__body)}>
                 <ul
@@ -88,9 +94,15 @@ const Pricing = () => {
                 <div
                   className={clsx(pricingCss.circle__icon, "margin-bottom--md")}
                 />
-                <h2>Pro</h2>
+                <h2 className={clsx("margin-bottom--none")}>Pro</h2>
+                <div className={clsx(pricingCss.plan__desc)}>
+                  Your entire team in one place
+                </div>
+
                 <h2 className={clsx("margin-bottom--sm")}>Custom</h2>
-                <div className={clsx(pricingCss.plan__desc)}>Coming Soon</div>
+                <div className={clsx(pricingCss.plan__duration)}>
+                  Coming Soon
+                </div>
               </div>
               <div className={clsx("card__body", pricingCss.card__body)}>
                 <ul

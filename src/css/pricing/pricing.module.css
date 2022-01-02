@@ -50,7 +50,13 @@
 .plan__desc {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--palette-gray);
+  color: #b1b5d3;
+  margin-bottom: 20px;
+}
+.plan__duration {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #b1b5d3;
 }
 
 .plan__active__btn {
