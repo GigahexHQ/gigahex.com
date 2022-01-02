@@ -14,9 +14,9 @@
   display: flex;
   min-height: 400px;
   max-width: var(--ifm-container-width);
-  width: 100%;
+  width: 1000px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 3rem;
 }
 
 .jumbotron__subtitle {
@@ -25,15 +25,14 @@
 
 .jumbotron__cta {
   margin-top: 2rem;
-  align-self: center;
 }
 
 .jumbotron__left {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
   flex: 1;
-  text-align: center;
 }
 
 @media (max-width: 996px) {
