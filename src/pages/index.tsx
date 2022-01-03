@@ -313,6 +313,7 @@ const FeaturesCard = () => {
 const FooterConsole = () => {
   return (
     <section
+      style={{ display: "none" }}
       className={clsx(
         seCss.section,
         seCss["section--center"],
@@ -376,6 +377,7 @@ const FooterConsole = () => {
 // even section
 const WatchInDemo = () => (
   <section
+    style={{ display: "none" }}
     className={clsx(
       seCss.section,
       seCss["section--center"],
