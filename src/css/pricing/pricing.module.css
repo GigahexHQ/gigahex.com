@@ -81,9 +81,6 @@
   background-color: var(--ifm-color-secondary);
   border: none;
 }
-.pro {
-  /* margin-left: 20px; */
-}
 .pro .circle__icon {
   border-color: var(--palette-blue) !important;
 }
