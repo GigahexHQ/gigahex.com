@@ -43,7 +43,7 @@ const Pricing = () => {
                 />
                 <h2 className={clsx("margin-bottom--none")}>Basic</h2>
                 <div className={clsx(pricingCss.plan__desc)}>
-                  Perfect plan for startes
+                  Perfect plan for starters
                 </div>
 
                 <h2 className={clsx("margin-bottom--sm")}>Free</h2>
