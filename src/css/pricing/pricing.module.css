@@ -82,8 +82,30 @@
   border: none;
 }
 .pro {
-  margin-left: 20px;
+  /* margin-left: 20px; */
 }
 .pro .circle__icon {
   border-color: var(--palette-blue) !important;
+}
+
+@media (max-width: 776px) {
+  .cards__wrapper {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  .pro {
+    margin-top: 20px;
+  }
+}
+@media (max-width: 1000px) {
+  .pro {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 440px) {
+  .cards__wrapper {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
