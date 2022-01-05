@@ -112,6 +112,15 @@ const config = {
         ],
       },
     ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "guide_docs",
+        path: "guide_docs",
+        routeBasePath: "guide-docs",
+        sidebarPath: require.resolve("./sidebars_guide.js"),
+      },
+    ],
   ],
   themeConfig: {
     announcementBar: {
@@ -169,6 +178,12 @@ const config = {
           activeBasePath: "docs",
           position: "left",
           to: "docs/",
+        },
+        {
+          label: "Guide",
+          activeBasePath: "guide-docs",
+          position: "left",
+          to: "guide-docs/",
         },
       ],
     },
