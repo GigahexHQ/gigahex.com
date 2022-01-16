@@ -40,10 +40,16 @@ const PersonCard = (props: IPersonCard) => (
 
         <div className={clsx(abtCss.person__social__icons)}>
           <a href={props.linkdinLink} target="_blank" rel="noreferrer">
-            <img src="/img/pages/about/linkedin.svg" alt="linkedin" />
+            <img
+              src="/img/pages/about/linkedin.svg"
+              alt={`${props.personName} member of gigahex`}
+            />
           </a>
           <a href={props.twitterLink} target="_blank" rel="noreferrer">
-            <img src="/img/pages/about/twitter.svg" alt="linkedin" />
+            <img
+              src="/img/pages/about/twitter.svg"
+              alt={`${props.personName} member of gigahex`}
+            />
           </a>
         </div>
       </div>

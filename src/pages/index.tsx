@@ -110,7 +110,7 @@ const Top = () => {
           <img
             className=""
             src="/img/new-hero-gigahex-min.png"
-            alt="Langing page Image"
+            alt="Flow of cluster in gigahex"
           />
         </div>
       </div>
@@ -231,7 +231,11 @@ const Top = () => {
                 ) : (
                   <>
                     COPY COMMANDS{" "}
-                    <img src="/img/icons/copy.svg" width={40} alt="" />
+                    <img
+                      src="/img/icons/copy.svg"
+                      width={40}
+                      alt="copy the cmd to run the gigahex"
+                    />
                   </>
                 )}
               </Button>
@@ -385,7 +389,7 @@ const FooterConsole = () => {
             <img
               className="shadow--md"
               src="/img/pages/landing/deployments.png"
-              alt="landing page image"
+              alt="gigahex dashboard"
             />
           </div>
         </div>
@@ -488,7 +492,7 @@ const FeaturesTiles = () => (
           <div className={clsx(featTiles.tile__img__box, "shadow--md")}>
             <img
               src="/img/pages/landing/build_cluster.png"
-              alt="Choose cluster"
+              alt="Create a local cluster in gigahex"
             />
           </div>
         </div>
@@ -503,7 +507,7 @@ const FeaturesTiles = () => (
           <div className={clsx(featTiles.tile__img__box, "shadow--md")}>
             <img
               src="/img/pages/landing/app-insights.png"
-              alt="Features split 02"
+              alt="See runtime Insights in gigahex"
             />
           </div>
         </div>
@@ -557,7 +561,7 @@ const FeaturesTiles = () => (
           <div className={clsx(featTiles.tile__img__box, "shadow--md")}>
             <img
               src="/img/pages/landing/runtime-monitor.png"
-              alt="Features split 03"
+              alt="Check realtime monitoring in gigahex"
             />
           </div>
         </div>
