@@ -57,3 +57,11 @@
     padding: 13rem 0 4rem 0;
   }
 }
+@media (max-width: 376px) {
+  .features__top__info {
+    margin-top: 17.5rem;
+  }
+  .features__sec {
+    padding: 13rem 0 4rem 0;
+  }
+}
