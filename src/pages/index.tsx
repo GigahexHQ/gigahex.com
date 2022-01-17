@@ -46,9 +46,36 @@ const FeatureCard = ({ title, desc, icon }: IFeatureCard) => {
 }
 // odd section
 const Top = () => {
-  const [copied, setCopied] = React.useState(false)
-  // const { siteConfig } = useDocusaurusContext()
   const dockerCmd = ` docker run --rm -it -p 9080:9080 \\
+  --name gigahex \\
+  -v gxdb:/var \\
+  -v gxbin:/usr/local \\
+  gigahex/gxc:0.1.0`
+  const [copied, setCopied] = React.useState(false)
+  const [osType, setOsType] = React.useState<{
+    osName: string
+    osLogo: any
+    instgxcCmd: string
+  }>({
+    osName: "Docker",
+    osLogo: "/img/docker.png",
+    instgxcCmd: dockerCmd,
+  })
+  // const { siteConfig } = useDocusaurusContext()
+
+  const ubuntuCmd = ` ubn run --rm -it -p 9080:9080 \\
+  --name gigahex \\
+  -v gxdb:/var \\
+  -v gxbin:/usr/local \\
+  gigahex/gxc:0.1.0`
+
+  const macCmd = ` mac run --rm -it -p 9080:9080 \\
+  --name gigahex \\
+  -v gxdb:/var \\
+  -v gxbin:/usr/local \\
+  gigahex/gxc:0.1.0`
+
+  const windowCmd = ` window run --rm -it -p 9080:9080 \\
   --name gigahex \\
   -v gxdb:/var \\
   -v gxbin:/usr/local \\
@@ -63,12 +90,55 @@ const Top = () => {
     }
     return () => clearTimeout(id)
   }, [copied])
+
+  const onClickOs = (os: string) => {
+    switch (os) {
+      case "Docker":
+        setOsType({
+          osName: os,
+          osLogo: "/img/docker.png",
+          instgxcCmd: dockerCmd,
+        })
+        break
+      case "Ubuntu":
+        setOsType({
+          osName: os,
+          osLogo: "/img/pages/landing/ubuntu-logo.svg",
+          instgxcCmd: ubuntuCmd,
+        })
+        break
+      case "Mac":
+        setOsType({
+          osName: os,
+          osLogo: "/img/pages/landing/appleIcon.svg",
+          instgxcCmd: macCmd,
+        })
+        break
+      case "Window":
+        setOsType({
+          osName: os,
+          osLogo: "/img/pages/landing/microsoftLogo.svg",
+          instgxcCmd: windowCmd,
+        })
+        break
+    }
+  }
+
+  const getActiveTab = (os: string, selectedOs: string) => {
+    if (os === selectedOs) {
+      return "tabs__item--active"
+    } else {
+      return ""
+    }
+  }
+
   return (
     <section
       className={clsx(
         seCss.section,
         seCss["section--center"],
         seCss["section--odd"],
+        juCss["hero-section"],
       )}
     >
       <div className={juCss.jumbotron}>
@@ -85,33 +155,13 @@ const Top = () => {
             <br />
             Apache Spark clusters
           </h1>
-          <div className={clsx(juCss.jumbotron__actionbtns)}>
-            {/* <Button
-              className={clsx(juCss.actionbtn)}
-              uppercase={false}
-              onClick={() => {
-                window.location.href = `${siteConfig.customFields.downloadUrl}`
-              }}
-              icon={
-                <img
-                  src="/img/pages/landing/appleIcon.svg"
-                  width={25}
-                  height={25}
-                  className="apple-icon"
-                />
-              }
-              size="small"
-            >
-              Download for Mac
-            </Button> */}
-          </div>
         </div>
         <div className={clsx(juCss.jumbotron__image)}>
-          <img
+          {/* <img
             className=""
             src="/img/new-hero-gigahex-min.png"
             alt="Langing page Image"
-          />
+          /> */}
         </div>
       </div>
 
@@ -123,6 +173,50 @@ const Top = () => {
         )}
       >
         <div className={clsx("row", juCss.gigahex_installer_container)}>
+          <div className={clsx("col col--12")} style={{ padding: 0 }}>
+            <ul className={clsx("tabs tabs--block", juCss.os_tabs_container)}>
+              <li
+                className={clsx(
+                  "tabs__item",
+                  juCss.os_tab,
+                  getActiveTab("Docker", osType.osName),
+                )}
+                onClick={() => onClickOs("Docker")}
+              >
+                Docker
+              </li>
+              <li
+                className={clsx(
+                  "tabs__item",
+                  juCss.os_tab,
+                  getActiveTab("Ubuntu", osType.osName),
+                )}
+                onClick={() => onClickOs("Ubuntu")}
+              >
+                Ubuntu
+              </li>
+              <li
+                className={clsx(
+                  "tabs__item",
+                  juCss.os_tab,
+                  getActiveTab("Mac", osType.osName),
+                )}
+                onClick={() => onClickOs("Mac")}
+              >
+                Mac
+              </li>
+              <li
+                className={clsx(
+                  "tabs__item",
+                  juCss.os_tab,
+                  getActiveTab("Window", osType.osName),
+                )}
+                onClick={() => onClickOs("Window")}
+              >
+                Window
+              </li>
+            </ul>
+          </div>
           <div
             className={clsx(
               "col col--6",
@@ -135,12 +229,25 @@ const Top = () => {
                 <div
                   className={clsx(juCss.docker__logo, seCss["content--center"])}
                 >
-                  <img src="/img/docker.png" width={100} alt="docker Image" />
+                  <img
+                    src={osType.osLogo}
+                    width={100}
+                    style={{
+                      paddingRight: osType.osName === "Ubuntu" ? "10px" : "0",
+                    }}
+                    alt={osType.osName}
+                  />
                 </div>
               </div>
               <div className="col col--8">
                 <h2 className={clsx(juCss.installer__title)}>
-                  Install Gigahex on Docker
+                  {osType.osName === "Mac" ? (
+                    <span>
+                      Install Gigahex on <br /> {osType.osName}
+                    </span>
+                  ) : (
+                    `Install Gigahex on ${osType.osName}`
+                  )}
                 </h2>
                 <p
                   className={clsx(
@@ -200,14 +307,16 @@ const Top = () => {
             <div>
               <pre className={clsx(juCss.container_code)}>
                 <span className={juCss.doller__sign}>$</span>
-                <code className={clsx(juCss.container_code)}>{dockerCmd}</code>
+                <code className={clsx(juCss.container_code)}>
+                  {osType.instgxcCmd}
+                </code>
               </pre>
 
               <Button
                 className={clsx(juCss.actionbtn, juCss.cmd__copy__btn)}
                 uppercase={false}
                 onClick={async () => {
-                  await navigator.clipboard.writeText(dockerCmd).then()
+                  await navigator.clipboard.writeText(osType.instgxcCmd).then()
                   setCopied(true)
                 }}
                 size="small"

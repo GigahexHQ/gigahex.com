@@ -1,9 +1,13 @@
 .jumbotron {
-  padding: 3.5rem 0 2rem 0;
+  padding: 6rem 0 2rem 0;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column;
   align-items: center;
-  position: relative;
+  position: relative; */
+}
+.hero-section {
+  background: url("/img/hero-bg.png") center/cover no-repeat;
+  min-height: 600px;
 }
 .jumbotron__actionbtns {
   display: grid;
@@ -12,7 +16,6 @@
 
 .jumbotron__center__title {
   top: 70px;
-  position: absolute;
 }
 
 .actionbtn {
@@ -31,9 +34,8 @@
 }
 
 .jumbotron__image {
-  margin: 3rem auto 0 auto;
+  margin: 2rem auto 0 auto;
   max-width: 1200px;
-  min-height: 1000px;
 }
 .jumbotron__image > img {
   border-radius: var(--ifm-global-img-border-radius);
@@ -42,15 +44,21 @@
   object-fit: cover;
 }
 .gigahex_installer_banner {
-  margin-bottom: -10rem;
+  transform: translate(0, 180px);
 }
 .gigahex_installer_container {
   background-color: var(--palette-rock);
   box-shadow: 0px 30px 60px rgb(0 0 0 / 16%);
-  max-width: 1400px;
+  max-width: 1150px;
   border-radius: var(--ifm-global-border-radius);
   overflow: hidden;
 }
+
+.os_tab {
+  border-radius: 0;
+  cursor: pointer;
+}
+
 .installer__title {
   font-size: 2rem;
 }
@@ -116,7 +124,7 @@
     width: 85vw;
   }
   .jumbotron__image {
-    min-height: 900px;
+    /* min-height: 900px; */
     padding: 0;
   }
   .gigahex_installer_container {
@@ -139,6 +147,9 @@
 }
 
 @media (max-width: 996px) {
+  .jumbotron__center__title h1 {
+    font-size: 3rem;
+  }
   .gigahex_installer_banner {
     padding: 0 3rem;
   }
@@ -166,6 +177,9 @@
     padding: 0;
     text-align: center;
   }
+  .os_tabs_container {
+    flex-direction: row !important;
+  }
 }
 
 @media (max-width: 776px) {
@@ -192,8 +206,11 @@
 }
 
 @media (max-width: 426px) {
+  .hero-section {
+    max-height: 300px;
+  }
   .gigahex_installer_banner {
-    margin-bottom: -20rem;
+    transform: translate(0, -20px);
   }
   .jumbotron__center__title {
     top: 40px;
@@ -217,6 +234,9 @@
 }
 
 @media (max-width: 376px) {
+  .jumbotron__image {
+    min-height: 100px;
+  }
   .gigahex_installer_banner {
     margin-bottom: -20rem;
   }
