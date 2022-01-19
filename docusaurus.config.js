@@ -54,7 +54,7 @@ function variable() {
 const config = {
   title: "Gigahex - A Big Data Sandbox",
   tagline:
-    "Install and manage multiple Spark and Hadoop sandbox clusters on desktop, for faster development and testing.",
+    "Install and manage Open source Data Platform, for faster development and testing.",
   url: `https://${customFields.domain}`,
   baseUrl: "/",
   baseUrlIssueBanner: false,

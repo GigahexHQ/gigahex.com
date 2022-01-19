@@ -148,9 +148,9 @@ const Top = () => {
             )}
             style={{ color: "#fff", textAlign: "center" }}
           >
-            Provision and Manage
+            Simplify your
             <br />
-            Apache Spark clusters
+            Open Source Data Platform
           </h1>
         </div>
         <div className={clsx(juCss.jumbotron__image)}>
@@ -441,10 +441,6 @@ const FooterConsole = () => {
             configuration to test your application against different cluster
             managers.
           </p>
-
-          <div className={ftrClsCss.console__actionbtns}>
-          </div>
-
         </div>
 
         <div
