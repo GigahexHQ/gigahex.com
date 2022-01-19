@@ -112,6 +112,15 @@ const config = {
         ],
       },
     ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "guide_docs",
+        path: "guide_docs",
+        routeBasePath: "guide-docs",
+        sidebarPath: require.resolve("./sidebars_guide.js"),
+      },
+    ],
   ],
   themeConfig: {
     announcementBar: {
@@ -149,10 +158,15 @@ const config = {
           position: "left",
           to: "/changelog/",
         },
+        // {
+        //   label: "Newsletter",
+        //   position: "left",
+        //   to: "/newsletter/",
+        // },
         {
-          label: "Newsletter",
+          label: "Pricing",
           position: "left",
-          to: "/newsletter/",
+          to: "/pricing/",
         },
         {
           label: "About Us",
@@ -164,6 +178,12 @@ const config = {
           activeBasePath: "docs",
           position: "left",
           to: "docs/",
+        },
+        {
+          label: "Guide",
+          activeBasePath: "guide-docs",
+          position: "left",
+          to: "guide-docs/",
         },
       ],
     },
@@ -202,9 +222,13 @@ const config = {
               label: "Tutorials",
               to: "/tutorial/",
             },
+            // {
+            //   label: "Newsletter",
+            //   to: "/newsletter/",
+            // },
             {
-              label: "Newsletter",
-              to: "/newsletter/",
+              label: "Pricing",
+              to: "/pricing/",
             },
           ],
         },

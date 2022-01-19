@@ -1,8 +1,8 @@
 import clsx from "clsx"
 import React from "react"
 import seCss from "../css/section.module.css"
-import PageLayout from "../theme/PageLayout/index"
 import abtCss from "../css/about/about.module.css"
+import PageLayout from "../theme/PageLayout/index"
 
 type IPersonCard = {
   imgBorderRadius?: string | number
