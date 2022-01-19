@@ -46,20 +46,20 @@
 }
 @media (max-width: 776px) {
   .features__sec {
-    padding: 12rem 0 4rem 0;
+    padding: 9rem 0 4rem 0;
   }
 }
 @media (max-width: 426px) {
   .features__top__info {
-    margin-top: 22rem;
+    margin-top: 8rem;
   }
   .features__sec {
-    padding: 13rem 0 4rem 0;
+    padding: 12rem 0 4rem 0;
   }
 }
 @media (max-width: 376px) {
   .features__top__info {
-    margin-top: 17.5rem;
+    margin-top: 6rem;
   }
   .features__sec {
     padding: 13rem 0 4rem 0;

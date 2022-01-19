@@ -93,6 +93,7 @@
 }
 .installer__right_content {
   padding: 3rem 2rem;
+  min-height: 300px;
   background-color: #f4f9fb;
 }
 .installer__right_content > div {
@@ -171,7 +172,6 @@
   }
   .cmd__copy__btn {
     margin-left: 50px;
-
     float: none;
   }
   .jumbotron {
@@ -190,7 +190,7 @@
 
 @media (max-width: 776px) {
   .gigahex_installer_banner {
-    margin-bottom: -18rem;
+    transform: translate(0, -10px);
   }
   .gigahex_installer_banner {
     padding: 0 4rem;
@@ -198,8 +198,11 @@
   .jumbotron {
     padding: 3rem 2rem 2rem 2rem;
   }
+  .hero-section {
+    height: 450px;
+  }
   .jumbotron__image {
-    min-height: 500px;
+    height: 200px;
     padding: 0;
   }
   /* .jumbotron__image > img {
@@ -213,13 +216,17 @@
 
 @media (max-width: 426px) {
   .hero-section {
-    max-height: 300px;
+    height: 300px;
+  }
+  .jumbotron {
+    padding: 4rem 1rem;
+    align-items: flex-start;
   }
   .gigahex_installer_banner {
-    transform: translate(0, -20px);
+    transform: translate(0, -130px);
   }
-  .jumbotron__center__title {
-    top: 40px;
+  .jumbotron__center__title h1 {
+    font-size: 2.5rem !important;
   }
   .installer__title {
     margin-top: 20px;
@@ -236,6 +243,14 @@
   }
   .actionbtn {
     font-size: var(--font-size-normal);
+    margin-left: 70px;
+    margin-top: 40px;
+  }
+  .installer__right_content {
+    min-height: 250px;
+  }
+  .container_code {
+    max-width: 350px;
   }
 }
 
@@ -244,7 +259,7 @@
     min-height: 100px;
   }
   .gigahex_installer_banner {
-    margin-bottom: -20rem;
+    transform: translate(0, -90px);
   }
   .jumbotron__center__title {
     top: 30px;
@@ -255,7 +270,11 @@
   .installer__right_content > div {
     padding: 2rem 0.5rem;
   }
+  .actionbtn {
+    margin-left: 40px;
+  }
   .container_code {
     font-size: 0.9rem;
+    max-width: 300px;
   }
 }

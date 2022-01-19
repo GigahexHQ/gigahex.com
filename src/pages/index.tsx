@@ -228,13 +228,7 @@ const Top = () => {
               </div> */}
               <div className="col col--12">
                 <h2 className={clsx(juCss.installer__title)}>
-                  {osType.osName === "Mac" ? (
-                    <span>
-                      Install Gigahex on <br /> {osType.osName}
-                    </span>
-                  ) : (
-                    `Install Gigahex on ${osType.osName}`
-                  )}
+                  <span>Install Gigahex on {osType.osName}</span>
                 </h2>
                 <p
                   className={clsx(
