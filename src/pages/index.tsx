@@ -419,6 +419,7 @@ const FeaturesCard = () => {
 const FooterConsole = () => {
   return (
     <section
+      style={{ display: "none" }}
       className={clsx(
         seCss.section,
         seCss["section--center"],
@@ -440,6 +441,10 @@ const FooterConsole = () => {
             configuration to test your application against different cluster
             managers.
           </p>
+
+          <div className={ftrClsCss.console__actionbtns}>
+          </div>
+
         </div>
 
         <div
@@ -463,6 +468,7 @@ const FooterConsole = () => {
 // even section
 const WatchInDemo = () => (
   <section
+    style={{ display: "none" }}
     className={clsx(
       seCss.section,
       seCss["section--center"],
