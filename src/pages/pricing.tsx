@@ -61,20 +61,12 @@ const Pricing = () => {
                 >
                   <li>
                     <span>{checkIcon}</span>
-                    Lorem ipsum dolor sit amet
+                    Unlimited Local clusters
                   </li>
 
                   <li>
                     <span>{checkIcon}</span>
-                    Lorem ipsum dolor sit amet
-                  </li>
-                  <li>
-                    <span>{checkIcon}</span>
-                    Lorem ipsum dolor sit amet
-                  </li>
-                  <li>
-                    <span>{checkIcon}</span>
-                    Lorem ipsum dolor sit amet
+                    Single user workspace
                   </li>
                 </ul>
               </div>
@@ -113,16 +105,17 @@ const Pricing = () => {
                   )}
                 >
                   <li>
-                    <span>{checkIcon}</span> Lorem ipsum dolor sit amet
+                    <span>{checkIcon}</span> Unlimited Local and Distributed
+                    Clusters
                   </li>
                   <li>
-                    <span>{checkIcon}</span>Lorem ipsum dolor sit amet
+                    <span>{checkIcon}</span> Unlimited users with RBAC Support
                   </li>
                   <li>
-                    <span>{checkIcon}</span>Lorem ipsum dolor sit amet{" "}
+                    <span>{checkIcon}</span>Collaborative workspace
                   </li>
                   <li>
-                    <span>{checkIcon}</span>Lorem ipsum dolor sit amet
+                    <span>{checkIcon}</span>Admin tools
                   </li>
                 </ul>
               </div>

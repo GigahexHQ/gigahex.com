@@ -79,8 +79,13 @@
   font-family: Fira Code, SFMono-Regular, Consolas, Liberation Mono, Menlo,
     monospace;
 }
+.code_gray {
+  color: gray !important;
+}
 .container_code {
   color: #000;
+  margin-bottom: 0;
+  padding: 5px 10px;
   background-color: transparent;
 }
 .installer__left__content {
@@ -97,6 +102,7 @@
   float: right;
   padding: 0 10px 0 20px;
   height: 40px;
+  margin-top: 25px;
   font-size: 0.9rem;
 }
 .installer__feature {
