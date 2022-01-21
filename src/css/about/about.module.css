@@ -9,7 +9,7 @@
 .about__title,
 .team__title,
 .investor__title {
-  color: var(--palette-rock);
+  color: var(--palette-gray);
   font-size: var(--font-size-big-5);
 }
 

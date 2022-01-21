@@ -105,15 +105,18 @@ const Pricing = () => {
                   )}
                 >
                   <li>
-                    <span>{checkIcon}</span> Unlimited Local and Distributed
-                    Clusters
+                    <span>{checkIcon}</span>Unlimited users with RBAC Support
                   </li>
                   <li>
-                    <span>{checkIcon}</span> Unlimited users with RBAC Support
+                    <span>{checkIcon}</span>Unlimited Collaborative workspace
                   </li>
                   <li>
-                    <span>{checkIcon}</span>Collaborative workspace
+                    <span>{checkIcon}</span>Local and Distributed Clusters
                   </li>
+                  <li>
+                    <span>{checkIcon}</span>Deploy clusters anywhere
+                  </li>
+
                   <li>
                     <span>{checkIcon}</span>Admin tools
                   </li>
