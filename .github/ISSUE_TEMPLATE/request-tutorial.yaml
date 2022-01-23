@@ -1,0 +1,31 @@
+name: Request a tutorial
+description:
+  Let us know what you would want to learn in Big Data, and our team would write
+  a tutorial on it.
+title: "[Tutorial title]: "
+labels: [new-content]
+assignees:
+  - amezng
+body:
+  - type: textarea
+    id: tutorial-summary
+    attributes:
+      label:
+        Provide a brief description of the tutorial you would want us to write.
+      placeholder: Write a tutorial to explain installation of PySpark
+    validations:
+      required: true
+  - type: dropdown
+    id: content-type
+    attributes:
+      label: Which Open source tools it should cover?
+      multiple: true
+      options:
+        - Spark
+        - Kafka
+        - Hive
+        - Hadoop
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing your request. Your request will be reviewed within 24 hours.
