@@ -57,14 +57,14 @@ const Top = () => {
 
   const macCmd = [
     " brew install postgresql java11",
-    " curl -s https://packages.gigahex.com/mac_alpha.sh | bash",
+    " curl -s https://packages.gigahex.com/mac.sh | bash",
   ]
 
   const windowCmd = [
     "wsl --install -d Ubuntu",
     "# Open Ubuntu app and login to the shell",
     "sudo apt-get install postgresql postgresql-contrib default-jre",
-    "curl -s https://packages.gigahex.com/linux_alpha.sh | bash",
+    "curl -s https://packages.gigahex.com/nix.sh | bash",
   ]
 
   const [copied, setCopied] = React.useState(false)
