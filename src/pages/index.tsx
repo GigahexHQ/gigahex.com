@@ -52,7 +52,7 @@ const Top = () => {
 
   const ubuntuCmd = [
     "sudo apt-get install postgresql postgresql-contrib default-jre",
-    "curl -s https://packages.gigahex.com/linux_alpha.sh | bash",
+    "curl -s https://packages.gigahex.com/nix.sh | bash",
   ]
 
   const macCmd = [
