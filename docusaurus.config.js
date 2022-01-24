@@ -20,7 +20,7 @@ const customFields = {
   oneLiner: "Sandbox Big data cluster on desktop - Gigahex",
   slackUrl: `https://join.slack.com/t/gigahexcomm/shared_invite/zt-s7ow0mw5-egYmATa4QqU8TqAFWbK~4A`,
 
-  twitterUrl: "https://twitter.com/GigahexApp",
+  twitterUrl: "https://twitter.com/GigahexHQ",
   version: "1.0.0",
   videosUrl: "https://www.youtube.com/channel/UChqKEmOyiD9c6QFx2mjKwiA",
 }
