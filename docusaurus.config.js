@@ -52,7 +52,7 @@ function variable() {
 }
 
 const config = {
-  title: "Gigahex - A Big Data Sandbox",
+  title: "Gigahex - Lightweight Data Platform",
   tagline:
     "Install and manage Open source Data Platform, for faster development and testing.",
   url: `https://${customFields.domain}`,
