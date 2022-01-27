@@ -127,7 +127,7 @@ override def onApplicationEnd(applicationEnd: SparkListenerApplicationEnd): Unit
   configuration
   [documentation](https://spark.apache.org/docs/latest/configuration.html).
 
-```java title="src/com/gigahex/samples/rdd/SparkApp.scala" {18}
+```scala title="src/com/gigahex/samples/rdd/SparkApp.scala"
 
 package com.gigahex.samples.rdd
 
