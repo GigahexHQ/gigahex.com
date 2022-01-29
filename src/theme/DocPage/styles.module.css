@@ -15,6 +15,7 @@
   width: var(--doc-sidebar-width);
   margin-top: calc(-1 * var(--ifm-navbar-height));
   box-sizing: border-box;
+  padding-right: 15px;
 }
 
 .doc__main {
@@ -116,8 +117,36 @@
 }
 
 .doc__sidebar :global(.menu > .menu__list > .menu__list-item > .menu__link) {
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-weight: var(--ifm-font-weight-bold);
+  color: var(--palette--black);
+}
+.doc__sidebar :global(.menu) {
+  padding: 0.5rem 1rem;
+}
+.doc__sidebar
+  :global(.menu > .menu__list > .menu__list-item > .menu__link):hover {
+  background-color: #f0f6ff;
+}
+.doc__sidebar
+  :global(.menu > .menu__list > .menu__list-item > .menu__link)::after {
+  left: 4px !important;
+  background: url("data:image/svg+xml;utf8,<svg alt='Arrow' xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 24 24'><path fill='rgba(0,0,0)' d='M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z'></path></svg>")
+    50% / 1.6rem 1.6rem;
+}
+:global(.menu__link) {
+  padding: 5px 10px 5px 30px !important;
+  font-weight: var(--ifm-font-weight-semibold);
+}
+:global(.menu__link:not(.menu__link--sublist)):hover {
+  background-color: #f0f6ff;
+}
+:global(.menu__link--active:not(.menu__link--sublist)) {
+  background-color: #f0f6ff;
+  font-size: 13px;
+}
+:global(.menu__link:not(.menu__link--sublist)) {
+  font-size: 13px;
 }
 
 .doc__item-wrapper :global(.row .col > div) {
