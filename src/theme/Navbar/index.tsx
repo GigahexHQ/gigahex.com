@@ -140,7 +140,7 @@ function Navbar(): JSX.Element {
                 </a>
               </div>
               <div className="navbar-sidebar__items">
-                <div className="menu">
+                <div className="menu document-menu">
                   <ul className="menu__list">
                     {items.map((item, i) => (
                       <NavbarItem
