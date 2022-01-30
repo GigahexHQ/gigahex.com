@@ -154,15 +154,20 @@ const config = {
           to: "/tutorial/",
         },
         {
+          label: "Guides",
+          position: "left",
+          items: [
+            {
+              label: "Master Spark",
+              to: "/guides/100-days-of-spark",
+            },
+          ],
+        },
+        {
           label: "Changelog",
           position: "left",
           to: "/changelog/",
         },
-        // {
-        //   label: "Newsletter",
-        //   position: "left",
-        //   to: "/newsletter/",
-        // },
         {
           label: "Pricing",
           position: "left",
@@ -216,10 +221,7 @@ const config = {
               label: "Tutorials",
               to: "/tutorial/",
             },
-            // {
-            //   label: "Newsletter",
-            //   to: "/newsletter/",
-            // },
+
             {
               label: "Pricing",
               to: "/pricing/",
