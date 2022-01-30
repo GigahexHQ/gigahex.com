@@ -3,7 +3,7 @@ id: installation
 title: Installation
 ---
 
-:::caution
+:::note
 
 Gigahex is curently in alpha, available to experiment on MacOS, Windows 10/11
 and Ubuntu.

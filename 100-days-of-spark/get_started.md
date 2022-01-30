@@ -1,0 +1,156 @@
+---
+id: get-started
+title: Get Started
+sidebar_label: Get Started
+---
+
+#### What is Apache Spark
+
+Apache Spark is a distributed processing engine, which is actively developed in
+open, and used in thousands of enterprises. Spark exposes powerful APIs in
+multiple languages like - Scala, Java, Python, SQL and R to process large volume
+of data. It can handle petabytes of data and even streaming data.
+
+If you're getting impatient, then lets jump into installing Spark and writing
+our first "Hello Spark" program.
+
+### Install Gigahex Data Platform
+
+For this guide, we will be using Gigahex Data Platform to install Apache Spark.
+Gigahex is a free to use data plaftform that provides a simple interface to
+install and manage different open source distributed systems like - Apache Spark
+and Kafka.
+
+### Install on MacOS
+
+You can run Gigahex Data Platform on MacOS, using the following instructions.
+
+- Install the dependencies - postgresql and Java 11 for the server.
+
+```bash
+brew install postgresql java11
+```
+
+- Install the Gigahex platform
+
+```bash
+curl -s https://packages.gigahex.com/mac.sh | bash
+```
+
+### Install on Windows
+
+You can install Gigahex on Windows after enabling
+[WSL2](https://docs.microsoft.com/en-us/windows/wsl/about). Follow the below
+instructions to setup WSL2 and Ubuntu distro and install Gigahex.
+
+- Install WSL 2. After installation, you would need to reboot your system to
+  continue with the installation
+
+  ```bash
+  wsl --install -d Ubuntu
+  ```
+
+- On reboot, login to Ubuntu shell, setup your password and run the below
+  command to install the dependencies - **postgresql** and **JRE 11**
+
+```bash
+sudo apt-get install postgresql postgresql-contrib default-jre
+```
+
+- Now with the dependencies installed, set up Gigahex Data platform
+
+```bash
+curl -s https://packages.gigahex.com/nix.sh | bash
+```
+
+### Install on Ubuntu
+
+You can install Gigahex on Ubuntu as per the instructions below.
+
+- Run the below command to install the dependencies - postgresql and Java
+  Runtime 11
+
+```bash
+sudo apt-get install postgresql postgresql-contrib default-jre
+```
+
+- Now with the dependencies installed, set up Gigahex Data platform
+
+```bash
+curl -s https://packages.gigahex.com/nix.sh | bash
+```
+
+### Start Gigahex Data Platform
+
+Once you've the setup ready, run the following command to start the services,
+and use the admin credentials generated to login to the platform.
+
+```bash
+$ gxc start
+
+ ██████  ██  ██████   █████  ██   ██ ███████ ██   ██
+██       ██ ██       ██   ██ ██   ██ ██       ██ ██
+██   ███ ██ ██   ███ ███████ ███████ █████     ███
+██    ██ ██ ██    ██ ██   ██ ██   ██ ██       ██ ██
+ ██████  ██  ██████  ██   ██ ██   ██ ███████ ██   ██
+
+ Lightweight Data Platform powered by Open source technologies.
+
+> Starting the Gigahex Data Platform
+> Welcome to Gigahex! 👋
+> username: admin, password: **********
+> Visit http://localhost:9080 to get started!
+```
+
+Open the browser and login with the credentials provided above.
+
+![Login to Gigahex!](/img/spark/intro/login.png "Login to Gigahex")
+
+- Once you've logged in, you will be asked to create a workspace for saving all
+  the clusters, that you would be creating.
+
+![Create workspace!](/img/spark/intro/create-workspace.png "Create workspace")
+
+With Gigahex up and running, lets install Apache Spark and run our first
+program. Click on the **Create Cluster** button to launch the cluster wizard, to
+choose the latest Spark version that you want to install.
+
+![Create cluster!](/img/spark/intro/spark-cluster-builder.png "Create spark cluster")
+
+Click on **Save** button to proceed to the next screen, from where you can start
+the cluster, as shown below.
+
+![spark cluster!](/img/spark/intro/spark-cluster-view.png "Spark cluster")
+
+On clicking of the **Start** button, with play icon, the platform will download
+the spark package and setup in your local environment, ready to experiment with.
+
+### Verify the Spark installation
+
+Now you can start the `spark-shell` to execute **Scala** programs against the
+standalone cluster.
+
+```
+$ spark-shell
+22/01/27 16:37:27 WARN Utils: Your hostname, gigahex.local resolves to a loopback address: 127.0.0.1; using xx.xx.x.x instead (on interface en1)
+22/01/27 16:37:27 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+22/01/27 16:37:31 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Spark context Web UI available at http://xxx.xx.x.x:4040
+Spark context available as 'sc' (master = spark://0.0.0.0:7077, app id = app-20220127163732-0000).
+Spark session available as 'spark'.
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /___/ .__/\_,_/_/ /_/\_\   version 3.2.0
+      /_/
+
+Using Scala version 2.12.15 (OpenJDK 64-Bit Server VM, Java 11.0.9.1)
+Type in expressions to have them evaluated.
+Type :help for more information.
+
+scala>
+```

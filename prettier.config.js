@@ -1,44 +1,44 @@
 module.exports = {
-  arrowParens: "always",
-  endOfLine: "auto",
-  proseWrap: "always",
-  trailingComma: "all",
+  arrowParens: 'always',
+  endOfLine: 'auto',
+  proseWrap: 'always',
+  trailingComma: 'all',
   semi: false,
   overrides: [
     {
-      files: "*.js",
+      files: '*.js',
       options: {
-        parser: "babel",
+        parser: 'babel',
       },
     },
     {
-      files: "*.md",
+      files: '*.md',
       options: {
-        parser: "mdx",
+        parser: 'mdx',
       },
     },
     {
-      files: "*.ts",
+      files: '*.ts',
       options: {
-        parser: "typescript",
+        parser: 'typescript',
       },
     },
     {
-      files: "*.tsx",
+      files: '*.tsx',
       options: {
-        parser: "typescript",
+        parser: 'typescript',
       },
     },
     {
-      files: "*.yml",
+      files: '*.yml',
       options: {
-        parser: "yaml",
+        parser: 'yaml',
       },
     },
     {
-      files: "*.hbs",
+      files: '*.hbs',
       options: {
-        parser: "glimmer",
+        parser: 'glimmer',
       },
     },
   ],

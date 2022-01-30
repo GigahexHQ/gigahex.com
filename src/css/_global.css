@@ -16,7 +16,7 @@
   --palette-pink-darker: #552aa5;
   --palette--black: #0f0f0f;
   --palette-rock: #fff;
-  --palette-dark-blue: #0D1E4B;
+  --palette-dark-blue: #0d1e4b;
   --palette-rock-raw: 38, 40, 51;
   --palette-sky: #81d3f9;
   --palette-light-bg: #f7f7fc;
@@ -217,7 +217,9 @@ body {
   top: 0;
   width: 100%;
 }
-
+h1.docTitle_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocItem- {
+  font-size: 2.5rem;
+}
 /**
  *
  * Scrollbars

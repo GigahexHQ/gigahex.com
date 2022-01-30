@@ -36,7 +36,7 @@ could be quite helpful in debugging and optimizing the code.
 - Create a Scala project and add the following dependencies in the build.sbt
   file as shown below.
 
-```java title="build.sbt"
+```scala title="build.sbt"
 lazy val sample = (project in file("."))
   .settings(projectSettings)
   .settings(
@@ -54,7 +54,7 @@ lazy val sample = (project in file("."))
   of the overriden methods, that will receive the metrics once a Job, stage,
   task or the entire application ends.
 
-```java title="src/org/apache/spark/listeners/SparkMetricsListener.scala"
+```scala title="src/org/apache/spark/listeners/SparkMetricsListener.scala"
 /**
  * Spark listener class to handle the Spark events
  */
@@ -65,7 +65,7 @@ class SparkMetricsListener extends SparkListener {
 
 - We need some variable to be initialized, that will be storing all the metrics.
 
-```java title="src/org/apache/spark/listeners/SparkMetricsListener.scala"
+```scala title="src/org/apache/spark/listeners/SparkMetricsListener.scala"
 
 class SparkMetricsListener extends SparkListener {
 
@@ -127,7 +127,7 @@ override def onApplicationEnd(applicationEnd: SparkListenerApplicationEnd): Unit
   configuration
   [documentation](https://spark.apache.org/docs/latest/configuration.html).
 
-```java title="src/com/gigahex/samples/rdd/SparkApp.scala" {18}
+```scala title="src/com/gigahex/samples/rdd/SparkApp.scala"
 
 package com.gigahex.samples.rdd
 

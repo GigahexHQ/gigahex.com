@@ -115,10 +115,10 @@ const config = {
     [
       "@docusaurus/plugin-content-docs",
       {
-        id: "guide_docs",
-        path: "guide_docs",
-        routeBasePath: "guide-docs",
-        sidebarPath: require.resolve("./sidebars_guide.js"),
+        id: "spark_mastery",
+        path: "100-days-of-spark",
+        routeBasePath: "/guides/100-days-of-spark",
+        sidebarPath: require.resolve("./sidebars_spark.js"),
       },
     ],
   ],
@@ -137,7 +137,7 @@ const config = {
       anonymizeIP: true,
     },
     prism: {
-      additionalLanguages: ["java"],
+      additionalLanguages: ["java", "scala"],
       theme: require("prism-react-renderer/themes/dracula"),
     },
 
@@ -154,15 +154,20 @@ const config = {
           to: "/tutorial/",
         },
         {
+          label: "Guides",
+          position: "left",
+          items: [
+            {
+              label: "Master Spark",
+              to: "/guides/100-days-of-spark",
+            },
+          ],
+        },
+        {
           label: "Changelog",
           position: "left",
           to: "/changelog/",
         },
-        // {
-        //   label: "Newsletter",
-        //   position: "left",
-        //   to: "/newsletter/",
-        // },
         {
           label: "Pricing",
           position: "left",
@@ -216,10 +221,7 @@ const config = {
               label: "Tutorials",
               to: "/tutorial/",
             },
-            // {
-            //   label: "Newsletter",
-            //   to: "/newsletter/",
-            // },
+
             {
               label: "Pricing",
               to: "/pricing/",

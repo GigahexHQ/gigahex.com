@@ -15,8 +15,8 @@ if (process.env.NODE_ENV === "development") {
 }
 
 module.exports = {
-  guide_docs: {
-    Introduction: ["pyspark", "installation"],
-    About: ["first"],
+  spark_mastery: {
+    Introduction: ["spark-intro", "get-started"],
+    "First Steps": ["first-steps/setup-spark", "first-steps/write-to-file"],
   },
 }
