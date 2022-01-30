@@ -1,6 +1,6 @@
 ---
 id: setup-spark
-title: Word count with Apache Spark
+title: Day 01 - Your First Program
 sidebar_label: Day 01 - First Program
 ---
 

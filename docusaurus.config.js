@@ -9,8 +9,7 @@ const customFields = {
   crunchbaseUrl: "https://www.crunchbase.com/organization/gigahex",
   downloadUrl:
     "https://gigahex-app.s3.eu-west-2.amazonaws.com/Gigahex-0.1.12.dmg",
-  description:
-    "Gigahex is a desktop app to run sandbox big data clusters. It enables to quickly learn, prototype and develop big data applications.",
+  description: "A lightweight data platform built with Apache Spark and Kafka",
   dockerUrl: "https://hub.docker.com/u/gigahex",
   domain,
   githubOrgUrl,
