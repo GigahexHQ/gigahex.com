@@ -57,3 +57,12 @@ science,
 and
 ...
 ```
+
+### Transformations and actions in Spark
+
+Spark exposes api like `filter` as shown above to define transformations based
+on the business requirement, and once an action like `write` is executed, these
+transformations are converted to into a DAG ( Direct Acyclic Graph). DAG is a
+representation of how the execution of the entire job would happen. This takes
+care of minimizing the data read and distributed across nodes, during shuffle
+stage of any job.
