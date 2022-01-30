@@ -220,6 +220,9 @@ body {
 h1.docTitle_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocItem- {
   font-size: 2.5rem;
 }
+div.sidebar_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar- {
+  border-right: 1px solid #eee;
+}
 /**
  *
  * Scrollbars
