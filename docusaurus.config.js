@@ -136,7 +136,7 @@ const config = {
       anonymizeIP: true,
     },
     prism: {
-      additionalLanguages: ["java", "scala"],
+      additionalLanguages: ["java", "scala", "python"],
       theme: require("prism-react-renderer/themes/dracula"),
     },
 
