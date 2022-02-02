@@ -45,10 +45,10 @@ that `spark-submit` provides to configure the deployment.
   For this example, we will be using `local` as this won't require any Spark
   cluster running in the desktop.
 
-**Wo wo wo ! Now what is workers, executors and driver ? **
+**Wo wo wo ! Now what are workers, executors and driver ? **
 
 Spark when running in Standalone mode, manages the cluster resources using
-Master slave architecture. Each slave or worker is responsibile for taking the
+master-slave architecture. Each slave or worker is responsibile for taking the
 job from master, and scheduling them in that node using **executor**. Each
 executor is a separate JVM process, that is assigned specific heap memory and
 cores while initiating.
@@ -59,7 +59,7 @@ with the cluster manager through **SparkContext** object. Once you've create a
 our data pipeline. Internally, it uses **SparkContext** to allocate the
 resources using the configured Cluster manager to run the job. When using the
 `local` as the spark master, the **driver** will act as the executor responsible
-for evaluating the code. This is ideal for quick testing with small dataset.
+for run the data pipeline. This is ideal for quick testing with small dataset.
 
 Now let's get back to other `spark-submit` options
 
@@ -101,8 +101,8 @@ pip3 install -r requirements.txt
 ```
 
 Make sure in **VSCode** you've selected the correct interpreter by pressing
-`CTRL+SHIFT+P` in Windows and `⌘P` on Mac to select the interpreter located in
-venv.
+`CTRL+SHIFT+P` in Windows and `CMD+SHIFT+P` on Mac to select the interpreter
+located in venv.
 
 ![Select python interpreter!](/img/spark/first-steps/interpreter.png "Select python interpreter")
 
