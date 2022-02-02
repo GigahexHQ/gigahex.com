@@ -1,0 +1,633 @@
+---
+id: package-spark-app
+title: Day 03 - Package your application
+sidebar_label: Day 03 - Package your application
+---
+
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
+Now that we've written a basic word count program using Apache Spark™ APIs,
+let's package the application and deploy to the cluster, that we created in the
+first step.
+
+**Hey! Hold on. What's the need of packaging ?**
+
+Good question! The main reason being is that your application is going to be run
+at a specific interval defined by the scheduler like Apache Airflow, and not run
+interactively as you just ran in the REPL. For this purpose, Apache Spark™
+exposes a command `spark-submit` that allows us to run the application from
+command line, and schedule using cron job or some other scheduler.
+
+If you want to list all the spark commands available then type `spark` and press
+`tab` key.
+
+```sh
+$  spark
+spark-beeline      spark-shell.cmd    spark-submit       sparkR2.cmd
+spark-class        spark-shell2.cmd   spark-submit.cmd
+spark-class.cmd    spark-sql          spark-submit2.cmd
+spark-class2.cmd   spark-sql.cmd      sparkR
+spark-shell        spark-sql2.cmd     sparkR.cmd
+```
+
+### spark-submit command options
+
+Before we package the application, let's understand the frequently used options
+that `spark-submit` provides to configure the deployment.
+
+- **--name** : Provide the name of the spark application
+- **--master** : Specifies the cluster manager that is used while submitting the
+  spark application. A cluster manager is responsible for distributing the job
+  across multiple workers in the cluster. Specifying `local` will result in
+  using single executor in the same JVM as the driver.
+
+  For this example, we will be using `local` as this won't require any Spark
+  cluster running in the desktop.
+
+**Wo wo wo ! Now what is workers, executors and driver ? **
+
+Spark when running in Standalone mode, manages the cluster resources using
+Master slave architecture. Each slave or worker is responsibile for taking the
+job from master, and scheduling them in that node using **executor**. Each
+executor is a separate JVM process, that is assigned specific heap memory and
+cores while initiating.
+
+**Driver** is the first executor process that is responsible for interacting
+with the cluster manager through **SparkContext** object. Once you've create a
+**SparkSession** in the program, you can connect to datasources and implement
+our data pipeline. Internally, it uses **SparkContext** to allocate the
+resources using the configured Cluster manager to run the job. When using the
+`local` as the spark master, the **driver** will act as the executor responsible
+for evaluating the code. This is ideal for quick testing with small dataset.
+
+Now let's get back to other `spark-submit` options
+
+- **--py-files** : You can include multiple python files when submitting the
+  application, which are comma separated.
+- **--conf** : This allows to configure the runtime of your spark application,
+  which we would be looking in great detail tomorrow. A quick example is
+  `--conf spark.executor.memory=2g`, which instructs the cluster manager to
+  allocate **2GB** of heap memory.
+- **--class** : Specifies the entrypoint of the application in the jar.
+
+### Setup development environment for Python
+
+For this guide, we'll go with VS Code, although there are other alternatives
+like PyCharm. VSCode has support for multiple languages through plugins. Refer
+the official [guide](https://code.visualstudio.com/docs/languages/python) to set
+up and install the Python plugin.
+
+Once you've installed the plugin, create project with directory
+`spark-samples/src/main/py` and paste the following into requirement.txt file.
+
+```
+pyspark == 3.2.0
+pandas
+```
+
+Assuming you're in the directory `spark-samples`, create an virtual environment
+and activate it.
+
+```
+python3 -m /path/to/spark-samples/venv
+source venv/bin/activate
+```
+
+You can now install the above dependencies.
+
+```
+pip3 install -r requirements.txt
+```
+
+Make sure in **VSCode** you've selected the correct interpreter by pressing
+`CTRL+SHIFT+P` in Windows and `⌘P` on Mac to select the interpreter located in
+venv.
+
+![Select python interpreter!](/img/spark/first-steps/interpreter.png "Select python interpreter")
+
+### Setup development environment for Scala or Java
+
+Follow the below steps to start writing and debugging code from your IDE.
+
+- Download and install
+  [IntelliJ](https://www.jetbrains.com/help/idea/installation-guide.html)
+- Set up the
+  [Scala Plugin](https://www.jetbrains.com/help/idea/discover-intellij-idea-for-scala.html)
+- Next step would be dependent on which build tool you're more familiar with.
+
+<Tabs
+  groupId="build"
+  defaultValue="mvn"
+  values={[
+    {label: 'Maven', value: 'mvn'},
+    {label: 'SBT', value: 'sbt'}
+  ]}>
+  <TabItem  value="mvn">
+
+
+**Maven** is a commonly used build tool for Java and other JVM language
+projects. In order to setup maven build tool,
+[download](https://maven.apache.org/download.cgi) and
+[install](https://maven.apache.org/install.html) the same. Once you're done with
+installation, you can create maven project using this
+[guide](https://www.jetbrains.com/help/idea/maven-support.html).
+
+Now, paste the following content in your `pom.xml`
+
+```xml title="pom.xml"
+  <?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.gigahex.spark.samples</groupId>
+    <artifactId>spark-samples</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <properties>
+        <spark.version>3.2.0</spark.version>
+        <scala.version>2.12.11</scala.version>
+        <scala.compat.version>2.12</scala.compat.version>
+        <jdk.version>1.8</jdk.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_${scala.compat.version}</artifactId>
+            <version>${spark.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_${scala.compat.version}</artifactId>
+            <version>${spark.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Test Scopes -->
+        <dependency>
+            <groupId>org.scalactic</groupId>
+            <artifactId>scalactic_${scala.compat.version}</artifactId>
+            <version>3.0.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_${scala.compat.version}</artifactId>
+            <version>3.0.5</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+
+        <plugins>
+            <plugin>
+                <!-- see https://davidb.github.io/scala-maven-plugin/plugin-info.html -->
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>4.5.6</version>
+                <executions>
+                    <execution>
+                        <id>scala-compile-first</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>scala-test-compile</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- enable scalatest -->
+            <plugin>
+                <groupId>org.scalatest</groupId>
+                <artifactId>scalatest-maven-plugin</artifactId>
+                <version>2.0.0</version>
+                <executions>
+                    <execution>
+                        <id>test</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- disable surefire -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                    <useFile>false</useFile>
+                    <disableXmlReport>true</disableXmlReport>
+                    <includes>
+                        <include>**/*Test.*</include>
+                        <include>**/*Suite.*</include>
+                    </includes>
+                </configuration>
+            </plugin>
+            <plugin>
+
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+            </plugin>
+            <!-- Use the shade plugin to remove all the provided artifacts (such as spark itself) from the jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <!-- Remove signed keys to prevent security exceptions on uber jar -->
+                    <!-- See https://stackoverflow.com/a/6743609/7245239 -->
+                    <filters>
+                        <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+                                <exclude>META-INF/*.SF</exclude>
+                                <exclude>META-INF/*.DSA</exclude>
+                                <exclude>META-INF/*.RSA</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
+                    <transformers>
+                        <transformer
+                                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>com.gigahex.spark.dataframes.DFtoDag</mainClass>
+                        </transformer>
+                    </transformers>
+                    <artifactSet>
+                        <excludes>
+                            <exclude>javax.servlet:*</exclude>
+                            <exclude>org.apache.hadoop:*</exclude>
+                            <exclude>org.apache.maven.plugins:*</exclude>
+                            <exclude>org.apache.spark:*</exclude>
+                            <exclude>org.apache.avro:*</exclude>
+                            <exclude>org.apache.parquet:*</exclude>
+                            <exclude>org.scala-lang:*</exclude>
+                        </excludes>
+                    </artifactSet>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+```
+
+  </TabItem>
+
+
+  <TabItem value='sbt'>
+
+
+**SBT** is a build tool for Scala projects, though you can also use for Java
+projects. In order to setup SBT, follow the steps outlined in the
+[official guide](https://docs.scala-lang.org/getting-started/intellij-track/building-a-scala-project-with-intellij-and-sbt.html)
+and create a simple SBT project.
+
+In your `build.sbt` file, paste the following content to configure the project.
+
+```scala title="build.sbt"
+lazy val buildSettings = Seq(
+organization := "com.gigahex",
+version := "0.1.0-SNAPSHOT",
+scalaVersion := "2.12.6",
+assemblyJarName in assembly := s"${moduleName.value}.jar",
+assemblyMergeStrategy in assembly := {
+  case PathList(ps @ _*) if ps.last endsWith ".html" => MergeStrategy.first
+  case "application.conf"                            => MergeStrategy.concat
+  case "unwanted.txt"                                => MergeStrategy.discard
+  case PathList(ps @ _*) if ps.last endsWith ".properties" => MergeStrategy.first
+  case PathList(ps @ _*) if ps.last endsWith "BUILD" => MergeStrategy.discard
+  case PathList(ps @ _*) if ps.last endsWith ".default" => MergeStrategy.discard
+  case PathList(ps @ _*) if ps.last endsWith "class" => MergeStrategy.first
+  case x =>
+    val oldStrategy = (assemblyMergeStrategy in assembly).value
+    oldStrategy(x)
+},
+fork in Test := true
+)
+
+lazy val sample = (project in file("."))
+.settings(buildSettings)
+.settings(
+  name := "spark-samples",
+  moduleName := "spark-samples",
+  libraryDependencies ++= Seq(
+    "org.apache.spark" %% "spark-core" % "3.2.0" % "provided",
+    "org.apache.spark" %% "spark-sql" % "3.2.0" % "provided",
+  )
+)
+```
+
+  </TabItem>
+  </Tabs>
+
+
+### Complete program
+
+Now, we're ready to implement the program, which reads a text file and collects
+a list of words which are greater than **two** characters.
+
+<Tabs
+  groupId="lang"
+  defaultValue="scala"
+  values={[
+    {label: 'Python', value: 'python'},
+    {label: 'Scala', value: 'scala'},
+    {label: 'Java', value: 'java'}
+  ]}>
+    <TabItem  value="python">
+
+
+```python
+from pyspark.sql import SparkSession
+from pyspark.sql.types import Row
+
+# Create the spark session
+spark = SparkSession.builder.master("local").appName("count-words-python").getOrCreate()
+text = spark.read.text("/Users/gigahex/hello.in")
+words = text.rdd.flatMap(lambda line: line.value.split(" "))
+large_words_df = words.filter(lambda w: len(w) > 2).map(lambda line: Row(line)).toDF()
+large_words_df.write.text("/Users/gigahex/large-out-py")
+spark.stop()
+```
+
+  </TabItem>
+
+
+  <TabItem  value="scala">
+
+
+```scala
+package com.gigahex.samples
+
+import org.apache.spark.sql.SparkSession
+
+object HelloWord {
+
+  def main(args: Array[String]): Unit = {
+    /**
+     * Setup the spark session
+     */
+    val spark = SparkSession.builder()
+      .master("local")
+      .appName("count-words-scala")
+      .getOrCreate()
+    import spark.implicits._
+
+    val text = spark.read.textFile("")
+    val words = text.flatMap(x => x.split(" "))
+    val largeWords = words.filter(w => w.length > 2)
+    largeWords.write.text("/path/to/large-words")
+
+    spark.stop()
+  }
+
+}
+```
+
+  </TabItem>
+
+
+  <TabItem  value="java">
+
+
+```java
+package com.gigahex.samples;
+
+import org.apache.spark.api.java.function.FilterFunction;
+import org.apache.spark.api.java.function.FlatMapFunction;
+import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.Encoders;
+import org.apache.spark.sql.SparkSession;
+import java.util.Arrays;
+
+public class JHelloWord {
+
+    public static void main(String[] args) throws Exception {
+
+        //Initialize the spark session
+        SparkSession spark = SparkSession.builder()
+                .appName("count-words-java")
+                .getOrCreate();
+
+        //Create a dataset by reading the input file
+        Dataset<String> text = spark.read().textFile("/Users/gigahex/hello.in");
+        Dataset<String> words = text
+                .flatMap((FlatMapFunction<String, String>) s -> Arrays.asList(s.split(" "))
+                                .iterator(),
+                        Encoders.STRING()
+                );
+
+        words.filter((FilterFunction<String>) word -> word.length() > 2)
+                .write().text("/Users/gigahex/hello-jout");
+        spark.stop();
+    }
+
+}
+```
+
+  </TabItem>
+
+
+</Tabs>
+
+
+### Package and deploy the application
+
+As a last step, lets package the application using the build tools respectively.
+
+<Tabs
+  groupId="lang"
+  defaultValue="scala"
+  values={[
+    {label: 'Python', value: 'python'},
+    {label: 'Scala', value: 'scala'},
+    {label: 'Java', value: 'java'}
+  ]}>
+    <TabItem  value="python">
+
+
+Python doesn't require to be packaged in this case, given its a single file.
+Let's deploy it to the cluster.
+
+```bash
+spark-submit --master local \
+/Users/gigahex/spark-samples/src/main/py/hello_word.py
+```
+
+  </TabItem>
+
+
+  <TabItem  value="scala">
+
+
+We can either use **SBT** or **Maven** for building the project. In this case,
+let's go ahead with the SBT
+
+```bash
+sbt assembly
+```
+
+The above command should produce a jar in the **target** directory with name
+`spark-samples.jar` Lets deploy this jar locally.
+
+```bash
+ spark-submit --name hello-world \
+ --master local \
+ --class com.gigahex.samples.HelloWord \
+ /Users/gigahex/spark-samples/target/scala-2.12/spark-samples.jar
+```
+
+  </TabItem>
+
+
+  <TabItem  value="java">
+
+
+Go to the project folder `/path/to/spark-samples` and run the following command
+to build the project using `mvn`
+
+```bash
+mvn clean package
+
+[INFO] Scanning for projects...
+[INFO]
+[INFO] --------------< com.gigahex.spark.samples:spark-samples >---------------
+[INFO] Building spark-samples 0.1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ spark-samples ---
+[INFO] Deleting /Users/gigahex/spark-samples/target
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ spark-samples ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 3 resources
+[INFO]
+[INFO] --- scala-maven-plugin:4.5.6:add-source (scala-compile-first) @ spark-samples ---
+[INFO] Add Source directory: /Users/gigahex/spark-samples/src/main/scala
+[INFO] Add Test Source directory: /Users/gigahex/spark-samples/src/test/scala
+[INFO]
+[INFO] --- scala-maven-plugin:4.5.6:compile (scala-compile-first) @ spark-samples ---
+[INFO] Using incremental compilation using Mixed compile order
+[INFO] Compiler bridge file: /Users/gigahex/.sbt/1.0/zinc/org.scala-sbt/org.scala-sbt-compiler-bridge_2.12-1.5.8-bin_2.12.11__55.0-1.5.8_20211211T222914.jar
+[INFO] compiling 4 Scala sources and 1 Java source to /Users/gigahex/spark-samples/target/classes ...
+[INFO] done compiling
+[INFO] compile in 5.9 s
+[INFO]
+[INFO] --- maven-compiler-plugin:2.3.2:compile (default-compile) @ spark-samples ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-compiler-plugin:2.3.2:compile (default) @ spark-samples ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ spark-samples ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /Users/gigahex/spark-samples/src/test/resources
+[INFO]
+[INFO] --- scala-maven-plugin:4.5.6:testCompile (scala-test-compile) @ spark-samples ---
+[INFO] compile in 0.0 s
+[INFO] No sources to compile
+[INFO]
+[INFO] --- maven-compiler-plugin:2.3.2:testCompile (default-testCompile) @ spark-samples ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- maven-surefire-plugin:2.18.1:test (default-test) @ spark-samples ---
+[INFO] Tests are skipped.
+[INFO]
+[INFO] --- scalatest-maven-plugin:2.0.0:test (test) @ spark-samples ---
+Discovery starting.
+Discovery completed in 56 milliseconds.
+Run starting. Expected test count is: 0
+DiscoverySuite:
+Run completed in 101 milliseconds.
+Total number of tests run: 0
+Suites: completed 1, aborted 0
+Tests: succeeded 0, failed 0, canceled 0, ignored 0, pending 0
+No tests were executed.
+[INFO]
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ spark-samples ---
+[INFO] Building jar: /Users/gigahex/spark-samples/target/spark-samples-0.1.0-SNAPSHOT.jar
+[INFO]
+[INFO] --- maven-shade-plugin:3.1.1:shade (default) @ spark-samples ---
+[INFO] Excluding org.scala-lang:scala-library:jar:2.12.11 from the shaded jar.
+[INFO] Replacing original artifact with shaded artifact.
+[INFO] Replacing /Users/gigahex/spark-samples/target/spark-samples-0.1.0-SNAPSHOT.jar with /Users/gigahex/spark-samples/target/spark-samples-0.1.0-SNAPSHOT-shaded.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.627 s
+[INFO] Finished at: 2022-02-02T19:37:02+05:30
+[INFO] ------------------------------------------------------------------------
+
+```
+
+**Deploy the application to the cluster locally**
+
+Run the following command to deploy the application to the `local` cluster.
+
+```bash
+ spark-submit --name hello-world \
+ --master local \
+ --class com.gigahex.samples.JHelloWord \
+ /Users/gigahex/spark-samples/target/spark-samples-0.1.0-SNAPSHOT.jar
+```
+
+  </TabItem>
+
+
+</Tabs>
+
+
+### Summary
+
+Today we've looked at how we can develop, package and deploy the program in
+Java, Scala and Python. If everything works, then you should be able to view the
+list of words generated in the output directory as specified in the program.
+
+The entire source code is available in
+[**Github**](https://github.com/GigahexHQ/spark-samples).
+
+For any queries or issues that you face, feel free to discuss in the
+[**Slack workspace**](https://join.slack.com/t/gigahexcomm/shared_invite/zt-s7ow0mw5-egYmATa4QqU8TqAFWbK~4A).
+
+Tomorrow, we'll be exploring how to deploy the Spark cluster in `cluster` mode
+and customize the runtime with different configuration options available.
