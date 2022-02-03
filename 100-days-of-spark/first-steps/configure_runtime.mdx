@@ -1,0 +1,226 @@
+---
+id: configure-runtime
+title: Day 04 - Configure runtime of spark application
+sidebar_label: Day 04 - Configure runtime
+---
+
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
+Yesterday we've packaged our application that generates and writes words which
+are greater than **two** characters. This app was then deployed locally, which
+is the driver mode that has only single executor.
+
+### Today's Objective
+
+Today we'll learn how to leverage the power of distributed computing using the
+`cluster` mode when running the application in Spark Standalone Cluster.
+
+### Spark Overall architecture
+
+Although we've written a basic program, but its important to understand how it
+gets executed by understanding the overall architecture of Spark.
+
+Spark consists of workers, and each worker would be executing 'N' number of
+executors. Every time we submit the spark application, a driver program
+initializes a session, called as `SparkSession` which gives us access to
+`SparkContext` object. This object can be leveraged to upload and distribute
+jars, interact with cluster manager to allocate resources to the job and receive
+events as the job progresses.
+
+![Spark architecture!](/img/spark/first-steps/spark-arch.png "Spark architecture")
+
+### Cluster Manager
+
+Apache Spark™ has different types of Cluster Manager like - Standalone, YARN,
+Mesos and Kubernetes. Each of these cluster manager is responsible to allocate
+resources to the job.
+
+Today we'll be using Spark Standalone cluster manager to submit the job. In
+order to do that, let's start the Spark cluster through Gigahex Dashboard, by
+following the below steps.
+
+- Select the spark cluster from the list
+- Click on the start button and wait for the cluster to start
+- Now submit the the application jar using the following command, which
+  configures the executor to use only `1` executor.
+
+<Tabs
+  groupId="lang"
+  defaultValue="scala"
+  values={[
+    {label: 'Scala', value: 'scala'},
+    {label: 'Python', value: 'python'}
+  ]}>
+  <TabItem  value="scala">
+
+
+```bash
+spark-submit \
+--name hello-world-scala \
+--master spark://0.0.0.0:7077 \
+--class com.gigahex.samples.HelloWord \
+--conf spark.cores.max=1 \
+/path/to/spark-samples-0.1.0-SNAPSHOT.jar
+```
+
+  </TabItem>
+  <TabItem  value="python">
+
+
+```bash
+spark-submit \
+--name hello-world-python \
+--master spark://0.0.0.0:7077 \
+--conf spark.cores.max=1 \
+/path/to/hello_word.py
+```
+
+  </TabItem>
+  </Tabs>
+
+
+- You can view the list of Spark application in the cluster history section as
+  shown below.
+
+![Spark app history!](/img/spark/first-steps/app-list.png "Spark history")
+
+- Click on the application ID link to open the Spark UI, and click on the
+  **Executors tab** to view the list of executors as shown below.
+
+  ![Spark Executors!](/img/spark/first-steps/spark-executors.png "Spark Executors")
+
+As you can see, only one core was allocated to the executor and storage memory
+was **434.4MiB**.
+
+### Spark Memory Management
+
+Every executor is a JVM process which is allocated heap memory. This heap memory
+is sub-divided as shown below in the diagram.
+
+![Spark Memory!](/img/spark/first-steps/spark-mm.png "Spark Memory management")
+
+Now given that storage memory was **434.4MB** which amounts to 60% of the total
+memory. Therefore total memory = 434.4/0.6 MB = 724MB + 300MB(Reserved memory) =
+1024MB. Hence we can conclude that by default, each executor is assigned 1GB of
+heap memory.
+
+Lets try changing the executor memory through the `spark-submit` command.
+
+<Tabs
+  groupId="lang"
+  defaultValue="scala"
+  values={[
+    {label: 'Scala', value: 'scala'},
+    {label: 'Python', value: 'python'}
+  ]}>
+  <TabItem  value="scala">
+
+
+```bash
+spark-submit \
+--name hello-world-scala \
+--master spark://0.0.0.0:7077 \
+--class com.gigahex.samples.HelloWord \
+--conf spark.cores.max=1 \
+--conf spark.executor.memory=512m \
+/path/to/spark-samples-0.1.0-SNAPSHOT.jar
+```
+
+  </TabItem>
+  <TabItem  value="python">
+
+
+```bash
+spark-submit \
+--name hello-world-python \
+--master spark://0.0.0.0:7077 \
+--conf spark.cores.max=1 \
+--conf spark.executor.memory=512m \
+/path/to/hello_word.py
+```
+
+  </TabItem>
+  </Tabs>
+
+
+With this change in the `spark-submit` command, lets relook at the executors
+resources.
+
+![Spark Executors Mem!](/img/spark/first-steps/spark-executor-512.png "Spark Executors Mem")
+
+Now the storage memory for the **Executor ID - 0** dropped to **127.2MB**. Using
+the same formula as above we can get the memory that was allocated for the
+executor.
+
+**Total memory = 127.2/0.6 MB = 212MB + 300MB(Reserved memory) = 512MB**
+
+Let's assume that our application would need more memory for execution and
+storage, therefore lets bump up the `spark.storage.memory=0.8`. Below is the
+`spark-submit` command for increasing the spark memory fraction.
+
+<Tabs
+  groupId="lang"
+  defaultValue="scala"
+  values={[
+    {label: 'Scala', value: 'scala'},
+    {label: 'Python', value: 'python'}
+  ]}>
+  <TabItem  value="scala">
+
+
+```bash
+spark-submit \
+--name hello-world-scala \
+--master spark://0.0.0.0:7077 \
+--class com.gigahex.samples.HelloWord \
+--conf spark.cores.max=1 \
+--conf spark.executor.memory=512m \
+--conf spark.memory.fraction=0.8 \
+/path/to/spark-samples-0.1.0-SNAPSHOT.jar
+```
+
+  </TabItem>
+  <TabItem  value="python">
+
+
+```bash
+spark-submit \
+--name hello-world-python \
+--master spark://0.0.0.0:7077 \
+--conf spark.cores.max=1 \
+--conf spark.executor.memory=512m \
+--conf spark.memory.fraction=0.8 \
+/path/to/hello_word.py
+```
+
+  </TabItem>
+  </Tabs>
+
+
+Let's check the executor storage memory again.
+
+![Spark Executors Mem!](/img/spark/first-steps/spark-mem-increased.png "Spark Executors increased Mem")
+
+We can see that the storage memory has increased. Let's confirm our assumption
+based on the same formula.
+
+**Total memory = 169.6/0.6 MB = 212MB + 300MB(Reserved memory) = 512MB**
+
+### Summary
+
+We have learnt today how to configure executor's total memory, the storage
+memory and the maximum CPU Cores allocated to the executor. We have also looked
+at the Spark UI to better understand how executors are allocated memory. There
+are many other
+[configurations](https://spark.apache.org/docs/latest/configuration.html)
+available and we'll explore them in the upcoming guide.
+
+The entire source code is available in
+[**Github**](https://github.com/GigahexHQ/spark-samples).
+
+For any queries or issues that you face, feel free to discuss in the
+[**Slack workspace**](https://join.slack.com/t/gigahexcomm/shared_invite/zt-s7ow0mw5-egYmATa4QqU8TqAFWbK~4A).
+
+Tomorrow, we'll be exploring in detail Spark UI which helps us the optimize the
+performance and identify root cause.
