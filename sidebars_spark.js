@@ -22,6 +22,7 @@ module.exports = {
       "first-steps/write-to-file",
       "first-steps/package-spark-app",
       "first-steps/configure-runtime",
+      "first-steps/spark-ui",
     ],
   },
 }
