@@ -17,12 +17,15 @@ if (process.env.NODE_ENV === "development") {
 module.exports = {
   spark_mastery: {
     Introduction: ["spark-intro", "get-started"],
-    "First Steps": [
+    "First Steps 😃": [
       "first-steps/setup-spark",
       "first-steps/write-to-file",
       "first-steps/package-spark-app",
       "first-steps/configure-runtime",
       "first-steps/spark-ui",
+    ],
+    "Build Giggle Analytics 🤪": [
+      "build-giggle-analytics/analyse-website-traffic",
     ],
   },
 }

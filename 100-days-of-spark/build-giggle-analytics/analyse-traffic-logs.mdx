@@ -1,0 +1,550 @@
+---
+id: analyse-website-traffic
+title: Day 06 - Analyse Website traffice
+sidebar_label: Day 06 - Analyse website traffic
+---
+
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
+### The Giggle Analytics
+
+For the next **five** days, we will be building a mini-solution, similar to
+Google analytics, called as **Giggle Analytics**
+
+![GA Demographic!](/img/spark/build-ga/giggle.gif)
+
+Today we would be focusing on understanding the demographics of the website
+users, as shown below.
+
+![GA Demographic!](/img/spark/build-ga/demographic_loc.png)
+
+### Understanding the Website events
+
+For this mini-solution, we will assume that we have received website logs from
+the client's browser in the form of json files with the following fields.
+
+```js title="logs.json"
+{
+    "ip_addr":"xx.xx.xx.x", //IP address of the user
+    "user_id": "u09", //The identity of the client
+    "timestamp": 1644218754, //The time that the request was received
+    "request": "GET /guides/100-days-of-spark/", //The request line that includes the HTTP method used, the requested resource path
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36", // Browser user agent
+    "status": 200, //The status code that the server sends back to the client
+    "size": 2048 //The size of the object requested
+}
+```
+
+The field we are interested in, is the `ip_addr`, from which we'll find the
+location details using
+[IP Location Finder by KeyCDN](https://tools.keycdn.com/geo).
+
+Here's a simple example of how to use this API using `curl` command.
+
+```sh
+curl -k -H "User-Agent: keycdn-tools:https://www.example.com" "https://tools.keycdn.com/geo.json?host=181.237.255.56"
+```
+
+And the response is as below.
+
+```js
+{
+  "status": "success",
+  "description": "Data successfully received.",
+  "data": {
+    "geo": {
+      "host": "181.237.255.56",
+      "ip": "181.237.255.56",
+      "rdns": "181.237.255.56",
+      "asn": "",
+      "isp": "",
+      "country_name": "Colombia",
+      "country_code": "CO",
+      "region_name": null,
+      "region_code": null,
+      "city": null,
+      "postal_code": null,
+      "continent_name": "South America",
+      "continent_code": "SA",
+      "latitude": 4.5981,
+      "longitude": -74.0799,
+      "metro_code": null,
+      "timezone": "America\/Bogota",
+      "datetime": "2022-02-07 04:12:33"
+    }
+  }
+}
+```
+
+The complete dataset will be like below
+
+```js title="logs.json"
+{"ip_addr":"122.180.169.236", "user_id": "u09", "timestamp": 1644218754, "request": "GET /", "user_agent": "..","status": 200, "size": 2048}
+{"ip_addr":"194.177.246.199", "user_id": "u10", "timestamp": 1644218754, "request": "GET /", "user_agent": "..","status": 200, "size": 2048}
+{"ip_addr":"135.8.42.15", "user_id": "u11", "timestamp": 1644218754, "request": "GET /", "user_agent": "...","status": 200, "size": 2048}
+{"ip_addr":"91.0.188.46", "user_id": "u12", "timestamp": 1644218754, "request": "GET /", "user_agent": "...","status": 200, "size": 2048}
+{"ip_addr":"69.12.192.214", "user_id": "u13", "timestamp": 1644218754, "request": "GET /", "user_agent": "...","status": 200, "size": 2048}
+{"ip_addr":"49.37.12.183", "user_id": "u14", "timestamp": 1644218754, "request": "GET /", "user_agent": "...","status": 200, "size": 2048}
+{"ip_addr":"97.247.245.88", "user_id": "u15", "timestamp": 1644218754, "request": "GET /", "user_agent": "...","status": 200, "size": 2048}
+{"ip_addr":"8.142.174.137", "user_id": "u16", "timestamp": 1644218754, "request": "GET /", "user_agent": "...","status": 200, "size": 2048}
+{"ip_addr":"210.8.203.10", "user_id": "u17", "timestamp": 1644218754, "request": "GET /", "user_agent": "...","status": 200, "size": 2048}
+{"ip_addr":"67.56.121.166", "user_id": "u18", "timestamp": 1644218754, "request": "GET /", "user_agent": "...","status": 200, "size": 2048}
+```
+
+### Parse the website logs
+
+Let's parse the website logs and transform it into a dataframe that consists of
+the following fields :
+
+- country
+- user_id
+- ip_addr
+
+<Tabs
+  groupId="lang"
+  defaultValue="scala"
+  values={[
+    {label: 'Python', value: 'python'},
+    {label: 'Scala', value: 'scala'},
+    {label: 'Java', value: 'java'}
+  ]}>
+    <TabItem  value="python">
+
+
+We'll be creating a database for storing the location data with IP and save it
+as `ip.csv`.
+
+```
+122.180.169.236,India
+194.177.246.199,Greenland
+135.8.42.15,United States
+91.0.188.46,Germany
+69.12.192.214,United States
+49.37.12.183,India
+97.247.245.88,United States
+8.142.174.137,China
+210.8.203.10,Australia
+67.56.121.166,United States
+```
+
+We would then be reading and storing this IP-location database in a dictionary.
+This dictionary will then be referenced for fetching the corresponding country
+for the IP.
+
+```python
+ip_database = {}
+with open("/path/to/ip.csv") as f:
+    table = f.read().split("\n")
+    for row in table:
+        attr = row.split(",")
+        if len(attr) > 1:
+            ip_database[attr[0]] = attr[1]
+```
+
+  </TabItem>
+
+
+  <TabItem  value="scala">
+
+
+Open the Spark Shell and import all the classes below. Create a function
+`getCountry(ip: String)` that fetches the corresponding country name using the
+keycdn API.
+
+:::tip
+
+Use the `:paste` command in the shell to copy and paste the below and then press
+CTRL+D to execute all the pasted lines.
+
+:::
+
+```scala
+
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
+import org.codehaus.jackson.map.ObjectMapper
+
+
+  def getCountry(ip: String): String = {
+
+    val url = s"https://tools.keycdn.com/geo.json?host=${ip}"
+    val USER_AGENT = "keycdn-tools:https://www.example.com"
+
+    val obj = new URL(url)
+    val con = obj.openConnection.asInstanceOf[HttpURLConnection]
+    con.setConnectTimeout(1000)
+    con.setRequestProperty("User-Agent", USER_AGENT)
+
+    val in = new BufferedReader(new InputStreamReader(con.getInputStream))
+    var inputLine: String = null
+    val response = new StringBuffer
+    inputLine = in.readLine()
+    while(inputLine != null){
+      response.append(inputLine)
+      inputLine = in.readLine()
+    }
+
+    in.close()
+    val mapper = new ObjectMapper()
+    mapper.readTree(response.toString).path("data").path("geo").path("country_name").getTextValue
+
+  }
+
+```
+
+  </TabItem>
+
+
+  <TabItem  value="java">
+
+
+Add the following code for defining the function `getCountry` in a new class
+**JLogAnalysis**. This function will be called for each row in the Dataset.
+
+```java
+package com.gigahex.samples;
+
+import org.apache.spark.api.java.function.FilterFunction;
+import org.apache.spark.api.java.function.FlatMapFunction;
+import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.Encoders;
+import org.apache.spark.sql.SparkSession;
+import java.util.Arrays;
+
+public class JLogAnalysis {
+
+    static String getCountry(String ip) throws IOException {
+
+        String url = "https://tools.keycdn.com/geo.json?host=" + ip;
+        String USER_AGENT = "keycdn-tools:https://www.example.com";
+
+        URL obj = new URL(url);
+        HttpURLConnection con = (HttpURLConnection)obj.openConnection();
+        con.setConnectTimeout(1000);
+        con.setRequestProperty("User-Agent", USER_AGENT);
+
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readTree(response.toString()).path("data").path("geo").path("country_name").getTextValue();
+
+    }
+
+
+}
+```
+
+  </TabItem>
+
+
+</Tabs>
+
+
+Now we'll read the website logs and transform the dataframe to include the
+country of the respective client, using the function as defined above. While
+transforming we'll be using the **Dataset** APIs for Scala and Java, and
+**Dataframe** APIs for Python.
+
+**What's difference between Dataframe and Dataset? And When should I use it,
+over the other?**
+
+Yeah! I know its a common interview question. Well the Dataset is for advanced
+use case, where transformation from one type to another is non-trivial, and
+Dataframe is for commonly used transformation that is defined by different SQL
+like operators - **COUNT**, **AGGREGATE**, **SUM**, **GROUPBY**, **DATE_DIFF**
+and so on.
+
+For this example, we don't have a readily available function defined on the
+Dataframe to get country from an IP, therefore we have taken the route of using
+Dataset APIs.
+
+The following table highlights the difference between different languages and
+how the transformation works
+
+| Language | API Abstraction                                             |
+| -------- | ----------------------------------------------------------- |
+| Scala    | Dataset[T] & Dataframe ( ie. Dataset[Row])                  |
+| Java     | Dataset[T]                                                  |
+| Python   | Dataframe (Convert to `rdd` for non-trivial transformation) |
+
+<Tabs
+  groupId="lang"
+  defaultValue="scala"
+  values={[
+    {label: 'Python', value: 'python'},
+    {label: 'Scala', value: 'scala'},
+    {label: 'Java', value: 'java'}
+  ]}>
+    <TabItem  value="python">
+
+
+- Import the `Row` as we need to extract fields stored in each row.
+- Read the logs stored in json format from the path `/path/to/logs.json`.
+- For fetching the country, we need to convert the dataframe into rdd and then
+  pass the lambda that takes each row, extracts the field and fetches the
+  country from the `ip_database` defined earlier.
+
+```python
+>>> from pyspark.sql.types import Row
+
+>>> website_logs = spark.read.json("/path/to/logs.json")
+>>> with_country = website_logs.rdd.map(lambda row: Row(ip_addr = row.asDict()["ip_addr"], user_id = row.asDict()["user_id"], country=ip_database[row.asDict()["ip_addr"]])).toDF()
+>>> with_country.show()
++---------------+-------+-------------+
+|        ip_addr|user_id|      country|
++---------------+-------+-------------+
+|122.180.169.236|    u09|        India|
+|194.177.246.199|    u10|    Greenland|
+|    135.8.42.15|    u11|United States|
+|    91.0.188.46|    u12|      Germany|
+|  69.12.192.214|    u13|United States|
+|   49.37.12.183|    u14|        India|
+|  97.247.245.88|    u15|United States|
+|  8.142.174.137|    u16|        China|
+|   210.8.203.10|    u17|    Australia|
+|  67.56.121.166|    u18|United States|
++---------------+-------+-------------+
+
+```
+
+  </TabItem>
+
+
+  <TabItem  value="scala">
+
+
+- Read the logs from the path `/path/to/logs.json` as a Dataframe.
+- Add a column, `country` which is fetched using the function `getCountry` that
+  we defined above. This gives us a **Dataset** of String tuples with sequenced
+  column names like below.
+
+  ```
+  org.apache.spark.sql.Dataset[(String, String, String)] = [_1: string, _2: string ... 1 more field]
+  ```
+
+  We will convert this dataset back into Dataframe using `toDF(...)` method, by
+  specifying the column names. So you can consider that Dataframe is an alias of
+  Dataset[Row]
+
+```scala
+
+scala> val websiteLogs = spark.read.json("/path/to/logs.json")
+websiteLogs: org.apache.spark.sql.DataFrame = [ip_addr: string, request: string ... 5 more fields]
+scala> val withCountry = websiteLogs.map(row => (
+      row.getAs[String]("user_id"),
+      row.getAs[String]("ip_addr"),
+      getCountry(row.getAs[String]("ip_addr"))))
+      .toDF("user_id","ip", "country")
+
+scala> withCountry.show()
++-------+---------------+-------------+
+|user_id|             ip|      country|
++-------+---------------+-------------+
+|    u09|122.180.169.236|        India|
+|    u10|194.177.246.199|    Greenland|
+|    u11|    135.8.42.15|United States|
+|    u12|    91.0.188.46|      Germany|
+|    u13|  69.12.192.214|United States|
+|    u14|   49.37.12.183|        India|
+|    u15|  97.247.245.88|United States|
+|    u16|  8.142.174.137|        China|
+|    u17|   210.8.203.10|    Australia|
+|    u18|  67.56.121.166|United States|
++-------+---------------+-------------+
+
+```
+
+  </TabItem>
+
+
+  <TabItem  value="java">
+
+
+- Read the json file from the path `/path/to/logs.json` and save it in a
+  variable `websiteLogs` as Dataset.
+- Use `MapFunction<Row,Row>` to transform each row to add another column, that
+  contains the IP address. `MapFunction` requires encoder, and we will be using
+  the RowEncoder, that takes the schema `structCountry`.
+- A schema is required to define the columns of the table. As `Dataset` follows
+  relational data format, therefore it requires a schema, using `StructType`.
+
+```java
+
+Dataset<Row> websiteLogs = spark.read().json("/path/to/logs.json");
+StructType structCountry = new StructType();
+        structCountry = structCountry.add("ip_addr", DataTypes.StringType, false);
+        structCountry = structCountry.add("user_id", DataTypes.StringType, false);
+        structCountry = structCountry.add("country", DataTypes.StringType, false);
+        ExpressionEncoder<Row> encoder = RowEncoder.apply(structCountry);
+
+Dataset<Row> withCountry = websiteLogs.map((MapFunction<Row, Row>) row -> Row.fromTuple(
+        new Tuple3<String, String, String>(
+                  row.getAs("ip_addr"),
+                  row.getAs("user_id"),
+                  getCountry(row.getAs("ip_addr")))),
+                  encoder);
+
+```
+
+  </TabItem>
+
+
+</Tabs>
+
+
+### Count the users by location
+
+Lets count the total number of users, and then we will use this count to get the
+percentage of users that visited our website from each country. For getting the
+users for each country, we will use the `groupBy` function defined on the
+dataframe.
+
+<Tabs
+  groupId="lang"
+  defaultValue="scala"
+  values={[
+    {label: 'Python', value: 'python'},
+    {label: 'Scala', value: 'scala'},
+    {label: 'Java', value: 'java'}
+  ]}>
+    <TabItem  value="python">
+
+
+- Import the `Row` as we need to extract fields stored in each row.
+- Calculate the total number of users, assuming each user accessed the website
+  once. This is stored in `total_users` dataframe.
+- We get the total number of users by each country and then convert to rdd and
+  get the fraction of total users for that country.
+- After computing the `percentage_users`, convert back into dataframe. Run the
+  `stats.show()` command to get a view of the end result.
+
+```python
+>>> from pyspark.sql.types import Row
+
+>>> total_users = with_country.count()
+>>> stats = with_country.groupBy("country").count().rdd.map(lambda row: Row(country = row[0], users = row[1], percentage_users = (row[1]/total_users)*100)).toDF()
+>>> stats.show()
++-------------+-----+----------------+
+|      country|users|percentage_users|
++-------------+-----+----------------+
+|      Germany|    1|            10.0|
+|        India|    2|            20.0|
+|United States|    4|            40.0|
+|        China|    1|            10.0|
+|    Greenland|    1|            10.0|
+|    Australia|    1|            10.0|
++-------------+-----+----------------+
+
+```
+
+  </TabItem>
+
+
+  <TabItem  value="scala">
+
+
+- Get the total count of the users, assuming each user accessed the website
+  once.
+- Calculate the total number of users, assuming each user accessed the website
+  once. This is stored in `total` dataframe.
+- We get the total number of users by each country and then extract the field
+  value using `getAs[String/Long]`, that will be used to calculate the fraction
+  of total users for that country.
+- Convert back into dataframe. Run the `stats.show()` command to get a view of
+  the end result.
+
+```scala
+
+scala> val total = withCountry.count()
+scala> val stats = withCountry.groupBy("country")
+      .count()
+      .map(row => (row.getAs[String]("country"),
+        row.getAs[Long]("count"),
+        (row.getAs[Long]("count")/total.toDouble)*100))
+      .toDF("Country","Users", "% Users")
+
+scala> stats.show()
++-------------+-----+-------+
+|      Country|Users|% Users|
++-------------+-----+-------+
+|      Germany|    1|   10.0|
+|        India|    2|   20.0|
+|United States|    4|   40.0|
+|        China|    1|   10.0|
+|    Greenland|    1|   10.0|
+|    Australia|    1|   10.0|
++-------------+-----+-------+
+
+```
+
+  </TabItem>
+
+
+  <TabItem  value="java">
+
+
+- Get the total count of the users, assuming each user accessed the website
+  once.
+- Define the schema of the new row format, that would contain the country, total
+  website users from that country and the percentage of the total users.
+- Use `MapFunction<Row,Row>` to transform each row to add another column, that
+  contains the percentage count, which is calculated by dividing with the total
+  number of users. When using the `.map(...)` function on the dataset, we need
+  an encoder that lets the compiler know, how to change or transform to the new
+  data type. This is achieved by using `RowEncoder.apply(...)` that takes the
+  **schema** of this new data type.
+
+```java
+
+//Define the encoder
+StructType statsStruct = new StructType();
+statsStruct = statsStruct.add("country", DataTypes.StringType, false);
+statsStruct = statsStruct.add("users", DataTypes.LongType, false);
+statsStruct = statsStruct.add("Percentage Users", DataTypes.DoubleType, false);
+ExpressionEncoder<Row> encoderStats = RowEncoder.apply(statsStruct);
+
+ Long total = withCountry.count();
+ Dataset<Row> stats = withCountry.groupBy("country")
+        .count()
+        .map((MapFunction<Row, Row>) row -> Row.fromTuple(new Tuple3<String, Long, Double>(
+             row.getAs("country"),
+             row.getAs("count"),
+             (row.<Long>getAs("count").doubleValue() / total) * 100)),
+              encoderStats);
+
+stats.show();
+
+```
+
+  </TabItem>
+
+
+</Tabs>
+
+
+### Summary
+
+Today we've seen how to use dataframe and dataset APIs to aggregate users across
+different country, thereby providing interesting insights to the website owners,
+that will help them to target the right audience. Analytical applications will
+definitely make softwares more intelligent and affective.
+
+Therefore, stay connected with us to learn more through our
+[**Slack workspace**](https://join.slack.com/t/gigahexcomm/shared_invite/zt-s7ow0mw5-egYmATa4QqU8TqAFWbK~4A).
+
+### What's next ?
+
+Tomorrow we'll identify which devices are used the most, for accessing the
+website.
+
+![Plan post day6!](/img/spark/build-ga/day7-next.png)
