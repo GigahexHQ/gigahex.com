@@ -72,6 +72,13 @@
   background: url("/img/navbar/slack.svg") 0 center / 18px 18px no-repeat !important;
 }
 
+:global(.navbar-sidebar--show .navbar-sidebar) {
+  min-height: 100vh;
+}
+:global(.navbar-sidebar--show .navbar-sidebar__backdrop) {
+  min-height: 100vh;
+}
+
 /* Remove Algolia shorcuts */
 :global(.DocSearch-Button-Key) {
   display: none !important;
