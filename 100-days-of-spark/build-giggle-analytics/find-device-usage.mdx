@@ -1,0 +1,485 @@
+---
+id: find-usage-by-browser
+title: Day 07 - Find usage by browser
+sidebar_label: Day 07 - Find usage by browser
+---
+
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
+### The Giggle Analytics
+
+Today we would be focusing on understanding the devices that were used for
+accessing the website.
+
+![GA Demographic!](/img/spark/build-ga/browser-usage.png)
+
+### Understanding the Website events
+
+For this mini-solution, we will assume that we have received website logs from
+the client's browser in the form of json files with the following fields.
+
+```js title="logs.json"
+{
+    "ip_addr":"xx.xx.xx.x", //IP address of the user
+    "user_id": "u09", //The identity of the client
+    "timestamp": 1644218754, //The time that the request was received
+    "request": "GET /guides/100-days-of-spark/", //The request line that includes the HTTP method used, the requested resource path
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36", // Browser user agent
+    "status": 200, //The status code that the server sends back to the client
+    "size": 2048 //The size of the object requested
+}
+```
+
+The field we are interested in, is the `user_agent`, from which we'll find the
+browser name and device details.
+
+The complete dataset will be like below
+
+```js title="logs.json"
+{"user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.87 Safari/537.36","ip_addr":"122.180.169.236", "user_id": "u01", "timestamp": 1644218754, "request": "GET /","status": 200, "size": 2048}
+{"user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.80 Safari/537.36 Edg/98.0.1108.50","ip_addr":"122.180.169.236", "user_id": "u02", "timestamp": 1644218754, "request": "GET /","status": 200, "size": 2048}
+{"user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36","ip_addr":"122.180.169.236", "user_id": "u03", "timestamp": 1644218754, "request": "GET /","status": 200, "size": 2048}
+{"user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36","ip_addr":"122.180.169.236", "user_id": "u04", "timestamp": 1644218754, "request": "GET /","status": 200, "size": 2048}
+{"user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36","ip_addr":"122.180.169.236", "user_id": "u05", "timestamp": 1644218754, "request": "GET /","status": 200, "size": 2048}
+{"user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:97.0) Gecko/20100101 Firefox/97.0","ip_addr":"122.180.169.236", "user_id": "u06", "timestamp": 1644218754, "request": "GET /","status": 200, "size": 2048}
+{"user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:97.0) Gecko/20100101 Firefox/97.0","ip_addr":"122.180.169.236", "user_id": "u07", "timestamp": 1644218754, "request": "GET /","status": 200, "size": 2048}
+{"user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.87 Safari/537.36","ip_addr":"122.180.169.236", "user_id": "u08", "timestamp": 1644218754, "request": "GET /","status": 200, "size": 2048}
+{"user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.87 Safari/537.36","ip_addr":"122.180.169.236", "user_id": "u09", "timestamp": 1644218754, "request": "GET /","status": 200, "size": 2048}
+{"user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.87 Safari/537.36","ip_addr":"122.180.169.236", "user_id": "u10", "timestamp": 1644218754, "request": "GET /","status": 200, "size": 2048}
+```
+
+### Parse the website logs
+
+Let's parse the website logs and transform it into a dataframe that consists of
+the following fields :
+
+- device_name
+- os_name
+- browser_name
+- user_id
+
+<Tabs
+  groupId="lang"
+  defaultValue="scala"
+  values={[
+    {label: 'Python', value: 'python'},
+    {label: 'Scala', value: 'scala'},
+    {label: 'Java', value: 'java'}
+  ]}>
+    <TabItem  value="python">
+
+
+We'll be using the library [uap-python](https://github.com/ua-parser/uap-python)
+for parsing the user agent and extracting the device information.
+
+Below is an example, how we can parse the user agent string.
+
+```python
+>>> from ua_parser import user_agent_parser
+>>> import pprint
+>>> pp = pprint.PrettyPrinter(indent=4)
+>>> ua_string = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.104 Safari/537.36'
+>>> parsed_string = user_agent_parser.ParseUserAgent(ua_string)
+>>> pp.pprint(parsed_string)
+ {   'family': 'Chrome',
+     'major': '41',
+     'minor': '0',
+     'patch': '2272'}
+```
+
+  </TabItem>
+
+
+  <TabItem  value="scala">
+
+
+We'll be using the library
+[Yet Another UserAgent Analyzer](https://github.com/nielsbasjes/yauaa) for
+parsing the user agent string, and extracting the above mentioned attributes.
+
+Let's define a function `getDeviceInfo`, which will take each `Row` and return a
+tuple of device info.
+
+```scala
+import nl.basjes.parse.useragent.UserAgentAnalyzer
+import org.apache.spark.sql._
+
+def getDeviceInfo(row: Row): (String, String, String, String) = {
+    val uaa = UserAgentAnalyzer
+      .newBuilder()
+      .hideMatcherLoadStats()
+      .withCache(10000)
+      .build()
+    val result = uaa.parse(row.getAs[String]("user_agent"))
+    (row.getAs[String]("user_id"),
+      result.getValue("DeviceName"),
+      result.getValue("AgentName"),
+      result.getValue("OperatingSystemNameVersionMajor"))
+  }
+
+```
+
+  </TabItem>
+
+
+  <TabItem  value="java">
+
+
+We'll be using the library
+[Yet Another UserAgent Analyzer](https://github.com/nielsbasjes/yauaa) for
+parsing the user agent string, and extracting the above mentioned attributes.
+
+Let's define a function `getDeviceInfo`, which will take each `Row` and return a
+tuple of device info.
+
+Add the following code for defining the function `getDeviceInfo` in a new class
+**JDeviceAnalysis**. This function will be called for each row in the Dataset.
+
+```java
+package com.gigahex.samples;
+
+import nl.basjes.parse.useragent.UserAgent;
+import nl.basjes.parse.useragent.UserAgentAnalyzer;
+import org.apache.spark.api.java.function.MapFunction;
+import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.Row;
+import org.apache.spark.sql.SparkSession;
+import org.apache.spark.sql.catalyst.encoders.ExpressionEncoder;
+import org.apache.spark.sql.catalyst.encoders.RowEncoder;
+import org.apache.spark.sql.types.DataTypes;
+import org.apache.spark.sql.types.StructType;
+import scala.Tuple3;
+import scala.Tuple4;
+
+public class JDeviceAnalysis {
+
+    static Row getDeviceInfo(Row row) throws IOException {
+        UserAgentAnalyzer uaa = UserAgentAnalyzer
+                .newBuilder()
+                .hideMatcherLoadStats()
+                .withCache(10000)
+                .build();
+        UserAgent.ImmutableUserAgent result = uaa.parse(row.<String>getAs("user_agent"));
+
+
+        return Row.fromTuple(
+                new Tuple4<String, String, String, String>(
+                        row.getAs("user_id"),
+                        result.getValue("DeviceName"),
+                        result.getValue("AgentName"),
+                        result.getValue("OperatingSystemNameVersionMajor")));
+    }
+
+
+}
+```
+
+  </TabItem>
+
+
+</Tabs>
+
+
+Now we'll read the website logs and transform the dataframe to include the
+device information of the respective client, using the function as defined
+above. While transforming we'll be using the **Dataset** APIs for Scala and
+Java, and **Dataframe** APIs for Python.
+
+<Tabs
+  groupId="lang"
+  defaultValue="scala"
+  values={[
+    {label: 'Python', value: 'python'},
+    {label: 'Scala', value: 'scala'},
+    {label: 'Java', value: 'java'}
+  ]}>
+    <TabItem  value="python">
+
+
+- Import the `Row` and the `user_agent_parser`, as we need to extract fields
+  stored in each row.
+- Read the logs stored in json format from the path
+  `/path/to/logs_devices.json`.
+- For fetching the browser, we need to convert the dataframe into rdd and then
+  pass the lambda that takes each row, extracts the browser name as shown above.
+
+```python
+from pyspark.sql.types import Row
+from ua_parser import user_agent_parser
+
+website_logs = spark.read.json("/path/to/logs_devices.json")
+with_browser = website_logs \
+    .rdd \
+    .map(lambda row: Row(
+    user_id=row.asDict()["user_id"],
+    browser=user_agent_parser.ParseUserAgent(row.asDict()["user_agent"])['family'],
+)).toDF()
+with_browser.show()
++-------+-------+
+|user_id|browser|
++-------+-------+
+|    u01| Chrome|
+|    u02|   Edge|
+|    u03| Chrome|
+|    u04| Chrome|
+|    u05| Chrome|
+|    u06|Firefox|
+|    u07|Firefox|
+|    u08| Chrome|
+|    u09| Chrome|
+|    u10| Chrome|
++-------+-------+
+
+```
+
+  </TabItem>
+
+
+  <TabItem  value="scala">
+
+
+- Read the logs from the path `/path/to/logs_devices.json` as a Dataframe.
+- Add the columns, - browser, os and device which are fetched using the function
+  `getDeviceInfo` that we defined above. This gives us a **Dataset** of String
+  tuples with sequenced column names.
+
+  We will convert this dataset back into Dataframe using `toDF(...)` method, by
+  specifying the column names. So you can consider that Dataframe is an alias of
+  Dataset[Row]
+
+```scala
+
+ val websiteLogs = spark.read.json("/path/to/logs_devices.json")
+val withDevices = websiteLogs
+      .map(row => getDeviceInfo(row)).toDF("user_id", "device", "browser", "os")
+
+withDevices.show()
++-------+---------------+-------+-----------+
+|user_id|         device|browser|         os|
++-------+---------------+-------+-----------+
+|    u01|        Desktop| Chrome| Windows 10|
+|    u02|        Desktop|   Edge| Windows 10|
+|    u03|Apple Macintosh| Chrome|Mac OS X 10|
+|    u04|Apple Macintosh| Chrome|Mac OS X 10|
+|    u05|Apple Macintosh| Chrome|Mac OS X 10|
+|    u06|Apple Macintosh|Firefox|Mac OS X 10|
+|    u07|Apple Macintosh|Firefox|Mac OS X 10|
+|    u08|        Desktop| Chrome| Windows 10|
+|    u09|        Desktop| Chrome| Windows 10|
+|    u10|        Desktop| Chrome| Windows 10|
++-------+---------------+-------+-----------+
+
+```
+
+  </TabItem>
+
+
+  <TabItem  value="java">
+
+
+- Read the json file from the path `/path/to/logs_devices.json` and save it in a
+  variable `websiteLogs` as Dataset.
+- Use `MapFunction<Row,Row>` to transform each row to add another column, that
+  contains the device info. `MapFunction` requires encoder, and we will be using
+  the RowEncoder, that takes the schema `structDevice`.
+- A schema is required to define the columns of the table. As `Dataset` follows
+  relational data format, therefore it requires a schema, using `StructType`.
+
+```java
+
+Dataset<Row> websiteLogs = spark.read().json("/path/to/logs_devices.json");
+StructType structDevice = new StructType();
+structDevice = structDevice.add("user_id", DataTypes.StringType, false);
+structDevice = structDevice.add("device", DataTypes.StringType, false);
+structDevice = structDevice.add("browser", DataTypes.StringType, false);
+structDevice = structDevice.add("os", DataTypes.StringType, false);
+
+//Define the encoder
+ExpressionEncoder<Row> encoder = RowEncoder.apply(structDevice);
+
+Dataset<Row> withDevices = websiteLogs.map((MapFunction<Row, Row>) row -> getDeviceInfo(row), encoder);
+withDevices.show()
+
++-------+---------------+-------+-----------+
+|user_id|         device|browser|         os|
++-------+---------------+-------+-----------+
+|    u01|        Desktop| Chrome| Windows 10|
+|    u02|        Desktop|   Edge| Windows 10|
+|    u03|Apple Macintosh| Chrome|Mac OS X 10|
+|    u04|Apple Macintosh| Chrome|Mac OS X 10|
+|    u05|Apple Macintosh| Chrome|Mac OS X 10|
+|    u06|Apple Macintosh|Firefox|Mac OS X 10|
+|    u07|Apple Macintosh|Firefox|Mac OS X 10|
+|    u08|        Desktop| Chrome| Windows 10|
+|    u09|        Desktop| Chrome| Windows 10|
+|    u10|        Desktop| Chrome| Windows 10|
++-------+---------------+-------+-----------+
+
+```
+
+  </TabItem>
+
+
+</Tabs>
+
+
+### Count the users by browser
+
+Lets count the total number of users, and then we will use this count to get the
+percentage of users that visited our website from each browser. For getting the
+users for each browser, we will use the `groupBy` function defined on the
+dataframe.
+
+<Tabs
+  groupId="lang"
+  defaultValue="scala"
+  values={[
+    {label: 'Python', value: 'python'},
+    {label: 'Scala', value: 'scala'},
+    {label: 'Java', value: 'java'}
+  ]}>
+    <TabItem  value="python">
+
+
+- Import the `Row` as we need to extract fields stored in each row.
+- Calculate the total number of users, assuming each user accessed the website
+  once. This is stored in `total_users` dataframe.
+- We get the total number of users by each browser and then convert to rdd and
+  get the fraction of total users for that browser.
+- After computing the `percentage_users`, convert back into dataframe. Run the
+  `stats.show()` command to get a view of the end result.
+
+```python
+from pyspark.sql.types import Row
+from pyspark.sql.functions import desc
+from ua_parser import user_agent_parser
+
+total_users = website_logs.count()
+stats = with_browser.groupBy("browser") \
+    .count() \
+    .rdd \
+    .map(lambda row: Row(browser=row[0],
+                         users=row[1],
+                         percentage_users=(row[1] / total_users) * 100)).toDF().sort(desc("users"))
+
+stats.show()
++-------+-----+----------------+
+|browser|users|percentage_users|
++-------+-----+----------------+
+| Chrome|    7|            70.0|
+|Firefox|    2|            20.0|
+|   Edge|    1|            10.0|
++-------+-----+----------------+
+
+```
+
+  </TabItem>
+
+
+  <TabItem  value="scala">
+
+
+- Get the total count of the users, assuming each user accessed the website
+  once.
+- Calculate the total number of users, assuming each user accessed the website
+  once. This is stored in `total` dataframe.
+- We get the total number of users by each browser and then extract the field
+  value using `getAs[String/Long]`, that will be used to calculate the fraction
+  of total users for that browser.
+- Convert back into dataframe. Run the `stats.show()` command to get a view of
+  the end result.
+
+```scala
+
+val total = websiteLogs.count()
+val stats = withDevices.groupBy("browser").count()
+      .map(row => (row.getAs[String]("browser"),
+        row.getAs[Long]("count"),
+        (row.getAs[Long]("count") / total.toDouble) * 100))
+      .toDF("Browser", "Users", "% Users")
+      .orderBy(desc("Users"))
+
+stats.show()
++-------+-----+-------+
+|Browser|Users|% Users|
++-------+-----+-------+
+| Chrome|    7|   70.0|
+|Firefox|    2|   20.0|
+|   Edge|    1|   10.0|
++-------+-----+-------+
+
+```
+
+  </TabItem>
+
+
+  <TabItem  value="java">
+
+
+- Get the total count of the users, assuming each user accessed the website
+  once.
+- Define the schema of the new row format, that would contain the browser, total
+  website users, using that browser and the percentage of the total users.
+- Use `MapFunction<Row,Row>` to transform each row to add another column, that
+  contains the percentage count, which is calculated by dividing with the total
+  number of users. When using the `.map(...)` function on the dataset, we need
+  an encoder that lets the compiler know, how to change or transform to the new
+  data type. This is achieved by using `RowEncoder.apply(...)` that takes the
+  **schema** of this new data type.
+
+```java
+
+//Define the encoder
+StructType statsStruct = new StructType();
+statsStruct = statsStruct.add("browser", DataTypes.StringType, false);
+statsStruct = statsStruct.add("users", DataTypes.LongType, false);
+statsStruct = statsStruct.add("Percentage Users", DataTypes.DoubleType, false);
+ExpressionEncoder<Row> encoderStats = RowEncoder.apply(statsStruct);
+
+Long total = websiteLogs.count();
+Dataset<Row> stats = withDevices.groupBy("browser")
+         .count()
+         .map((MapFunction<Row, Row>) row -> Row.fromTuple(new Tuple3<String, Long, Double>(
+              row.getAs("browser"),
+              row.getAs("count"),
+              (row.<Long>getAs("count").doubleValue() / total) * 100)), encoderStats)
+             .orderBy(desc("users"));
+
+stats.show();
++-------+-----+-------+
+|browser|users|% Users|
++-------+-----+-------+
+| Chrome|    7|   70.0|
+|Firefox|    2|   20.0|
+|   Edge|    1|   10.0|
++-------+-----+-------+
+
+```
+
+  </TabItem>
+
+
+</Tabs>
+
+
+### Summary
+
+Today we've seen how to use dataframe and dataset APIs to aggregate users across
+different browser, thereby providing interesting insights to the website owners,
+that will help them to target the right audience. Analytical applications will
+definitely make softwares more intelligent and affective.
+
+Browse the complete source code for each programming language in the
+[**Github**](https://github.com/GigahexHQ/spark-samples/tree/main/src/main).
+
+If you get stuck, join our
+[**Slack workspace**](https://join.slack.com/t/gigahexcomm/shared_invite/zt-s7ow0mw5-egYmATa4QqU8TqAFWbK~4A)
+and ask questions.
+
+### What's next ?
+
+Tomorrow we'll identify which operating system were used the most, for accessing
+the website.
+
+![Plan post day7!](/img/spark/build-ga/day8-next.png)
