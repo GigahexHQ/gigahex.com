@@ -216,11 +216,6 @@ const config = {
               label: "Tutorials",
               to: "/tutorial/",
             },
-
-            {
-              label: "Pricing",
-              to: "/pricing/",
-            },
           ],
         },
       ],
