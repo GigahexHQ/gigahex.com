@@ -5,7 +5,7 @@ const githubOrgUrl = "https://github.com/GigahexHQ/gigahex/discussions"
 const domain = "gigahex.com"
 
 const customFields = {
-  copyright: `Copyright © ${new Date().getFullYear()} Gigahex`,
+  copyright: `Copyright © ${new Date().getFullYear()} Gigahex LLP`,
   crunchbaseUrl: "https://www.crunchbase.com/organization/gigahex",
   downloadUrl:
     "https://gigahex-app.s3.eu-west-2.amazonaws.com/Gigahex-0.1.12.dmg",
@@ -51,9 +51,9 @@ function variable() {
 }
 
 const config = {
-  title: "Gigahex - Lightweight Data Platform",
+  title: "Gigahex - Open Source Data Infrastructure Platform",
   tagline:
-    "Install and manage Open source Data Platform, for faster development and testing.",
+    "Install and manage Open source Data Infrastructure, for faster development and testing.",
   url: `https://${customFields.domain}`,
   baseUrl: "/",
   baseUrlIssueBanner: false,
@@ -167,11 +167,7 @@ const config = {
           position: "left",
           to: "/changelog/",
         },
-        {
-          label: "Pricing",
-          position: "left",
-          to: "/pricing/",
-        },
+
         {
           label: "About Us",
           position: "left",
