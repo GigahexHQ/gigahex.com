@@ -148,10 +148,14 @@ const Top = () => {
             )}
             style={{ color: "#fff", textAlign: "center" }}
           >
-            Simplify your
+            Open Source
             <br />
-            Open Source Data Platform
+            Data Infrastructure Platform
           </h1>
+          <p style={{ fontSize: "1.8rem" }}>
+            Now, creating and managing data infrastructure is as easy as
+            ordering a pizza 🍕.
+          </p>
         </div>
         <div className={clsx(juCss.jumbotron__image)}>
           {/* <img
@@ -365,27 +369,28 @@ const FeaturesCard = () => {
           <div className={ftuCss.feature__col}>
             <FeatureCard
               title="Fast development"
-              desc="Bootstrap a Spark cluster under a minute, and start playing"
+              desc="Bootstrap single node Spark, Kafka and HDFS cluster under a minute"
               icon="/img/pages/landing/feature-tile-icon-01.svg"
             />
           </div>
           <div className={ftuCss.feature__col}>
             <FeatureCard
               title="Complete cluster control"
-              desc="Launch an interactive shell and start exploring Spark. "
+              desc="Launch an interactive spark-shell, view Kafka messages and browse HDFS. "
               icon="/img/pages/landing/feature-tile-icon-02.svg"
             />
           </div>
           <div className={ftuCss.feature__col}>
             <FeatureCard
               title="Open Source driven"
-              desc="Runs on open source version of Spark. Always stay at the edge"
+              desc="Creating software in open communities is the
+              de facto standard for building impactful software"
               icon="/img/pages/landing/feature-tile-icon-03.svg"
             />
           </div>
           <div className={ftuCss.feature__col}>
             <FeatureCard
-              title="Stay focused"
+              title="Developer Focused"
               desc="Focus on developing and deploying applications, and not on complex infrastructure management"
               icon="/img/pages/landing/feature-tile-icon-04.svg"
             />
@@ -393,7 +398,7 @@ const FeaturesCard = () => {
           <div className={ftuCss.feature__col}>
             <FeatureCard
               title="Manage multiple clusters"
-              desc="Manage multiple Spark clusters from single interface"
+              desc="Manage and monitor data infrastructure through a single interface. No switching across different windows."
               icon="/img/pages/landing/container.svg"
             />
           </div>
@@ -519,7 +524,7 @@ const FeaturesTiles = () => (
           className={clsx(seCss.section__title, "text--center")}
           style={{ color: "#fff" }}
         >
-          Desktop app that saves thousands of developers&rsquo; hours
+          Data Platform that saves thousands of developers&rsquo; hours
         </h1>
       </div>
     </div>
@@ -550,7 +555,7 @@ const FeaturesTiles = () => (
         <div className={clsx(featTiles.tile__item__img)}>
           <div className={clsx(featTiles.tile__img__box, "shadow--md")}>
             <img
-              src="/img/pages/landing/build_cluster.png"
+              src="/img/pages/landing/build-cluster.png"
               alt="Choose cluster"
             />
           </div>
@@ -565,7 +570,7 @@ const FeaturesTiles = () => (
         <div className={clsx(featTiles.tile__item__img)}>
           <div className={clsx(featTiles.tile__img__box, "shadow--md")}>
             <img
-              src="/img/pages/landing/app-insights.png"
+              src="/img/pages/landing/browse-hdfs.png"
               alt="Features split 02"
             />
           </div>
@@ -575,19 +580,19 @@ const FeaturesTiles = () => (
           data-reveal-container=".split-item"
         >
           <h2 className={featTiles.feature__tile__cont__title}>
-            Get Runtime Insights
+            HDFS For Storage
           </h2>
           <p
             className={featTiles.feature__tile__cont__desc}
             style={{ marginBottom: 20 }}
           >
-            <b style={{ color: "#000" }}>Identify resource wastage.</b> Optimize
-            cluster memory and cpu based on the resource overall resource usage.
+            <b style={{ color: "#000" }}>Browse HDFS.</b> With easy to use file
+            browser, you can now quickly drill down to the actual location of
+            the file.
           </p>
           <p className={featTiles.feature__tile__cont__desc}>
-            <b style={{ color: "#000" }}>Vital Observations.</b> Identify
-            performance bottleneck, without going through hundreds of jobs and
-            stages and logs.
+            <b style={{ color: "#000" }}>Upload Files.</b> Drag and drop
+            multiple files of any format to quickly test your data pipeline.
           </p>
         </div>
       </div>
@@ -600,26 +605,27 @@ const FeaturesTiles = () => (
             className={featTiles.feature__tile__cont__title}
             style={{ color: "#fff" }}
           >
-            Realtime Monitoring
+            Kafka as Message broker
           </h2>
           <p
             className={featTiles.feature__tile__cont__desc}
             style={{ marginBottom: 20 }}
           >
-            <b style={{ color: "#fff" }}>Faster delivery.</b> Get instant
-            feedback on resource usage pattern and deploy the optimized code,
-            saving time and cost.
+            <b style={{ color: "#fff" }}>Explore Messages.</b> Kafka Messages
+            are now easy to browse, helping you to quickly test your stream
+            processing program.
           </p>
           <p className={featTiles.feature__tile__cont__desc}>
-            <b style={{ color: "#fff" }}>Faster debugging.</b> Quickly drill
-            down to individual job and stages and isolate the performance
-            bottleneck in minutes instead of hours and days.
+            <b style={{ color: "#fff" }}>Topic Insights.</b> List all topic
+            configs, check how much disk size is consumed for a respective topic
+            or partition on the broker or find out how many messages exist in
+            your topic.
           </p>
         </div>
         <div className={clsx(featTiles.tile__item__img)}>
           <div className={clsx(featTiles.tile__img__box, "shadow--md")}>
             <img
-              src="/img/pages/landing/runtime-monitor.png"
+              src="/img/pages/landing/kafka-msgs.png"
               alt="Features split 03"
             />
           </div>
