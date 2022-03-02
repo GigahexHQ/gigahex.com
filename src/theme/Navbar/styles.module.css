@@ -2,6 +2,14 @@
   min-width: 240px;
   font-size: var(--font-size-small);
 }
+.indexCtasGitHubButtonWrapper {
+  display: flex;
+  justify-content: center;
+}
+.indexCtasGitHubButton {
+  overflow: hidden;
+  border: none;
+}
 
 .actionbtns {
   margin-left: 20px;

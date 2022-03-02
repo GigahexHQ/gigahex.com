@@ -1,7 +1,7 @@
 const visit = require("unist-util-visit")
 const ssrTemplate = require("./src/internals/ssr.template")
 
-const githubOrgUrl = "https://github.com/GigahexHQ/gigahex/discussions"
+const githubOrgUrl = "https://github.com/GigahexHQ/gigahex"
 const domain = "gigahex.com"
 
 const customFields = {
@@ -196,7 +196,7 @@ const config = {
           title: "Community",
           items: [
             {
-              label: "GitHub Discussions",
+              label: "GitHub",
               href: customFields.githubUrl,
             },
             {

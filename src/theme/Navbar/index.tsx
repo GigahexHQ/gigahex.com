@@ -114,6 +114,15 @@ function Navbar(): JSX.Element {
                 <Link className={clsx("navbar__brand", styles.brand)} to="/">
                   Gigahex
                 </Link>
+                <span className={styles.indexCtasGitHubButtonWrapper}>
+                  <iframe
+                    className={styles.indexCtasGitHubButton}
+                    src="https://ghbtns.com/github-btn.html?user=gigahexhq&amp;repo=gigahex&amp;type=star&amp;count=true&amp;size=large"
+                    width={140}
+                    height={30}
+                    title="GitHub Stars"
+                  />
+                </span>
                 {leftItems.map((item, i) => (
                   <NavbarItem {...item} key={i} />
                 ))}

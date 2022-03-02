@@ -27,6 +27,7 @@ module.exports = {
     "Build Giggle Analytics 🤪": [
       "build-giggle-analytics/analyse-website-traffic",
       "build-giggle-analytics/find-usage-by-browser",
+      "build-giggle-analytics/find-os-usage",
     ],
   },
 }

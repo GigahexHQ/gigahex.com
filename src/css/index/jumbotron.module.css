@@ -46,6 +46,7 @@
 .gigahex_installer_banner {
   transform: translate(0, 180px);
 }
+
 .gigahex_installer_container {
   background-color: var(--palette-rock);
   box-shadow: 0px 30px 60px rgb(0 0 0 / 16%);
