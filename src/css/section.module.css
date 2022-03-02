@@ -133,6 +133,9 @@
   margin-bottom: 2rem;
   justify-content: space-around;
 }
+.section__sub--title {
+  font-size: 1.6rem;
+}
 
 .has__divider {
   border-bottom: 1px solid var(--palette-border-grey);
@@ -153,6 +156,9 @@
   .section__footer--console {
     margin-top: 3rem;
     padding: 0 1rem 1rem 0;
+  }
+  .section__sub--title {
+    font-size: 1.1rem;
   }
 }
 

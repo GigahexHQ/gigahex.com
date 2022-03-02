@@ -165,7 +165,7 @@ const config = {
         {
           label: "Changelog",
           position: "left",
-          to: "/changelog/",
+          to: "https://github.com/GigahexHQ/gigahex/releases",
         },
 
         {
@@ -210,7 +210,7 @@ const config = {
           items: [
             {
               label: "Changelog",
-              to: "/changelog/",
+              to: "https://github.com/GigahexHQ/gigahex/releases",
             },
             {
               label: "Tutorials",

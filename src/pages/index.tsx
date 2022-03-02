@@ -152,7 +152,7 @@ const Top = () => {
             <br />
             Data Infrastructure Platform
           </h1>
-          <p style={{ fontSize: "1.8rem" }}>
+          <p className={clsx(seCss["section__sub--title"])}>
             Now, creating and managing data infrastructure is as easy as
             ordering a pizza 🍕.
           </p>
