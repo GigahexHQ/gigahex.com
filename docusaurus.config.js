@@ -1,7 +1,7 @@
 const visit = require("unist-util-visit")
 const ssrTemplate = require("./src/internals/ssr.template")
 
-const githubOrgUrl = "https://github.com/GigahexHQ/gigahex"
+const githubOrgUrl = "https://github.com/GigahexHQ/console"
 const domain = "gigahex.com"
 
 const customFields = {
@@ -16,7 +16,7 @@ const customFields = {
   githubUrl: `${githubOrgUrl}`,
   helmVersion: "0.3.0",
   linkedInUrl: "https://www.linkedin.com/company/gigahex/",
-  oneLiner: "Sandbox Big data cluster on desktop - Gigahex",
+  oneLiner: "Unified Console for your Data infrastructure",
   slackUrl: `https://join.slack.com/t/gigahexcomm/shared_invite/zt-s7ow0mw5-egYmATa4QqU8TqAFWbK~4A`,
 
   twitterUrl: "https://twitter.com/GigahexHQ",

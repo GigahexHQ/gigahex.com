@@ -50,6 +50,9 @@
   align-items: flex-start;
   justify-content: center;
 }
+:global(.navbar__items) > span {
+  margin-top: 6px;
+}
 .inner {
   margin: 0 auto;
   padding: 0 var(--ifm-spacing-horizontal);
